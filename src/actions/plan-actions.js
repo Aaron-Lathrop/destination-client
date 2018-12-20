@@ -1,10 +1,15 @@
+export const GET_PLAN_CARDS = 'GET_PLAN_CARDS';
 export const ADD_PLAN = 'ADD_PLAN';
 export const GET_PLANS = 'GET_PLANS';
 export const UPDATE_PLAN = 'UPDATE_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const GET_WEATHER = 'GET_WEATHER';
 
-export const addPlan = () => ({
+export const getPlanCards = () => ({
+    type: GET_PLAN_CARDS
+});
+
+export const addPlan = (text) => ({
     type: ADD_PLAN
 });
 
