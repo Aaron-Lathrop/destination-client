@@ -8,7 +8,7 @@ const initialState = {
     planCards: []
 };
 
-export const tripReducer = (state=initialState, action) => {
+const tripReducer = (state=initialState, action) => {
     switch(action.type) {
         case actions.ADD_TRIP:
             console.log(actions.ADD_TRIP);
@@ -28,3 +28,5 @@ export const tripReducer = (state=initialState, action) => {
 
     return state;
 };
+
+export default tripReducer;

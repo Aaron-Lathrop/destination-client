@@ -8,7 +8,7 @@ const initialState = {
     userID: null
 };
 
-export const userReducer = (state=initialState, action) => {
+const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case actions.REQUEST:
             console.log(actions.REQUEST);
@@ -37,3 +37,5 @@ export const userReducer = (state=initialState, action) => {
 
     return state;
 };
+
+export default userReducer;

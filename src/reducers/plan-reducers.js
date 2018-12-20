@@ -11,7 +11,7 @@ export const UPDATE_PLAN = 'UPDATE_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const GET_WEATHER = 'GET_WEATHER';
 
-export const planReducer = (state=initialState, action) => {
+const planReducer = (state=initialState, action) => {
     switch(action.type) {
         case actions.GET_PLAN_CARDS:
             console.log(actions.GET_PLAN_CARDS);
@@ -37,3 +37,5 @@ export const planReducer = (state=initialState, action) => {
 
     return state;
 };
+
+export default planReducer;
