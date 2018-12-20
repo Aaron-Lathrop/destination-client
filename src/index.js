@@ -4,12 +4,12 @@ import {Provider} from 'react-redux';
 import store from './store';
 
 import './index.css';
-import App from './App';
+import Board from './components/board';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Board />
     </Provider>,
     document.getElementById('root'));
 
