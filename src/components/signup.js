@@ -1,15 +1,37 @@
 import React from 'react';
 import './signup.css';
 
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { signup } from '../actions/index';
 
-export default function SignUp(props) {
+function SignUp(props) {
+  const user = {};
 
   function onSubmit(e) {
     e.preventDefault();
-    window.location = "/dashboard"
+    console.log(props.username);
+    props.dispatch(signup(user));
+    console.log(props.username);
+    //window.location = "/dashboard"
   }
-  
+
+  function handleFirstName(e) {
+    user.firstName = e.target.value;
+  }
+
+  function handleUserName(e) {
+    user.username = e.target.value;
+  }
+
+  function handleEmail(e) {
+    user.email = e.target.value;
+  }
+
+  function handlePassword(e) {
+    user.password = e.target.value;
+  }
+
     return (
         <section>
             <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
@@ -17,22 +39,38 @@ export default function SignUp(props) {
               <legend>Plan your DestiNation</legend>
                 <div>
                   <label htmlFor="firstName">First Name</label>
-                  <input id="firstName" name="firstName" type="text" placeholder="First Name" />
+                  <input id="firstName" 
+                         name="firstName" 
+                         type="text" 
+                         placeholder="First Name"
+                         onChange={e => handleFirstName(e)} />
                 </div>
 
                 <div>
-                  <label for="username">Username</label>
-                  <input id="username" name="username" type="text" placeholder="Username" />
+                  <label htmlFor="username">Username</label>
+                  <input id="username" 
+                         name="username" 
+                         type="text" 
+                         placeholder="Username"
+                         onChange={e => handleUserName(e)} />
                 </div>
 
                 <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="Email" />
+                  <label htmlFor="email">Email</label>
+                  <input id="email" 
+                         name="email" 
+                         type="email" 
+                         placeholder="Email"
+                         onChange={e => handleEmail(e)} />
                 </div>
 
                 <div>
-                  <label for="password">Password</label>
-                  <input id="password" name="password" type="password" placeholder="First Name" />
+                  <label htmlFor="password">Password</label>
+                  <input id="password" 
+                         name="password" 
+                         type="password" 
+                         placeholder="First Name"
+                         onChange={e => handlePassword(e)} />
                 </div>
 
                 <button type="submit">Sign Up</button>
@@ -43,3 +81,10 @@ export default function SignUp(props) {
         </section>
     );
 }
+
+const mapStateToProps = state => ({
+  username: state.username,
+  name: state.firstName
+});
+
+export default connect(mapStateToProps)(SignUp);

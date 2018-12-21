@@ -4,14 +4,16 @@ const initialState = {
     authToken: "",
     error: null,
     loading: false,
-    user: null,
+    username: "",
     userID: null,
+    name: "",
     dateList: [],
     destination: "",
     icon: "",
     planCards: [],
     text: "",
-    test: "test"
+    tripId: [0, 1],
+    userList: []
 };
 
 const reducer = (state=initialState, action) => {
@@ -59,9 +61,14 @@ const reducer = (state=initialState, action) => {
         case actions.LOG_OUT:
             console.log(actions.LOG_OUT);
             break;
-        case actions.SIGN_UP:
-            console.log(actions.SIGN_UP);
-            break;
+        case actions.SIGN_UP: {
+            return Object.assign({}, state, {
+                firstName: action.user.firstName,
+                username: action.user.username,
+                email: action.user.email,
+                password: action.user.password
+            });
+        }
         case actions.LOG_IN:
             console.log(actions.LOG_IN);
             break;
