@@ -22,3 +22,12 @@ nav a {
   float: right;
   padding-right: 10px;
 }
+
+header {
+    padding: 12% 0;
+}
+  
+header button {
+    padding: 25px;
+    border-radius: 10px;
+}
