@@ -1,9 +1,6 @@
 import React from 'react';
 import './feature-section.css';
 
-//import FeatureHighlight from './feature-highlight';
-//import FeatureDescription from './feature-description';
-
 export default function FeatureSection(props){
     return (
         <div>
