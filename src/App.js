@@ -9,6 +9,7 @@ import LogIn from './components/login';
 import SignUp from './components/signup';
 import TripSection from './components/trip-section';
 import TripCard from './components/trip-card';
+import DailyPlanCard from './components/daily-plan-card';
 
 export default class App extends Component {
 
@@ -23,6 +24,7 @@ export default class App extends Component {
                       <Route exact path="/signup" component={SignUp} />
                       <Route exact path="/dashboard" component={TripSection} />
                       <Route exact path="/trips" component={TripCard} />
+                      <Route exact path="/trips/:tripId" component={DailyPlanCard} />
                     </Switch>
                     <Footer />
                 </main>

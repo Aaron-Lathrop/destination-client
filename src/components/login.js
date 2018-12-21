@@ -5,7 +5,7 @@ export default function LogIn(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    window.location = "/dashboard"
+    window.location = "/dashboard";
   }
 
     return (

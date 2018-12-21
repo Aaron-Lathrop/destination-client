@@ -1,6 +1,7 @@
 import React from 'react';
 import './trip-card.css';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function TripCard(props) {
 
@@ -17,7 +18,7 @@ function TripCard(props) {
                     alt={trip.destination} className="trip-img" />
                 </div>
             </div>
-            <button id={trip.tripId}>View</button>
+            <Link to={`/trips/${trip.tripId}`}>View</Link>
         </section>
     ));
 
