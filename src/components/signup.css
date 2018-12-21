@@ -1,0 +1,11 @@
+fieldset {
+    border: none;
+  }
+  
+legend {
+    margin-bottom: 50px;
+}
+  
+input {
+    margin-bottom: 10px;
+}

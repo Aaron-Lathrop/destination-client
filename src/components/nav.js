@@ -14,7 +14,7 @@ export default function Nav(props) {
                 <header role="banner">
                     <h1>DestiNation</h1>
                     <h2>because so much depends upon the weather</h2>
-                    <button>Plan Trip</button>
+                    <button onClick={() => alert('plan trip clicked')}>Plan Trip</button>
                 </header>
             </div>
         </Router>
