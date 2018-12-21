@@ -10,7 +10,7 @@ export default function SignUp(props) {
               <fieldset>
               <legend>Plan your DestiNation</legend>
                 <div>
-                  <label for="firstName">First Name</label>
+                  <label htmlFor="firstName">First Name</label>
                   <input id="firstName" name="firstName" type="text" placeholder="First Name" />
                 </div>
 

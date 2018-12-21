@@ -1,6 +1,6 @@
+import * as planActions from '../actions/plan-actions';
 import * as tripActions from '../actions/trip-actions';
 import * as userActions from '../actions/user-actions';
-import * as planActions from '../actions/plan-actions';
 
 const initialState = {
     authToken: "",
@@ -16,9 +16,27 @@ const initialState = {
     test: "test"
 };
 
-const reducer = (state=initialState, action) => {
+const planReducer = (state=initialState, action) => {
 
     switch(action.type) {
+        case planActions.GET_PLAN_CARDS:
+            console.log(planActions.GET_PLAN_CARDS);
+            break;
+        case planActions.ADD_PLAN:
+            console.log(planActions.ADD_PLAN);
+            break;
+        case planActions.GET_PLANS:
+            console.log(planActions.GET_PLANS);
+            break;
+        case planActions.UPDATE_PLAN:
+            console.log(planActions.UPDATE_PLAN);
+            break;
+        case planActions.DELETE_PLAN:
+            console.log(planActions.DELETE_PLAN);
+            break;
+        case planActions.GET_WEATHER:
+            console.log(planActions.GET_WEATHER);
+            break;
         case tripActions.ADD_TRIP:
             console.log(tripActions.ADD_TRIP);
             break;
@@ -30,9 +48,6 @@ const reducer = (state=initialState, action) => {
             break;
         case tripActions.DELETE_TRIP:
             console.log(tripActions.DELETE_TRIP);
-            break;
-        case userActions.REQUEST:
-            console.log(userActions.REQUEST);
             break;
         case userActions.AUTH_REQUEST:
             console.log(userActions.AUTH_REQUEST);
@@ -52,24 +67,6 @@ const reducer = (state=initialState, action) => {
         case userActions.LOG_IN:
             console.log(userActions.LOG_IN);
             break;
-        case planActions.GET_PLAN_CARDS:
-            console.log(planActions.GET_PLAN_CARDS);
-            break;
-        case planActions.ADD_PLAN:
-            console.log(planActions.ADD_PLAN);
-            break;
-        case planActions.GET_PLANS:
-            console.log(planActions.GET_PLANS);
-            break;
-        case planActions.UPDATE_PLAN:
-            console.log(planActions.UPDATE_PLAN);
-            break;
-        case planActions.DELETE_PLAN:
-            console.log(planActions.DELETE_PLAN);
-            break;
-        case planActions.GET_WEATHER:
-            console.log(planActions.GET_WEATHER);
-            break;
         default:
             return state;
     }
@@ -77,4 +74,4 @@ const reducer = (state=initialState, action) => {
     return state;
 };
 
-export default reducer;
+export default planReducer;

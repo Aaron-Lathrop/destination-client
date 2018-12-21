@@ -1,8 +1,8 @@
 import React from 'react';
 import './nav.css';
 import { connect } from 'react-redux';
-//import { BrowserRouter as Router } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {request} from '../actions/user-actions';
 
 export function Nav(props) {
     return (        
@@ -14,7 +14,7 @@ export function Nav(props) {
                 <header role="banner">
                     <h1>DestiNation</h1>
                     <h2>because so much depends upon the weather</h2>
-                    <button onClick={() => alert('plan trip clicked')}>Plan Trip</button>
+                    <button onClick={() => props.dispatch(request())}>Plan Trip</button>
                 </header>
             </div>
     );

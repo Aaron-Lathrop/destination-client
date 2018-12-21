@@ -9,6 +9,7 @@ import LogIn from './login';
 import SignUp from './signup';
 
 export default class Board extends Component {
+
     render() {
         return (
             <Router>
