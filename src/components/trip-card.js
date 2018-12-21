@@ -1,20 +1,23 @@
 import React from 'react';
+import './trip-card.css';
 import { connect } from 'react-redux';
 
 function TripCard(props) {
 
-    const trips = props.ids.map((id, index) => (
-        <section key={index}>
-            <div class="trip">
-                <div class="trip-description">
-                    <p>Trip to Tokyo!</p>
-                    <p>1/19/2019 - 1/27/2019</p>
+    const trips = props.trips.map((trip, index) => (
+        <section key={index} id={trip.tripId}>
+            <div className="trip">
+                <div className="trip-description">
+                    <p>Trip to {trip.destination}!</p>
+                    <p>{trip.startDate} to {trip.endDate}</p>
                 </div>
-                <div class="trip-img">
-                    picture
+                <div>
+                    <img 
+                    src={trip.icon} 
+                    alt={trip.destination} className="trip-img" />
                 </div>
             </div>
-            <button id={id}>View</button>
+            <button id={trip.tripId}>View</button>
         </section>
     ));
 
@@ -26,7 +29,7 @@ function TripCard(props) {
 }
 
 const mapStateToProps = state => ({
-    ids: state.tripId
+    trips: state.trips
 });
 
 export default connect(mapStateToProps)(TripCard);

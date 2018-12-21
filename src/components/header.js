@@ -2,9 +2,9 @@ import React from 'react';
 import './header.css'
 
 import { connect } from 'react-redux';
-import { request } from '../actions/index';
+// import { request } from '../actions/index';
 
-import SignUp from './signup';
+// import SignUp from './signup';
 
 function Header(props) {
     return (

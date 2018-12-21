@@ -2,17 +2,44 @@ import * as actions from '../actions/index';
 
 const initialState = {
     authToken: "",
-    error: null,
-    loading: false,
-    username: "",
-    userID: null,
-    name: "",
     dateList: [],
     destination: "",
+    error: null,
     icon: "",
+    loading: false,
+    name: "",
     planCards: [],
+    username: "",
+    userID: null,
     text: "",
-    tripId: [0, 1],
+    trips: [{
+        userId: 12345,
+        tripId: 54321,
+        startDate: "01/01/2019",
+        endDate: "01/20/2019",
+        dateList: ["01/01/2019", "01/02/2019", "01/03/2019"],
+        destination: "Tokyo, Japan",
+        icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
+        planCards: [{
+            date: "01/01/2019",
+            weather: "bloody cold",
+            plans: ["eat ramen", "get rental car", "wander around"]
+        }]
+    },
+        {
+            userId: 12345,
+            tripId: 67890,
+            startDate: "05/01/2019",
+            endDate: "05/20/2019",
+            dateList: [new Date("05/01/2019"), new Date("05/02/2019"), new Date("05/03/2019")],
+            destination: "Madrid",
+            icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
+            planCards: [{
+                date: "05/01/2019",
+                weather: "bloody hot",
+                plans: ["eat stuff", "get rental car", "wander around"]
+            }]
+    }],
     userList: []
 };
 
@@ -50,8 +77,21 @@ const reducer = (state=initialState, action) => {
             console.log(actions.DELETE_TRIP);
             break;
         case actions.AUTH_REQUEST:
-            console.log(actions.AUTH_REQUEST);
-            break;
+            return Object.assign({}, state, {
+                authToken: "",
+                dateList: [],
+                destination: "",
+                error: null,
+                icon: "",
+                loading: false,
+                name: "",
+                planCards: [],
+                username: "",
+                userID: null,
+                text: "",
+                trips: [0],
+                userList: []
+            });
         case actions.SET_AUTH_TOKEN:
             console.log(actions.SET_AUTH_TOKEN);
             break;
@@ -59,8 +99,21 @@ const reducer = (state=initialState, action) => {
             console.log(actions.AUTH_SUCCESS);
             break;
         case actions.LOG_OUT:
-            console.log(actions.LOG_OUT);
-            break;
+            return Object.assign({}, state, {
+                authToken: "",
+                dateList: [],
+                destination: "",
+                error: null,
+                icon: "",
+                loading: false,
+                name: "",
+                planCards: [],
+                username: "",
+                userID: null,
+                text: "",
+                trips: [0],
+                userList: []
+            });
         case actions.SIGN_UP: {
             const users = [...state.userList, action.user];
             return Object.assign({}, ...state.userList, {
@@ -73,8 +126,10 @@ const reducer = (state=initialState, action) => {
             console.log(actions.LOG_IN);
             break;
         case actions.REQUEST:
-            console.log(actions.REQUEST);
-            break;
+            return Object.assign({}, state, {
+                error: null,
+                loading: true
+            });
         default:
             return state;
     }
