@@ -4,9 +4,15 @@ import './signup.css';
 import {Link} from 'react-router-dom';
 
 export default function SignUp(props) {
+
+  function onSubmit(e) {
+    e.preventDefault();
+    window.location = "/dashboard"
+  }
+  
     return (
         <section>
-            <form name="signup" action="#">
+            <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Plan your DestiNation</legend>
                 <div>

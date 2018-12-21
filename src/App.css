@@ -11,6 +11,15 @@ body {
   line-height: 1.5;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 button:hover {
     cursor: pointer;
 }

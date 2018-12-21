@@ -13,7 +13,7 @@ nav {
   text-align: left;
 }
 
-nav:first-child {
+nav a:first-child {
   float: left;
   padding-left: 10px;
 }
@@ -21,13 +21,4 @@ nav:first-child {
 nav a {
   float: right;
   padding-right: 10px;
-}
-
-header {
-    padding: 12% 0;
-}
-  
-header button {
-    padding: 25px;
-    border-radius: 10px;
 }

@@ -2,9 +2,15 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 export default function LogIn(props) {
+
+  function onSubmit(e) {
+    e.preventDefault();
+    window.location = "/dashboard"
+  }
+
     return (
         <section>
-            <form name="signup" action="#">
+            <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Plan your DestiNation</legend>
 
@@ -22,7 +28,7 @@ export default function LogIn(props) {
                 </fieldset>
             </form>
           
-          <p>Don't have an account? <Link to="/signup">Create one</Link></p>
+          <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </section>
     );
 }
