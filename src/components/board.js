@@ -7,6 +7,7 @@ import FeatureSection from './feature-section';
 import Footer from './footer';
 import LogIn from './login';
 import SignUp from './signup';
+import DailyPlanCard from './daily-plan-card';
 
 export default class Board extends Component {
 
@@ -15,6 +16,7 @@ export default class Board extends Component {
             <Router>
                 <main role="main">
                     <Nav />
+                    <DailyPlanCard />
                     <Switch>
                        <Route exact path="/login" component={LogIn} /> 
                        <Route exact path="/signup" component={SignUp} />
