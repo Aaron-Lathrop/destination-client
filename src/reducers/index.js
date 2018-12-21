@@ -1,6 +1,4 @@
-import * as planActions from '../actions/plan-actions';
-import * as tripActions from '../actions/trip-actions';
-import * as userActions from '../actions/user-actions';
+import * as actions from '../actions/index';
 
 const initialState = {
     authToken: "",
@@ -16,56 +14,59 @@ const initialState = {
     test: "test"
 };
 
-const planReducer = (state=initialState, action) => {
+const reducer = (state=initialState, action) => {
 
     switch(action.type) {
-        case planActions.GET_PLAN_CARDS:
-            console.log(planActions.GET_PLAN_CARDS);
+        case actions.GET_PLAN_CARDS:
+            console.log(actions.GET_PLAN_CARDS);
             break;
-        case planActions.ADD_PLAN:
-            console.log(planActions.ADD_PLAN);
+        case actions.ADD_PLAN:
+            console.log(actions.ADD_PLAN);
             break;
-        case planActions.GET_PLANS:
-            console.log(planActions.GET_PLANS);
+        case actions.GET_PLANS:
+            console.log(actions.GET_PLANS);
             break;
-        case planActions.UPDATE_PLAN:
-            console.log(planActions.UPDATE_PLAN);
+        case actions.UPDATE_PLAN:
+            console.log(actions.UPDATE_PLAN);
             break;
-        case planActions.DELETE_PLAN:
-            console.log(planActions.DELETE_PLAN);
+        case actions.DELETE_PLAN:
+            console.log(actions.DELETE_PLAN);
             break;
-        case planActions.GET_WEATHER:
-            console.log(planActions.GET_WEATHER);
+        case actions.GET_WEATHER:
+            console.log(actions.GET_WEATHER);
             break;
-        case tripActions.ADD_TRIP:
-            console.log(tripActions.ADD_TRIP);
+        case actions.ADD_TRIP:
+            console.log(actions.ADD_TRIP);
             break;
-        case tripActions.GET_TRIPS:
-            console.log(tripActions.GET_TRIPS);
+        case actions.GET_TRIPS:
+            console.log(actions.GET_TRIPS);
             break;
-        case tripActions.UPDATE_TRIP:
-            console.log(tripActions.UPDATE_TRIP);
+        case actions.UPDATE_TRIP:
+            console.log(actions.UPDATE_TRIP);
             break;
-        case tripActions.DELETE_TRIP:
-            console.log(tripActions.DELETE_TRIP);
+        case actions.DELETE_TRIP:
+            console.log(actions.DELETE_TRIP);
             break;
-        case userActions.AUTH_REQUEST:
-            console.log(userActions.AUTH_REQUEST);
+        case actions.AUTH_REQUEST:
+            console.log(actions.AUTH_REQUEST);
             break;
-        case userActions.SET_AUTH_TOKEN:
-            console.log(userActions.SET_AUTH_TOKEN);
+        case actions.SET_AUTH_TOKEN:
+            console.log(actions.SET_AUTH_TOKEN);
             break;
-        case userActions.AUTH_SUCCESS:
-            console.log(userActions.AUTH_SUCCESS);
+        case actions.AUTH_SUCCESS:
+            console.log(actions.AUTH_SUCCESS);
             break;
-        case userActions.LOG_OUT:
-            console.log(userActions.LOG_OUT);
+        case actions.LOG_OUT:
+            console.log(actions.LOG_OUT);
             break;
-        case userActions.SIGN_UP:
-            console.log(userActions.SIGN_UP);
+        case actions.SIGN_UP:
+            console.log(actions.SIGN_UP);
             break;
-        case userActions.LOG_IN:
-            console.log(userActions.LOG_IN);
+        case actions.LOG_IN:
+            console.log(actions.LOG_IN);
+            break;
+        case actions.REQUEST:
+            console.log(actions.REQUEST);
             break;
         default:
             return state;
@@ -74,4 +75,4 @@ const planReducer = (state=initialState, action) => {
     return state;
 };
 
-export default planReducer;
+export default reducer;
