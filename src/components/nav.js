@@ -1,15 +1,15 @@
 import React from 'react';
 import './nav.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
+//import { BrowserRouter as Router } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function Nav(props) {
+export function Nav(props) {
     return (        
-        <Router>
             <div>
                 <nav role="navigation">
-                    Nav
-                    <Link to={`/`}>Login</Link>
+                    {props.test}
+                    <Link to={`/login`}>Login</Link>
                 </nav>
                 <header role="banner">
                     <h1>DestiNation</h1>
@@ -17,6 +17,11 @@ export default function Nav(props) {
                     <button onClick={() => alert('plan trip clicked')}>Plan Trip</button>
                 </header>
             </div>
-        </Router>
     );
 }
+
+const mapStateToProps = (state) => ({
+    test: state.test
+});
+
+export default connect(mapStateToProps)(Nav);

@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
 import './board.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 import Nav from './nav'
 import FeatureSection from './feature-section';
 import Footer from './footer';
-import TripSection from './trip-section';
+import LogIn from './login';
+import SignUp from './signup';
 
 export default class Board extends Component {
     render() {
         return (
-            <main role="main">
-                <Nav />
-                <TripSection />
-                <FeatureSection />
-                <Footer />
-            </main>
+            <Router>
+                <main role="main">
+                    <Nav />
+                    <Switch>
+                       <Route exact path="/login" component={LogIn} /> 
+                       <Route exact path="/signup" component={SignUp} />
+                    </Switch>
+                    
+                    <FeatureSection />
+                    <Footer />
+                </main>
+            </Router>
         );
     }
 }

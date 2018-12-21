@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 export default function LogIn(props) {
     return (
@@ -21,7 +22,7 @@ export default function LogIn(props) {
                 </fieldset>
             </form>
           
-          <p>Don't have an account? <a href="/">Create one</a></p>
+          <p>Don't have an account? <Link to="/signup">Create one</Link></p>
         </section>
     );
 }

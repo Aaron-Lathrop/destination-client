@@ -1,6 +1,8 @@
 import React from 'react';
 import './signup.css';
 
+import {Link} from 'react-router-dom';
+
 export default function SignUp(props) {
     return (
         <section>
@@ -31,7 +33,7 @@ export default function SignUp(props) {
                 </fieldset>
             </form>
           
-          <p>Already have an account? <a href="/">Log In</a></p>
+          <p>Already have an account? <Link to="/login">Log In</Link></p>
         </section>
     );
 }
