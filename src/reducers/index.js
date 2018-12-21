@@ -62,11 +62,11 @@ const reducer = (state=initialState, action) => {
             console.log(actions.LOG_OUT);
             break;
         case actions.SIGN_UP: {
-            return Object.assign({}, state, {
+            const users = [...state.userList, action.user];
+            return Object.assign({}, ...state.userList, {
                 firstName: action.user.firstName,
                 username: action.user.username,
-                email: action.user.email,
-                password: action.user.password
+                userList: users
             });
         }
         case actions.LOG_IN:

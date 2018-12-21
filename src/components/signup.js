@@ -10,9 +10,9 @@ function SignUp(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(props.username);
+    console.log(props.userList);
     props.dispatch(signup(user));
-    console.log(props.username);
+    console.log(props.userList);
     //window.location = "/dashboard"
   }
 
@@ -84,7 +84,8 @@ function SignUp(props) {
 
 const mapStateToProps = state => ({
   username: state.username,
-  name: state.firstName
+  name: state.firstName,
+  userList: state.userList
 });
 
 export default connect(mapStateToProps)(SignUp);
