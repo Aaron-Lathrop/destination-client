@@ -24,17 +24,37 @@ const initialState = {
             date: "01/01/2019",
             weather: "bloody cold",
             plans: ["eat ramen", "get rental car", "wander around"]
+        },
+        {
+            date: "01/02/2019",
+            weather: "bloody cold",
+            plans: ["eat ramen", "get rental car", "wander around"]
+        },
+        {
+            date: "01/03/2019",
+            weather: "bloody cold",
+            plans: ["eat ramen", "get rental car", "wander around"]
         }]
     },
         {
             userId: 12345,
             tripId: 67890,
             startDate: "05/01/2019",
-            endDate: "05/20/2019",
-            dateList: [new Date("05/01/2019"), new Date("05/02/2019"), new Date("05/03/2019")],
+            endDate: "05/03/2019",
+            dateList: ["05/01/2019", "05/02/2019", "05/03/2019"],
             destination: "Madrid",
             icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
             planCards: [{
+                date: "05/01/2019",
+                weather: "one million degrees",
+                plans: ["eat stuff", "get rental car", "wander around"]
+            },
+            {
+                date: "05/02/2019",
+                weather: "maybe rain?",
+                plans: ["eat stuff", "get rental car", "wander around"]
+            },
+            {
                 date: "05/01/2019",
                 weather: "bloody hot",
                 plans: ["eat stuff", "get rental car", "wander around"]

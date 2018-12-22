@@ -3,25 +3,31 @@ import { connect } from 'react-redux'
 
 function DailyPlanCard(props) {
 
-    const dailyPlans = props.planCards.map((plan, index) => (
-        <section>
-            <div>
-                <div class="daily">
-                <p>{plan.date}</p>
-                <p>{plan.weather}</p>
+    // const plans = props.planCards.map((planCard, index) => (
+    //     <li key={index}>{planCard}</li>
+    // ));
+
+    const dailyPlans = props.dates.map((date, index) => {
+        console.log(props);
+
+        return (
+            <section>
+                <div>
+                    <div className="daily">
+                    <p>{date}</p>
+                    <p>{props.planCards[index].weather}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="daily-plans">
-                <ul>
-                <li>Flight from DEN at 3:30pm</li>
-                <li>Arrive at NAR at 5:00am</li>
-                <li>Ramen and mochi for breakfast</li>
-                </ul>
-            </div>
-            <button>Add plan</button>
-            <button>Edit</button>
-        </section>
-    ));
+                <div className="daily-plans">
+                    <ul>
+                        {props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)}
+                    </ul>
+                </div>
+                <button>Add plan</button>
+                <button>Edit</button>
+            </section>
+        );
+});
 
     return (
         <div>
@@ -42,26 +48,6 @@ function DailyPlanCard(props) {
                 </div>
                 <button>Add plan</button>
                 <button>Edit</button>
-            </section>
-
-            <section>
-                <div>
-                    <div class="daily">
-                    <p>1/20/2018</p>
-                    <p>Weather Info</p>
-                    </div>
-                </div>
-                <button>View</button>
-            </section>
-
-            <section>
-                <div>
-                    <div class="daily">
-                    <p>1/21/2018</p>
-                    <p>Weather Info</p>
-                    </div>
-                </div>
-                <button>View</button>
             </section> */}
         </div>
     );
@@ -72,7 +58,9 @@ const mapStateToProps = (state, props) => {
     console.log(props.match.params.tripId);
     const trip = state.trips.find(item => item.tripId === tripId);
     return ({
-        planCards: trip.planCards
+        trip,
+        planCards: trip.planCards,
+        dates: trip.dateList
     });
 };
 
