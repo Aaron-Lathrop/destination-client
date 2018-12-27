@@ -1,5 +1,5 @@
 //plan actions
-export const GET_PLAN_CARDS = 'GET_PLAN_CARDS';
+export const SET_PLAN_CARDS = 'SET_PLAN_CARDS';
 export const ADD_PLAN = 'ADD_PLAN';
 export const GET_PLANS = 'GET_PLANS';
 export const EDIT_PLANS = 'EDIT_PLANS';
@@ -8,13 +8,14 @@ export const UPDATE_PLAN = 'UPDATE_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const GET_WEATHER = 'GET_WEATHER';
 
-export const getPlanCards = () => ({
-    type: GET_PLAN_CARDS
+export const setPlanCards = (planCards) => ({
+    type: SET_PLAN_CARDS,
+    planCards
 });
 
-export const addPlan = (plan) => ({
+export const addPlan = (planCard) => ({
     type: ADD_PLAN,
-    plan
+    planCard
 });
 
 export const getPlans = () => ({

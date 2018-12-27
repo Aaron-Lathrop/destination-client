@@ -1,5 +1,5 @@
 import {
-    GET_PLAN_CARDS,
+    SET_PLAN_CARDS,
     ADD_PLAN,
     GET_PLANS,
     EDIT_PLANS,
@@ -18,7 +18,7 @@ import {
     LOG_OUT,
     SIGN_UP,
     LOG_IN,
-    getPlanCards,
+    setPlanCards,
     addPlan,
     getPlans,
     editPlans,
@@ -39,25 +39,33 @@ import {
     logIn
 } from './index';
 
-describe('getPlanCards', () => {
+describe('setPlanCards', () => {
     it('Should return the action', () => {
-        const action = getPlanCards();
-        expect(action.type).toEqual(GET_PLAN_CARDS);
+        const planCards = [{
+            tripId: 54321,
+            plans: "this is a test plan",
+            date: "01/01/2019",
+            weather: "super cold",
+            index: 0
+         }]; 
+        const action = setPlanCards(planCards);
+        expect(action.type).toEqual(SET_PLAN_CARDS);
+        expect(action.planCards).toEqual(planCards);
     });
 });
 
 describe('addPlan', () => {
     it('Should return the action', () => {
-        const plan = {
+        const planCard = {
             tripId: 54321,
             plans: "this is a test plan",
             date: "01/01/2019",
             weather: "super cold",
             index: 0
          };
-        const action = addPlan(plan);
+        const action = addPlan(planCard);
         expect(action.type).toEqual(ADD_PLAN);
-        expect(action.plan).toEqual(plan);
+        expect(action.planCard).toEqual(planCard);
     });
 });
 

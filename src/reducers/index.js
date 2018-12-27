@@ -12,7 +12,7 @@ const initialState = {
     planCards: [],
     username: "",
     userID: null,
-    plan: null,
+    plan: [],
     trips: [{
         userId: 12345,
         tripId: 54321,
@@ -22,16 +22,19 @@ const initialState = {
         destination: "Tokyo, Japan",
         icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
         planCards: [{
+            tripId: 54321,
             date: "01/01/2019",
             weather: "bloody cold",
             plans: ["01 plan 1", "01 plan 2", "01 plan 3"]
         },
         {
+            tripId: 54321,
             date: "01/02/2019",
             weather: "bloody cold",
             plans: ["eat ramen", "get rental car", "wander around"]
         },
         {
+            tripId: 54321,
             date: "01/03/2019",
             weather: "bloody cold",
             plans: ["eat ramen", "get rental car", "wander around"]
@@ -46,16 +49,19 @@ const initialState = {
             destination: "Madrid",
             icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
             planCards: [{
+                tripId: 67890,
                 date: "05/01/2019",
                 weather: "one million degrees",
                 plans: ["eat stuff", "get rental car", "wander around"]
             },
             {
+                tripId: 67890,
                 date: "05/02/2019",
                 weather: "maybe rain?",
                 plans: ["eat stuff", "get rental car", "wander around"]
             },
             {
+                tripId: 67890,
                 date: "05/03/2019",
                 weather: "bloody hot",
                 plans: ["eat stuff", "get rental car", "wander around"]
@@ -67,57 +73,49 @@ const initialState = {
 const reducer = (state=initialState, action) => {
 
     switch(action.type) {
-        case actions.GET_PLAN_CARDS:
-            console.log(actions.GET_PLAN_CARDS);
-            break;
+        case actions.SET_PLAN_CARDS:
+        return Object.assign({}, state, {
+            planCards: [...action.planCards]
+        });
         case actions.ADD_PLAN:
-            let target = state.trips.find(trip => trip.tripId === action.plan.tripId).planCards.find(planCard => planCard.date === action.plan.date);
-
-            let planCard = Object.assign({}, target, 
-                {
-                    plans: [   
-                        ...target.plans,
-                        action.plan.plans
-                    ]
-                }
-            );
-
             let trips = state.trips.map((trip, index) => {
-                if(trip.tripId !== action.plan.tripId) {
+                if(trip.tripId !== action.planCard.tripId) {
                     return trip;
                 }
-                
-                return Object.assign({}, trip, {
-                    planCards: trip.planCards.map(card => (
-                        card.date === action.plan.date ? planCard : card
-                    ))
-                });
+                    return Object.assign({}, trip, {
+                        planCards: trip.planCards.map(card => card.date === action.planCard.date ? action.planCard : card)
+                    })
             });
-            
+
             return Object.assign({}, state, {trips});
 
         case actions.GET_PLANS:
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
+            console.log(state.planCards);
             return Object.assign({}, state, {
                 editing: !state.editing,
                 planCards: action.planCards
             });
 
         case actions.CANCEL_EDIT_PLAN:
-        console.log(action.planCards);
-        let cancel = state.trips.map((trip, index) => {
-            if(trip.tripId !== action.tripId) {
-                return trip;
-            }
-            
-            return Object.assign({}, trip, {
-                planCards: action.planCards
+            console.log(action.planCards);
+            let cancel = state.trips.map((trip, index) => {
+                if(trip.tripId !== action.tripId) {
+                    return trip;
+                }
+                
+                return Object.assign({}, trip, {
+                    planCards: action.planCards
+                    
+                });
             });
-        });
-        console.log(cancel);
-        return Object.assign({}, state, {cancel});
+            console.log(cancel);
+            return Object.assign({}, state, {
+                trips: cancel,
+                editing: !state.editing
+            });
 
         case actions.UPDATE_PLAN:
             console.log(actions.UPDATE_PLAN);

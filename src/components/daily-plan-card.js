@@ -1,39 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, cancelEditPlan, deleteTrip } from '../actions'
+import { addPlan, deletePlan, editPlans, cancelEditPlan, deleteTrip, setPlanCards } from '../actions'
 
 import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
-    
     const plan = {};
-    let backupPlanCards;
     
     function onSubmit(e) {
         e.preventDefault();
-        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(plan));
+        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans));
         if(document.getElementById(plan.index)) {
             document.getElementById(plan.index).value = "";
         };
+        props.dispatch(setPlanCards(props.planCards));
     }
 
     function handleAddChange(e, date, weather, index) {
         plan.tripId = props.trip.tripId;
-        plan.plans = e.target.value;
+        plan.plans = [...props.planCards.find(planCard => planCard.date === date).plans, e.target.value];
         plan.date = date;
         plan.weather = weather;
         plan.index = index;
     }
 
     function handleEditClick() {
-        backupPlanCards = props.planCards;
-        console.log(backupPlanCards);
-        props.dispatch(editPlans(backupPlanCards));
+        props.dispatch(editPlans(props.planCards));
     }
 
-    function handleCancelClick() {
-        props.dispatch(cancelEditPlan(props.trip.tripId, backupPlanCards));
-    }
+    // function handleCancelClick() {
+    //     props.dispatch(cancelEditPlan(props.trip.tripId, props.planCards));
+    // }
 
     function handleDelete(e, date, index) {
         plan.tripId = props.trip.tripId;
@@ -72,9 +69,10 @@ function DailyPlanCard(props) {
                                 </li>
                             </ul>
                             {props.editing ? <div><input type="submit" value="Save" /></div> : ""}
+                            {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <input type="submit" value="Cancel" />}
                         </form>
                     </div>
-                    {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <button onClick={e => handleCancelClick()}>Cancel</button>}
+                   
                 
             </section>
             
@@ -98,7 +96,7 @@ const mapStateToProps = (state, props) => {
         dates: trip.dateList,
         plan: state.plan,
         editing: state.editing,
-        testing: state.planCards
+        editPlans: state.planCards
     });
 };
 
