@@ -100,7 +100,25 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
-            return Object.assign({}, state, {editing: !state.editing});
+            return Object.assign({}, state, {
+                editing: !state.editing,
+                planCards: action.planCards
+            });
+
+        case actions.CANCEL_EDIT_PLAN:
+        console.log(action.planCards);
+        let cancel = state.trips.map((trip, index) => {
+            if(trip.tripId !== action.tripId) {
+                return trip;
+            }
+            
+            return Object.assign({}, trip, {
+                planCards: action.planCards
+            });
+        });
+        console.log(cancel);
+        return Object.assign({}, state, {cancel});
+
         case actions.UPDATE_PLAN:
             console.log(actions.UPDATE_PLAN);
             break;
@@ -143,8 +161,9 @@ const reducer = (state=initialState, action) => {
             console.log(actions.UPDATE_TRIP);
             break;
         case actions.DELETE_TRIP:
-            console.log(actions.DELETE_TRIP);
-            break;
+            return Object.assign({}, state, {
+                trips: state.trips.filter(trip => trip.tripId !== action.tripId)
+            });
         case actions.AUTH_REQUEST:
             return Object.assign({}, state, {
                 authToken: "",

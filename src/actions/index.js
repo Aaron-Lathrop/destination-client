@@ -3,6 +3,7 @@ export const GET_PLAN_CARDS = 'GET_PLAN_CARDS';
 export const ADD_PLAN = 'ADD_PLAN';
 export const GET_PLANS = 'GET_PLANS';
 export const EDIT_PLANS = 'EDIT_PLANS';
+export const CANCEL_EDIT_PLAN = 'CANCEL_EDIT_PLAN';
 export const UPDATE_PLAN = 'UPDATE_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const GET_WEATHER = 'GET_WEATHER';
@@ -20,9 +21,15 @@ export const getPlans = () => ({
     type: GET_PLANS
 });
 
-export const editPlans = (plan) => ({
+export const editPlans = (planCards) => ({
     type: EDIT_PLANS,
-    plan
+    planCards
+});
+
+export const cancelEditPlan = (tripId, planCards) => ({
+    type: CANCEL_EDIT_PLAN,
+    tripId,
+    planCards
 });
 
 export const updatePlan = () => ({
@@ -57,8 +64,9 @@ export const updateTrip = () => ({
     type: UPDATE_TRIP
 });
 
-export const deleteTrip = () => ({
-    type: DELETE_TRIP
+export const deleteTrip = (tripId) => ({
+    type: DELETE_TRIP,
+    tripId
 });
 
 

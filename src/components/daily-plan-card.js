@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans } from '../actions'
+import { addPlan, deletePlan, editPlans, cancelEditPlan, deleteTrip } from '../actions'
 
 import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
-
-    const plan = {}; 
+    
+    const plan = {};
+    let backupPlanCards;
     
     function onSubmit(e) {
         e.preventDefault();
@@ -24,8 +25,14 @@ function DailyPlanCard(props) {
         plan.index = index;
     }
 
-    function handleClick(e) {
-        props.dispatch(editPlans());
+    function handleEditClick() {
+        backupPlanCards = props.planCards;
+        console.log(backupPlanCards);
+        props.dispatch(editPlans(backupPlanCards));
+    }
+
+    function handleCancelClick() {
+        props.dispatch(cancelEditPlan(props.trip.tripId, backupPlanCards));
     }
 
     function handleDelete(e, date, index) {
@@ -34,6 +41,16 @@ function DailyPlanCard(props) {
         plan.date = date;
         plan.index = index;
         props.dispatch(deletePlan(plan));
+        window.location = '/trips';
+    }
+
+    function handleDeleteTrip() {
+        const confirming = window.confirm("Are you sure you want to delete your trip? There's no going back once it's gone.");
+        if(confirming) {
+            console.log(props.trip.tripId);
+            props.dispatch(deleteTrip(props.trip.tripId));
+        }
+        return alert("Trip deleted successfully.");
     }
 
     const dailyPlans = props.dates.map((date, index) => {
@@ -56,7 +73,8 @@ function DailyPlanCard(props) {
                         {props.editing ? <div><input type="submit" value="Save" /></div> : ""}
                     </form>
                 </div>
-                {!props.editing ? <button onClick={e => handleClick(e)}>Edit</button> : <button onClick={e => handleClick(e)}>Cancel</button>}
+                {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <button onClick={e => handleCancelClick()}>Cancel</button>}
+                
             </section>
         );
 });
@@ -64,6 +82,7 @@ function DailyPlanCard(props) {
     return (
         <div>
             {dailyPlans}
+            <button onClick={e => handleDeleteTrip()}>Delete Trip</button>
         </div>
     );
 }
@@ -76,7 +95,8 @@ const mapStateToProps = (state, props) => {
         planCards: trip.planCards,
         dates: trip.dateList,
         plan: state.plan,
-        editing: state.editing
+        editing: state.editing,
+        testing: state.planCards
     });
 };
 
