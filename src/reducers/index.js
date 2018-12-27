@@ -56,7 +56,7 @@ const initialState = {
                 plans: ["eat stuff", "get rental car", "wander around"]
             },
             {
-                date: "05/01/2019",
+                date: "05/03/2019",
                 weather: "bloody hot",
                 plans: ["eat stuff", "get rental car", "wander around"]
             }]
