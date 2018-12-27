@@ -15,7 +15,7 @@ function DailyPlanCard(props) {
     function onSubmit(e) {
         e.preventDefault();
         props.dispatch(addPlan(plan));
-        console.log(plan);
+        document.getElementById("plan").value = "";
     }
 
     function handleChange(e, date, weather) {
@@ -39,7 +39,7 @@ function DailyPlanCard(props) {
                         {props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)}
                         <li>
                             <form onSubmit={e => onSubmit(e)}>
-                                <input type="text" onChange={e => handleChange(e, date, props.planCards[index].weather)}/>
+                                <input id="plan" type="text" onChange={e => handleChange(e, date, props.planCards[index].weather)}/>
                                 <input type="submit" value="Add" />
                             </form>
                         </li>
