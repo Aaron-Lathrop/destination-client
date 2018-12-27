@@ -11,7 +11,7 @@ const initialState = {
     planCards: [],
     username: "",
     userID: null,
-    text: "",
+    plan: null,
     trips: [{
         userId: 12345,
         tripId: 54321,
@@ -23,7 +23,7 @@ const initialState = {
         planCards: [{
             date: "01/01/2019",
             weather: "bloody cold",
-            plans: ["eat ramen", "get rental car", "wander around"]
+            plans: ["01 plan 1", "01 plan 2", "01 plan 3"]
         },
         {
             date: "01/02/2019",
@@ -70,8 +70,31 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_PLAN_CARDS);
             break;
         case actions.ADD_PLAN:
-            console.log(actions.ADD_PLAN);
-            break;
+            let target = state.trips.find(trip => trip.tripId === action.plan.tripId).planCards.find(planCard => planCard.date === action.plan.date);
+
+            let planCard = Object.assign({}, target, 
+                {
+                    plans: [   
+                        ...target.plans,
+                        action.plan.plans
+                    ]
+                }
+            );
+
+            let trips = state.trips.map((trip, index) => {
+                if(trip.tripId !== action.plan.tripId) {
+                    return trip;
+                }
+                
+                return Object.assign({}, trip, {
+                    planCards: trip.planCards.map(card => (
+                        card.date === action.plan.date ? planCard : card
+                    ))
+                });
+            });
+            
+            return Object.assign({}, state, {trips});
+
         case actions.GET_PLANS:
             console.log(actions.GET_PLANS);
             break;

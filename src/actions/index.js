@@ -10,8 +10,9 @@ export const getPlanCards = () => ({
     type: GET_PLAN_CARDS
 });
 
-export const addPlan = (text) => ({
-    type: ADD_PLAN
+export const addPlan = (plan) => ({
+    type: ADD_PLAN,
+    plan
 });
 
 export const getPlans = () => ({

@@ -1,17 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { addPlan } from '../actions'
+
+import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
+    console.log(props.trip);
+    console.log(props.planCards);
+    console.log(props.dates);
+    console.log(props.plan);
 
-    // const plans = props.planCards.map((planCard, index) => (
-    //     <li key={index}>{planCard}</li>
-    // ));
+    const plan = {}; 
+    
+    function onSubmit(e) {
+        e.preventDefault();
+        props.dispatch(addPlan(plan));
+        console.log(plan);
+    }
+
+    function handleChange(e, date, weather) {
+        plan.tripId = props.trip.tripId;
+        plan.plans = e.target.value;
+        plan.date = date;
+        plan.weather = weather;
+    }
 
     const dailyPlans = props.dates.map((date, index) => {
-        console.log(props);
-
         return (
-            <section>
+            <section key={index}>
                 <div>
                     <div className="daily">
                     <p>{date}</p>
@@ -21,6 +37,12 @@ function DailyPlanCard(props) {
                 <div className="daily-plans">
                     <ul>
                         {props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)}
+                        <li>
+                            <form onSubmit={e => onSubmit(e)}>
+                                <input type="text" onChange={e => handleChange(e, date, props.planCards[index].weather)}/>
+                                <input type="submit" value="Add" />
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 <button>Add plan</button>
@@ -32,35 +54,19 @@ function DailyPlanCard(props) {
     return (
         <div>
             {dailyPlans}
-            {/* <section>
-                <div>
-                    <div class="daily">
-                    <p>1/19/2018</p>
-                    <p>Weather Info</p>
-                    </div>
-                </div>
-                <div class="daily-plans">
-                    <ul>
-                    <li>Flight from DEN at 3:30pm</li>
-                    <li>Arrive at NAR at 5:00am</li>
-                    <li>Ramen and mochi for breakfast</li>
-                    </ul>
-                </div>
-                <button>Add plan</button>
-                <button>Edit</button>
-            </section> */}
         </div>
     );
 }
 
 const mapStateToProps = (state, props) => {
     const tripId = parseInt(props.match.params.tripId, 10);
-    console.log(props.match.params.tripId);
+    console.log(state);
     const trip = state.trips.find(item => item.tripId === tripId);
     return ({
         trip,
         planCards: trip.planCards,
-        dates: trip.dateList
+        dates: trip.dateList,
+        plan: state.plan
     });
 };
 
