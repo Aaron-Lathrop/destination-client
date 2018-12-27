@@ -39,3 +39,7 @@ legend {
 input {
   margin-bottom: 10px;
 }
+
+label {
+  margin-right: 10px;
+}
