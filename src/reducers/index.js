@@ -105,7 +105,10 @@ const reducer = (state=initialState, action) => {
             console.log(actions.UPDATE_PLAN);
             break;
         case actions.DELETE_PLAN:
+            console.log(actions.DELETE_PLAN);
             let deleteTarget = state.trips.find(trip => trip.tripId === action.plan.tripId).planCards.find(planCard => planCard.date === action.plan.date);
+
+            console.log(action.plan.plans);
 
             let deletePlanCard = Object.assign({}, deleteTarget, 
                 {

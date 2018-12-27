@@ -27,9 +27,11 @@ function DailyPlanCard(props) {
         props.dispatch(editPlans());
     }
 
-    function handleDelete(e) {
+    function handleDelete(e, date, index) {
         plan.tripId = props.trip.tripId;
-        plan.plans = e.target.value;
+        plan.plans = e.target.id;
+        plan.date = date;
+        plan.index = index;
         props.dispatch(deletePlan(plan));
     }
 
@@ -45,7 +47,7 @@ function DailyPlanCard(props) {
                 <div className="daily-plans">
                     <form onSubmit={e => onSubmit(e)}>
                         <ul>
-                            {!props.editing ? (props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)) : (props.planCards[index].plans.map((plan, index) => <li key={index}><input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather)} value={plan} /><input type="button" onClick={e => handleDelete(e)} value="Delete" /></li>))}
+                            {!props.editing ? (props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)) : (props.planCards[index].plans.map((plan, index) => <li key={index}><input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather)} value={plan} /><input type="button" id={plan} onClick={e => handleDelete(e, date, index)} value="Delete" /></li>))}
                             <li>
                             {!props.editing ? (<div><input id="plan" type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather)}/><input type="submit" value="Add" /></div>) : ""}
                             </li>
