@@ -10,6 +10,7 @@ export function Nav(props) {
                     <Link to={`/`}>DestiNation</Link>
                     <Link to={`/login`}>Login</Link>
                     <Link to={`/trips`}>Trips</Link>
+                    <Link to={`/dashboard`}>New Trip</Link>
                 </nav>
             </div>
     );

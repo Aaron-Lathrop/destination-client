@@ -8,7 +8,7 @@ export default function TripForm(props) {
     window.location = "/trips";
   }
     return (
-        <section>
+        <section className="sticky-footer">
             <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Create New Trip</legend>

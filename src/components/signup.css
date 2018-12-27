@@ -3,7 +3,7 @@ section {
 }
 
 .sticky-footer {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 85px);
 }
 
 fieldset {
