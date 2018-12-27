@@ -10,9 +10,7 @@ function SignUp(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(props.userList);
     props.dispatch(signup(user));
-    console.log(props.userList);
     //window.location = "/dashboard"
   }
 

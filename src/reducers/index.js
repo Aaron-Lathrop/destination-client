@@ -6,6 +6,7 @@ const initialState = {
     destination: "",
     error: null,
     icon: "",
+    editing: false,
     loading: false,
     name: "",
     planCards: [],
@@ -98,12 +99,34 @@ const reducer = (state=initialState, action) => {
         case actions.GET_PLANS:
             console.log(actions.GET_PLANS);
             break;
+        case actions.EDIT_PLANS:
+            return Object.assign({}, state, {editing: !state.editing});
         case actions.UPDATE_PLAN:
             console.log(actions.UPDATE_PLAN);
             break;
         case actions.DELETE_PLAN:
-            console.log(actions.DELETE_PLAN);
-            break;
+            let deleteTarget = state.trips.find(trip => trip.tripId === action.plan.tripId).planCards.find(planCard => planCard.date === action.plan.date);
+
+            let deletePlanCard = Object.assign({}, deleteTarget, 
+                {
+                    plans: deleteTarget.plans.filter(item => item !== action.plan.plans)
+                }
+            );
+
+            let deleteTrips = state.trips.map((trip, index) => {
+                if(trip.tripId !== action.plan.tripId) {
+                    return trip;
+                }
+                
+                return Object.assign({}, trip, {
+                    planCards: trip.planCards.map(card => (
+                        card.date === action.plan.date ? deletePlanCard : card
+                    ))
+                });
+            });
+
+            return Object.assign({}, state, {trips: deleteTrips});
+
         case actions.GET_WEATHER:
             console.log(actions.GET_WEATHER);
             break;
