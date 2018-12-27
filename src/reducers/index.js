@@ -121,25 +121,22 @@ const reducer = (state=initialState, action) => {
             console.log(actions.UPDATE_PLAN);
             break;
         case actions.DELETE_PLAN:
-            console.log(actions.DELETE_PLAN);
-            let deleteTarget = state.trips.find(trip => trip.tripId === action.plan.tripId).planCards.find(planCard => planCard.date === action.plan.date);
-
-            console.log(action.plan.plans);
+            let deleteTarget = state.trips.find(trip => trip.tripId === action.planCard.tripId).planCards.find(planCard => planCard.date === action.planCard.date);
 
             let deletePlanCard = Object.assign({}, deleteTarget, 
                 {
-                    plans: deleteTarget.plans.filter(item => item !== action.plan.plans)
+                    plans: deleteTarget.plans.filter(plan => !action.planCard.plans.includes(plan))
                 }
             );
 
             let deleteTrips = state.trips.map((trip, index) => {
-                if(trip.tripId !== action.plan.tripId) {
+                if(trip.tripId !== action.planCard.tripId) {
                     return trip;
                 }
                 
                 return Object.assign({}, trip, {
                     planCards: trip.planCards.map(card => (
-                        card.date === action.plan.date ? deletePlanCard : card
+                        card.date === action.planCard.date ? deletePlanCard : card
                     ))
                 });
             });

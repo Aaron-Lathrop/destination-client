@@ -117,14 +117,14 @@ describe('updatePlan', () => {
 
 describe('deletePlan', () => {
     it('Should return the action', () => {
-        const plan = {
+        const planCard = {
             tripId: 54321,
             plans: "this is a test plan",
             date: "01/01/2019",
             weather: "super cold",
             index: 0
          };
-        const action = deletePlan(plan);
+        const action = deletePlan(planCard);
         expect(action.type).toEqual(DELETE_PLAN);
     });
 });

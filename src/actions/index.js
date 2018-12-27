@@ -37,9 +37,9 @@ export const updatePlan = () => ({
     type: UPDATE_PLAN
 });
 
-export const deletePlan = (plan) => ({
+export const deletePlan = (planCard) => ({
     type: DELETE_PLAN,
-    plan
+    planCard
 });
 
 export const getWeather = () => ({

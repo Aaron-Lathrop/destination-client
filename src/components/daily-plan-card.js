@@ -1,18 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, cancelEditPlan, deleteTrip, setPlanCards } from '../actions'
+import { addPlan, deletePlan, editPlans, deleteTrip, setPlanCards } from '../actions';
 
 import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
     const plan = {};
-    
+    let deleteThisPlan = {};
+    let deleteList = [];
+    let save = false;
+
+    console.log(deleteThisPlan, deleteList, save);
     function onSubmit(e) {
         e.preventDefault();
         !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans));
         if(document.getElementById(plan.index)) {
             document.getElementById(plan.index).value = "";
         };
+        if(save) {
+            props.dispatch(deletePlan(deleteThisPlan));
+            save = false;
+            deleteThisPlan.tripId = null;
+            deleteThisPlan.plans = null;
+            deleteThisPlan.date = null;
+            deleteThisPlan.index = null;
+            deleteList = [];
+        }
         props.dispatch(setPlanCards(props.planCards));
     }
 
@@ -33,11 +46,13 @@ function DailyPlanCard(props) {
     // }
 
     function handleDelete(e, date, index) {
-        plan.tripId = props.trip.tripId;
-        plan.plans = e.target.id;
-        plan.date = date;
-        plan.index = index;
-        props.dispatch(deletePlan(plan));
+        deleteList.push(e.target.id);
+        deleteThisPlan.tripId = props.trip.tripId;
+        deleteThisPlan.plans = deleteList;
+        deleteThisPlan.date = date;
+        deleteThisPlan.index = index;
+        console.log(deleteThisPlan, deleteList, save);
+
     }
 
     function handleDeleteTrip() {
@@ -49,6 +64,31 @@ function DailyPlanCard(props) {
             return alert("Trip deleted successfully.");
         }
         
+    }
+
+    function handleSave() {
+        save = true;
+    }
+
+    function plans(date, index) {
+        if(!props.editing) {
+            return (
+                props.planCards[index].plans.map((plan, index) => 
+                    <li key={index}>
+                        {plan}
+                    </li>)
+            );
+        }
+        return (
+            props.planCards[index].plans.map((plan, index) => 
+                (
+                    <li key={index}>
+                        <input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} value={plan} />
+                        <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
+                    </li>
+                )
+            )
+        );
     }
 
     const dailyPlans = props.dates.map((date, index) => {
@@ -63,13 +103,13 @@ function DailyPlanCard(props) {
                     <div className="daily-plans">
                         <form onSubmit={e => onSubmit(e)}>
                             <ul>
-                                {!props.editing ? (props.planCards[index].plans.map((plan, index) => <li key={index}>{plan}</li>)) : (props.planCards[index].plans.map((plan, index) => <li key={index}><input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} value={plan} /><input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" /></li>))}
+                                {plans(date, index)}
                                 <li>
                                 {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required /><input type="submit" value="Add" /></div>) : ""}
                                 </li>
                             </ul>
-                            {props.editing ? <div><input type="submit" value="Save" /></div> : ""}
-                            {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <input type="submit" value="Cancel" />}
+                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave()} /></div> : ""}
+                            {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
                         </form>
                     </div>
                    
