@@ -31,7 +31,7 @@ function SignUp(props) {
   }
 
     return (
-        <section>
+        <section className="sticky-footer">
             <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Plan your DestiNation</legend>

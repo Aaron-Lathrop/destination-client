@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function TripCard(props) {
 
     const trips = props.trips.map((trip, index) => (
-        <section key={index} id={trip.tripId}>
+        <section key={index} id={trip.tripId} >
             <div className="trip">
                 <div className="trip-description">
                     <p>Trip to {trip.destination}!</p>
@@ -23,7 +23,7 @@ function TripCard(props) {
     ));
 
     return (
-        <div>
+        <div className="sticky-footer">
             {trips}
         </div>
     );

@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import './signup.css';
+
 
 export default function LogIn(props) {
 
@@ -9,22 +11,22 @@ export default function LogIn(props) {
   }
 
     return (
-        <section>
+        <section className="sticky-footer">
             <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Plan your DestiNation</legend>
 
                 <div>
-                  <label for="username">Username</label>
+                  <label htmlFor="username">Username</label>
                   <input id="username" name="username" type="text" placeholder="Username" />
                 </div>
 
                 <div>
-                  <label for="password">Password</label>
+                  <label htmlFor="password">Password</label>
                   <input id="password" name="password" type="password" placeholder="First Name" />
                 </div>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit">Log In</button>
                 </fieldset>
             </form>
           
