@@ -34,9 +34,9 @@ export const cancelEditPlan = (tripId, planCards) => ({
     planCards
 });
 
-export const updatePlan = (plans) => ({
+export const updatePlan = (planCards) => ({
     type: UPDATE_PLAN,
-    plans
+    planCards
 });
 
 export const deletePlan = (planCard) => ({

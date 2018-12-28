@@ -7,7 +7,7 @@ import './daily-plan-card.css';
 function DailyPlanCard(props) {
 
     console.log(props.plans);
-    console.log(props.editPlans);
+    console.log(props.planCards);
     const plan = {};
     let deleteThisPlan = {
         hasContents: false
@@ -17,7 +17,7 @@ function DailyPlanCard(props) {
 
     function onSubmit(e) {
         e.preventDefault();
-        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans, props.currentDate));
+        
         if(document.getElementById(plan.index)) {
             document.getElementById(plan.index).value = "";
         };
@@ -26,6 +26,7 @@ function DailyPlanCard(props) {
             save = false;
             resetDelete();
         }
+        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans, props.currentDate));
         props.dispatch(setPlanCards(props.planCards));
     }
 
@@ -42,8 +43,10 @@ function DailyPlanCard(props) {
         props.dispatch(editPlans(props.planCards, date));
     }
 
-    function handEditChange() {
-
+    function handleEditChange(e, index) {
+        let updateCards = props.planCards.find(planCard => planCard.date === props.currentDate);
+        updateCards.plans[index] = e.target.value;
+        props.dispatch(addPlan(updateCards));
     }
 
     function handleDelete(e, date, index) {
@@ -99,8 +102,8 @@ function DailyPlanCard(props) {
         return (
             props.plans.map((plan, index) => 
                 (
-                    <li key={plan}>
-                        <input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} value={plan} />
+                    <li key={index}>
+                        <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
                         <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
                     </li>
                 )

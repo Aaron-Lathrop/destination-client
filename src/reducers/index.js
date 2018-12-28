@@ -13,6 +13,7 @@ const initialState = {
     username: "",
     userID: null,
     plans: [],
+    editCurrent: null,
     date: null,
     trips: [{
         userId: 12345,
@@ -88,7 +89,10 @@ const reducer = (state=initialState, action) => {
                     })
             });
 
-            return Object.assign({}, state, {trips});
+            return Object.assign({}, state, {
+                trips,
+                plans: action.planCard.plans
+            });
 
         case actions.GET_PLANS:
             console.log(actions.GET_PLANS);
@@ -96,6 +100,9 @@ const reducer = (state=initialState, action) => {
         case actions.EDIT_PLANS:
         console.log(action);
             let date = action.date;
+            if(!Array.isArray(action.planCards)) {
+                action.planCards = [action.planCards]
+            }
             let plans = action.planCards.find(planCard => planCard.date === action.date).plans;
 
             return Object.assign({}, state, {
@@ -124,8 +131,9 @@ const reducer = (state=initialState, action) => {
             });
 
         case actions.UPDATE_PLAN:
-            console.log(actions.UPDATE_PLAN);
-            break;
+            return Object.assign({}, state, {
+                planCards: action.planCards
+            });
 
         case actions.DELETE_PLAN:
             if(!action.planCard.hasContents) {
