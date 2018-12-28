@@ -5,6 +5,9 @@ import { addPlan, deletePlan, editPlans, deleteTrip, setPlanCards } from '../act
 import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
+
+    console.log(props.plans);
+    console.log(props.editPlans);
     const plan = {};
     let deleteThisPlan = {
         hasContents: false
@@ -14,7 +17,7 @@ function DailyPlanCard(props) {
 
     function onSubmit(e) {
         e.preventDefault();
-        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans));
+        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans, props.currentDate));
         if(document.getElementById(plan.index)) {
             document.getElementById(plan.index).value = "";
         };
@@ -34,8 +37,13 @@ function DailyPlanCard(props) {
         plan.index = index;
     }
 
-    function handleEditClick() {
-        props.dispatch(editPlans(props.planCards));
+    function handleEditClick(date) {
+        console.log(date);
+        props.dispatch(editPlans(props.planCards, date));
+    }
+
+    function handEditChange() {
+
     }
 
     function handleDelete(e, date, index) {
@@ -79,11 +87,19 @@ function DailyPlanCard(props) {
                     </li>
                 )
             );
+        } else if(props.planCards[index].date !== props.currentDate) {
+            return (
+                props.planCards[index].plans.map((plan, index) => 
+                    <li key={index}>
+                        {plan}
+                    </li>
+                )
+            );
         }
         return (
-            props.planCards[index].plans.map((plan, index) => 
+            props.plans.map((plan, index) => 
                 (
-                    <li key={index}>
+                    <li key={plan}>
                         <input type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} value={plan} />
                         <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
                     </li>
@@ -110,7 +126,7 @@ function DailyPlanCard(props) {
                                 </li>
                             </ul>
                             {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave()} /></div> : ""}
-                            {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
+                            {!props.editing ? <button onClick={e => handleEditClick(date)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
                         </form>
                     </div>
             </section>
@@ -132,7 +148,8 @@ const mapStateToProps = (state, props) => {
         trip,
         planCards: trip.planCards,
         dates: trip.dateList,
-        plan: state.plan,
+        currentDate: state.date,
+        plans: state.plans,
         editing: state.editing,
         editPlans: state.planCards
     });

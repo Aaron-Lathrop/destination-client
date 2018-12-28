@@ -12,13 +12,14 @@ const initialState = {
     planCards: [],
     username: "",
     userID: null,
-    plan: [],
+    plans: [],
+    date: null,
     trips: [{
         userId: 12345,
         tripId: 54321,
         startDate: "01/01/2019",
         endDate: "01/20/2019",
-        dateList: ["01/01/2019", "01/02/2019", "01/03/2019", "01/04/2019"],
+        dateList: ["01/01/2019", "01/02/2019", "01/03/2019"],
         destination: "Tokyo, Japan",
         icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
         planCards: [{
@@ -93,9 +94,15 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
+        console.log(action);
+            let date = action.date;
+            let plans = action.planCards.find(planCard => planCard.date === action.date).plans;
+
             return Object.assign({}, state, {
                 editing: !state.editing,
-                planCards: action.planCards
+                planCards: action.planCards,
+                plans,
+                date
             });
 
         case actions.CANCEL_EDIT_PLAN:

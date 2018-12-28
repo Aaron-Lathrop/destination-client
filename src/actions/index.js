@@ -22,9 +22,10 @@ export const getPlans = () => ({
     type: GET_PLANS
 });
 
-export const editPlans = (planCards) => ({
+export const editPlans = (planCards, date) => ({
     type: EDIT_PLANS,
-    planCards
+    planCards,
+    date
 });
 
 export const cancelEditPlan = (tripId, planCards) => ({
@@ -33,8 +34,9 @@ export const cancelEditPlan = (tripId, planCards) => ({
     planCards
 });
 
-export const updatePlan = () => ({
-    type: UPDATE_PLAN
+export const updatePlan = (plans) => ({
+    type: UPDATE_PLAN,
+    plans
 });
 
 export const deletePlan = (planCard) => ({
