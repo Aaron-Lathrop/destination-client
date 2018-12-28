@@ -21,12 +21,7 @@ function DailyPlanCard(props) {
         if(save) {
             props.dispatch(deletePlan(deleteThisPlan));
             save = false;
-            deleteThisPlan.tripId = null;
-            deleteThisPlan.plans = null;
-            deleteThisPlan.date = null;
-            deleteThisPlan.index = null;
-            deleteThisPlan.hasContents = false;
-            deleteList = [];
+            resetDelete();
         }
         props.dispatch(setPlanCards(props.planCards));
     }
@@ -43,8 +38,6 @@ function DailyPlanCard(props) {
         props.dispatch(editPlans(props.planCards));
     }
 
-
-
     function handleDelete(e, date, index) {
         deleteList.push(e.target.id);
         deleteThisPlan.tripId = props.trip.tripId;
@@ -52,6 +45,16 @@ function DailyPlanCard(props) {
         deleteThisPlan.date = date;
         deleteThisPlan.index = index;
         deleteThisPlan.hasContents = true;
+        e.target.value = "X";
+    }
+
+    function resetDelete() {
+        deleteThisPlan.tripId = null;
+        deleteThisPlan.plans = null;
+        deleteThisPlan.date = null;
+        deleteThisPlan.index = null;
+        deleteThisPlan.hasContents = false;
+        deleteList = [];
     }
 
     function handleDeleteTrip() {
@@ -73,7 +76,8 @@ function DailyPlanCard(props) {
                 props.planCards[index].plans.map((plan, index) => 
                     <li key={index}>
                         {plan}
-                    </li>)
+                    </li>
+                )
             );
         }
         return (
@@ -94,7 +98,7 @@ function DailyPlanCard(props) {
                     <div>
                         <div className="daily">
                         <p>{date}</p>
-                        <p>{props.planCards[index].weather}</p>
+                        <p>{props.planCards[index].weather ? props.planCards[index].weather : ""}</p>
                         </div>
                     </div>
                     <div className="daily-plans">
@@ -109,10 +113,7 @@ function DailyPlanCard(props) {
                             {!props.editing ? <button onClick={e => handleEditClick(e)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
                         </form>
                     </div>
-                   
-                
             </section>
-            
         );
 });
 

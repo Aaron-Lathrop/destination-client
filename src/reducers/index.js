@@ -18,7 +18,7 @@ const initialState = {
         tripId: 54321,
         startDate: "01/01/2019",
         endDate: "01/20/2019",
-        dateList: ["01/01/2019", "01/02/2019", "01/03/2019"],
+        dateList: ["01/01/2019", "01/02/2019", "01/03/2019", "01/04/2019"],
         destination: "Tokyo, Japan",
         icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
         planCards: [{
@@ -93,7 +93,6 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
-            console.log(state.planCards);
             return Object.assign({}, state, {
                 editing: !state.editing,
                 planCards: action.planCards
