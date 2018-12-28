@@ -6,11 +6,12 @@ import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
     const plan = {};
-    let deleteThisPlan = {};
+    let deleteThisPlan = {
+        hasContents: false
+    };
     let deleteList = [];
     let save = false;
 
-    console.log(deleteThisPlan, deleteList, save);
     function onSubmit(e) {
         e.preventDefault();
         !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans));
@@ -24,6 +25,7 @@ function DailyPlanCard(props) {
             deleteThisPlan.plans = null;
             deleteThisPlan.date = null;
             deleteThisPlan.index = null;
+            deleteThisPlan.hasContents = false;
             deleteList = [];
         }
         props.dispatch(setPlanCards(props.planCards));
@@ -41,9 +43,7 @@ function DailyPlanCard(props) {
         props.dispatch(editPlans(props.planCards));
     }
 
-    // function handleCancelClick() {
-    //     props.dispatch(cancelEditPlan(props.trip.tripId, props.planCards));
-    // }
+
 
     function handleDelete(e, date, index) {
         deleteList.push(e.target.id);
@@ -51,19 +51,16 @@ function DailyPlanCard(props) {
         deleteThisPlan.plans = deleteList;
         deleteThisPlan.date = date;
         deleteThisPlan.index = index;
-        console.log(deleteThisPlan, deleteList, save);
-
+        deleteThisPlan.hasContents = true;
     }
 
     function handleDeleteTrip() {
         const confirming = window.confirm("Are you sure you want to delete your trip? There's no going back once it's gone.");
         if(confirming) {
-            console.log(props.trip.tripId);
             props.dispatch(deleteTrip(props.trip.tripId));
             window.location.replace('/trips');
             return alert("Trip deleted successfully.");
         }
-        
     }
 
     function handleSave() {

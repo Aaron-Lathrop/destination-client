@@ -120,29 +120,33 @@ const reducer = (state=initialState, action) => {
         case actions.UPDATE_PLAN:
             console.log(actions.UPDATE_PLAN);
             break;
+
         case actions.DELETE_PLAN:
-            let deleteTarget = state.trips.find(trip => trip.tripId === action.planCard.tripId).planCards.find(planCard => planCard.date === action.planCard.date);
+            if(!action.planCard.hasContents) {
+                return state;
+            } else {
+                let deleteTarget = state.trips.find(trip => trip.tripId === action.planCard.tripId).planCards.find(planCard => planCard.date === action.planCard.date);
 
-            let deletePlanCard = Object.assign({}, deleteTarget, 
-                {
-                    plans: deleteTarget.plans.filter(plan => !action.planCard.plans.includes(plan))
-                }
-            );
+                let deletePlanCard = Object.assign({}, deleteTarget, 
+                    {
+                        plans: deleteTarget.plans.filter(plan => !action.planCard.plans.includes(plan))
+                    }
+                );
 
-            let deleteTrips = state.trips.map((trip, index) => {
-                if(trip.tripId !== action.planCard.tripId) {
-                    return trip;
-                }
-                
-                return Object.assign({}, trip, {
-                    planCards: trip.planCards.map(card => (
-                        card.date === action.planCard.date ? deletePlanCard : card
-                    ))
+                let deleteTrips = state.trips.map((trip, index) => {
+                    if(trip.tripId !== action.planCard.tripId) {
+                        return trip;
+                    }
+                    
+                    return Object.assign({}, trip, {
+                        planCards: trip.planCards.map(card => (
+                            card.date === action.planCard.date ? deletePlanCard : card
+                        ))
+                    });
                 });
-            });
-
-            return Object.assign({}, state, {trips: deleteTrips});
-
+                
+                return Object.assign({}, state, {trips: deleteTrips});
+            }
         case actions.GET_WEATHER:
             console.log(actions.GET_WEATHER);
             break;
