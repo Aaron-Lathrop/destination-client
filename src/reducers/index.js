@@ -161,8 +161,26 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_TRIPS);
             break;
         case actions.UPDATE_TRIP:
+            const trip = state.trips.find(trip => trip.tripId === action.trip.tripId);
+            console.log("action ", action.trip);
+            console.log("found trip ", trip);
+            
+            const updatedTrip = Object.assign({}, trip, {
+                destination: action.trip.destination ? action.trip.destination : trip.destination,
+                startDate: action.trip.startDate ? action.trip.startDate : trip.startDate,
+                endDate: action.trip.endDate ? action.trip.endDate : trip.endDate
+            });
+
+            const newTripList = state.trips.map(trip => {
+                if(trip.tripId !== action.trip.tripId) {
+                    return trip;
+                }
+                return updatedTrip;
+            });
+
             return Object.assign({}, state, {
-                editing: !state.editing
+                editing: !state.editing,
+                trips: newTripList
             });
         case actions.DELETE_TRIP:
             return Object.assign({}, state, {

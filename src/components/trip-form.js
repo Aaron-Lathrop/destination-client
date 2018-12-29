@@ -55,6 +55,7 @@ function getDates(startDate, stopDate) {
 
 
   function handleLocation(e) {
+    console.log(e.target.value);
     trip.destination = e.target.value;
   }
 

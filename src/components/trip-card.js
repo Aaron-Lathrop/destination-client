@@ -3,7 +3,7 @@ import './trip-card.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import TripForm from './trip-form';
+import TripFormUpdate from './trip-form-update';
 import { updateTrip, setEditing } from '../actions';
 //import { Link } from 'react-router-dom';
 
@@ -13,8 +13,25 @@ function TripCard(props) {
         props.history.push(`/trips/${tripId}`)
     }
 
-    function handleUpdate(trip) {
+    function handleEditing(trip) {
         props.dispatch(setEditing());
+    }
+
+    function userInteractions(trip) {
+        if(!props.editing) {
+            return(
+                <div>
+                    <button onClick={e => handleView(trip.tripId)}>View</button>
+                    <button onClick={e => handleEditing()}>Update</button>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <button onClick={e => handleEditing()}>Cancel</button>
+                <TripFormUpdate tripId={trip.tripId} />
+            </div>
+        );
     }
 
     const trips = props.trips.map((trip, index) => (
@@ -30,8 +47,9 @@ function TripCard(props) {
                     alt={trip.destination} className="trip-img" />
                 </div>
             </div>
-            <button onClick={e => handleView(trip.tripId)}>View</button>
-            <button onClick={e => handleUpdate(trip)}>Update</button>
+            {userInteractions(trip)}
+            {/* <button onClick={e => handleView(trip.tripId)}>View</button>
+            <button onClick={e => handleEditing()}>Update</button> */}
         </section>
     ));
 
