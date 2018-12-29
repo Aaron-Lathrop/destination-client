@@ -24,7 +24,6 @@ function TripCard(props) {
                 </div>
             </div>
             <button onClick={e => handleView(trip.tripId)}>View</button>
-            {/* <Link to={`/trips/${trip.tripId}`}>View</Link> */}
         </section>
     ));
 
