@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
+import {connect} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import Nav from './components/nav'
+import Nav from './components/nav';
 import LandingPage from './components/landing-page';
 import Footer from './components/footer';
 import LogIn from './components/login';
@@ -11,7 +12,7 @@ import TripSection from './components/trip-section';
 import TripCard from './components/trip-card';
 import DailyPlanCard from './components/daily-plan-card';
 
-export default class App extends Component {
+class App extends Component {
 
     render() {
         return (
@@ -32,3 +33,9 @@ export default class App extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    state
+}); 
+
+export default connect(mapStateToProps)(App);

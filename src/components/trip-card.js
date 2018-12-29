@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import TripFormUpdate from './trip-form-update';
-import { updateTrip, setEditing } from '../actions';
+import { setEditing } from '../actions';
 //import { Link } from 'react-router-dom';
 
 function TripCard(props) {

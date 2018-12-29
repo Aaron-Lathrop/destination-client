@@ -117,7 +117,6 @@ function DailyPlanCard(props) {
     }
 
     const dailyPlans = props.dates.map((date, index) => {
-        console.log(props);
         return (
             <section key={date} id={date}>
                     <div>

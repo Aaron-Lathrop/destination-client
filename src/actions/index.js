@@ -84,6 +84,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const LOG_IN = 'LOG_IN';
 export const SET_EDITING = 'SET_EDITING';
+export const STORE_STATE = 'STORE_STATE';
 
 
 export const request = () => ({
