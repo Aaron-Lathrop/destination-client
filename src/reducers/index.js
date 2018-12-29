@@ -100,7 +100,6 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
-        console.log('edit plans');
             let date = action.date;
             if(!Array.isArray(action.planCards)) {
                 action.planCards = [action.planCards]
@@ -162,7 +161,9 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_TRIPS);
             break;
         case actions.UPDATE_TRIP:
-            return Object.assign({})
+            return Object.assign({}, state, {
+                editing: !state.editing
+            });
         case actions.DELETE_TRIP:
             return Object.assign({}, state, {
                 trips: state.trips.filter(trip => trip.tripId !== action.tripId)
@@ -220,6 +221,11 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 error: null,
                 loading: true
+            });
+
+        case actions.SET_EDITING:
+            return Object.assign({}, state, {
+                editing: !state.editing
             });
         default:
             return state;

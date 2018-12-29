@@ -28,8 +28,10 @@ export const editPlans = (planCards, date) => ({
     date
 });
 
-export const cancelEditPlan = () => ({
-    type: CANCEL_EDIT_PLAN
+export const cancelEditPlan = (tripId, planCards) => ({
+    type: CANCEL_EDIT_PLAN,
+    tripId,
+    planCards
 });
 
 export const updatePlan = (plans) => ({
@@ -80,6 +82,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const LOG_IN = 'LOG_IN';
+export const SET_EDITING = 'SET_EDITING';
 
 
 export const request = () => ({
@@ -112,4 +115,8 @@ export const signup = (user) => ({
 export const logIn = (user) => ({
     type: LOG_IN,
     user
+});
+
+export const setEditing = () => ({
+    type: SET_EDITING
 });

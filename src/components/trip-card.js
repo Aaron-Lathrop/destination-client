@@ -2,6 +2,9 @@ import React from 'react';
 import './trip-card.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+import TripForm from './trip-form';
+import { updateTrip, setEditing } from '../actions';
 //import { Link } from 'react-router-dom';
 
 function TripCard(props) {
@@ -11,22 +14,7 @@ function TripCard(props) {
     }
 
     function handleUpdate(trip) {
-        document.getElementById('start').innerHtml = <span id="start"><input type="date" value={new Date(trip.startDate)} /></span>
-        document.getElementById('end').innerHtml = <span id="end"><input type="date" value={new Date(trip.endDate)} /></span>
-    }
-
-    function tripDates(trip) {
-        
-        if(props.editing) {
-            return (
-                <p>
-                    <span id="start"><input type="date" value={new Date(trip.startDate)} /></span>
-                    <span id="end"><input type="date" value={new Date(trip.endDate)} /></span>
-                </p>
-            );
-        }
-        
-        
+        props.dispatch(setEditing());
     }
 
     const trips = props.trips.map((trip, index) => (
@@ -55,7 +43,8 @@ function TripCard(props) {
 }
 
 const mapStateToProps = state => ({
-    trips: state.trips
+    trips: state.trips,
+    editing: state.editing
 });
 
 export default withRouter(connect(mapStateToProps)(TripCard));

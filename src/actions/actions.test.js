@@ -18,6 +18,7 @@ import {
     LOG_OUT,
     SIGN_UP,
     LOG_IN,
+    SET_EDITING,
     setPlanCards,
     addPlan,
     getPlans,
@@ -36,7 +37,8 @@ import {
     authSuccess,
     logOut,
     signup,
-    logIn
+    logIn,
+    setEditing
 } from './index';
 
 describe('setPlanCards', () => {
@@ -211,5 +213,12 @@ describe('logIn', () => {
     it('Should return the action', () => {
         const action = logIn();
         expect(action.type).toEqual(LOG_IN);
+    });
+});
+
+describe('setEditing', () => {
+    it('Should return the action', () => {
+        const action = setEditing();
+        expect(action.type).toEqual(SET_EDITING);
     });
 });

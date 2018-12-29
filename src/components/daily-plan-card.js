@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTrip, setPlanCards, updatePlan, cancelEditPlan } from '../actions';
+import { addPlan, deletePlan, editPlans, deleteTrip, updatePlan, cancelEditPlan } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -90,7 +90,7 @@ function DailyPlanCard(props) {
         if(!props.editing) {
             return (
                 props.planCards[index].plans.map((plan, index) => 
-                    <li key={date}>
+                    <li key={index}>
                         {plan}
                     </li>
                 )
@@ -98,7 +98,7 @@ function DailyPlanCard(props) {
         } else if(props.planCards[index].date !== props.currentDate) {
             return (
                 props.planCards[index].plans.map((plan, index) => 
-                    <li key={date}>
+                    <li key={index}>
                         {plan}
                     </li>
                 )
@@ -107,7 +107,7 @@ function DailyPlanCard(props) {
         return (
             props.planCards[index].plans.map((plan, index) => 
                 (
-                    <li key={date}>
+                    <li key={index}>
                         <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
                         <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
                     </li>
@@ -118,7 +118,7 @@ function DailyPlanCard(props) {
 
     const dailyPlans = props.dates.map((date, index) => {
         return (
-            <section key={index}>
+            <section key={date}>
                     <div>
                         <div className="daily">
                         <p>{date}</p>
