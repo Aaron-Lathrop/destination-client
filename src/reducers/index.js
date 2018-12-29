@@ -155,8 +155,9 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_WEATHER);
             break;
         case actions.ADD_TRIP:
-            console.log(actions.ADD_TRIP);
-            break;
+            return Object.assign({}, state, {
+                trips: [...state.trips, action.trip]
+            });
         case actions.GET_TRIPS:
             console.log(actions.GET_TRIPS);
             break;

@@ -1,9 +1,14 @@
 import React from 'react';
 import './trip-card.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function TripCard(props) {
+
+    function handleView(tripId) {
+        props.history.push(`/trips/${tripId}`)
+    }
 
     const trips = props.trips.map((trip, index) => (
         <section key={index} id={trip.tripId} >
@@ -18,7 +23,8 @@ function TripCard(props) {
                     alt={trip.destination} className="trip-img" />
                 </div>
             </div>
-            <Link to={`/trips/${trip.tripId}`}>View</Link>
+            <button onClick={e => handleView(trip.tripId)}>View</button>
+            {/* <Link to={`/trips/${trip.tripId}`}>View</Link> */}
         </section>
     ));
 
@@ -33,4 +39,4 @@ const mapStateToProps = state => ({
     trips: state.trips
 });
 
-export default connect(mapStateToProps)(TripCard);
+export default withRouter(connect(mapStateToProps)(TripCard));

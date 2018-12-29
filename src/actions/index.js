@@ -53,8 +53,9 @@ export const GET_TRIPS = 'GET_TRIPS';
 export const UPDATE_TRIP = 'UPDATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';
 
-export const addTrip = () => ({
-    type: ADD_TRIP 
+export const addTrip = (trip) => ({
+    type: ADD_TRIP,
+    trip 
 });
 
 export const getTrips = () => ({

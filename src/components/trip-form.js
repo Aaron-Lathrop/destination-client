@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
-export default function TripForm(props) {
+import { addTrip } from '../actions';
+
+function TripForm(props) {
 
   const trip = {};
 
@@ -32,33 +36,38 @@ function getDates(startDate, stopDate) {
     return dateArray;
 }
 
-console.log(getDates(new Date("2018/12/28"), new Date("2019/01/12")));
 
   function onSubmit(e) {
     e.preventDefault();
-    window.location = "/trips";
+    trip.dateList = getDates(new Date(trip.startDate), new Date(trip.endDate));
+    trip.tripId = `${Math.floor(Math.random() * 9999999999999999)};`;
+    trip.planCards = trip.dateList.map(date => ({
+      tripId: trip.tripId,
+      date,
+      weather: "",
+      plans: []
+    }));
+    
+    props.dispatch(addTrip(trip));
+    props.history.push("/trips");
   }
 
+
   function handleLocation(e) {
-    trip.location = e.target.value;
-    console.log(trip);
+    trip.destination = e.target.value;
   }
 
   function handleArrival(e) {
-    trip.arrival = e.target.value;
-    console.log(trip);
-    console.log(`${new Date(e.target.value).getMonth() + 1}/${new Date(e.target.value).getDate() + 1}/${new Date(e.target.value).getFullYear()}`);
-    console.log(e.target.value instanceof Date, " expect false");
+    trip.startDate = e.target.value;
   }
 
   function handleReturn(e) {
-    trip.return = e.target.value;
-    console.log(trip);
+    trip.endDate = e.target.value;
   }
 
     return (
         <section className="sticky-footer">
-            <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
+            <form name="signup" action="/trips" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Create A New Trip</legend>
               
@@ -96,3 +105,5 @@ console.log(getDates(new Date("2018/12/28"), new Date("2019/01/12")));
         </section>
     );
 }
+
+export default withRouter(connect()(TripForm));

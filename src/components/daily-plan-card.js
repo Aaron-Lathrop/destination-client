@@ -151,7 +151,7 @@ function DailyPlanCard(props) {
 }
 
 const mapStateToProps = (state, props) => {
-    const tripId = parseInt(props.match.params.tripId, 10);
+    const tripId = props.match.params.tripId;
     const trip = state.trips.find(item => item.tripId === tripId);
     return ({
         trip,
