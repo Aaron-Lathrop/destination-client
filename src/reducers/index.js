@@ -162,8 +162,7 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_TRIPS);
             break;
         case actions.UPDATE_TRIP:
-            console.log(actions.UPDATE_TRIP);
-            break;
+            return Object.assign({})
         case actions.DELETE_TRIP:
             return Object.assign({}, state, {
                 trips: state.trips.filter(trip => trip.tripId !== action.tripId)

@@ -77,7 +77,7 @@ function DailyPlanCard(props) {
         const confirming = window.confirm("Are you sure you want to delete your trip? There's no going back once it's gone.");
         if(confirming) {
             props.dispatch(deleteTrip(props.trip.tripId));
-            window.location.replace('/trips');
+            props.history.push('/trips');
             return alert("Trip deleted successfully.");
         }
     }
@@ -90,7 +90,7 @@ function DailyPlanCard(props) {
         if(!props.editing) {
             return (
                 props.planCards[index].plans.map((plan, index) => 
-                    <li key={index}>
+                    <li key={date}>
                         {plan}
                     </li>
                 )
@@ -98,7 +98,7 @@ function DailyPlanCard(props) {
         } else if(props.planCards[index].date !== props.currentDate) {
             return (
                 props.planCards[index].plans.map((plan, index) => 
-                    <li key={index}>
+                    <li key={date}>
                         {plan}
                     </li>
                 )
@@ -107,7 +107,7 @@ function DailyPlanCard(props) {
         return (
             props.planCards[index].plans.map((plan, index) => 
                 (
-                    <li key={index}>
+                    <li key={date}>
                         <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
                         <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
                     </li>
@@ -145,7 +145,7 @@ function DailyPlanCard(props) {
     return (
         <div className="sticky-footer">
             {dailyPlans}
-            <button onClick={e => handleDeleteTrip()} disabled={true}>Delete Trip</button>
+            <button onClick={e => handleDeleteTrip()} disabled={false}>Delete Trip</button>
         </div>
     );
 }

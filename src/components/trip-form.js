@@ -20,20 +20,21 @@ function TripForm(props) {
   }
 
 //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays and function getDates()
-  Date.prototype.addDays = function(days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
+
+function addDays(currentDate, days) {
+  var date = new Date(currentDate.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
 }
 
 function getDates(startDate, stopDate) {
-    var dateArray = [];
-    var currentDate = startDate;
-    while (currentDate <= stopDate) {
-        dateArray.push(parseDate(new Date (currentDate)).string );
-        currentDate = currentDate.addDays(1);
-    }
-    return dateArray;
+  var dateArray = [];
+  var currentDate = startDate;
+  while (currentDate <= stopDate) {
+      dateArray.push(parseDate(new Date (currentDate)).string );
+      currentDate = addDays(currentDate, 1);
+  }
+  return dateArray;
 }
 
 
