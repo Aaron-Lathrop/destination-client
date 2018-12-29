@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTrip, setPlanCards } from '../actions';
+import { addPlan, deletePlan, editPlans, deleteTrip, setPlanCards, updatePlan, cancelEditPlan } from '../actions';
 
 import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
 
-    console.log(props.plans);
-    console.log(props.planCards);
     const plan = {};
+    
+    let updatePlans = props.planCards.find(planCard => planCard.date === props.currentDate);
     let deleteThisPlan = {
         hasContents: false
     };
@@ -17,17 +17,23 @@ function DailyPlanCard(props) {
 
     function onSubmit(e) {
         e.preventDefault();
-        
-        if(document.getElementById(plan.index)) {
-            document.getElementById(plan.index).value = "";
-        };
-        if(save) {
-            props.dispatch(deletePlan(deleteThisPlan));
-            save = false;
-            resetDelete();
+        if(!props.editing) {
+            props.dispatch(addPlan(plan));
+            if(document.getElementById(plan.index)) {
+                document.getElementById(plan.index).value = "";
+            };
+        } else {
+            if(save) {
+                props.dispatch(deletePlan(deleteThisPlan));
+                save = false;
+                resetDelete();
+                props.dispatch(editPlans(props.editPlanCards, props.currentDate));
+            }
+            props.dispatch(cancelEditPlan());
         }
-        !props.editing ? props.dispatch(addPlan(plan)) : props.dispatch(editPlans(props.editPlans, props.currentDate));
-        props.dispatch(setPlanCards(props.planCards));
+        
+        
+        //props.dispatch(setPlanCards(props.planCards));
     }
 
     function handleAddChange(e, date, weather, index) {
@@ -39,14 +45,13 @@ function DailyPlanCard(props) {
     }
 
     function handleEditClick(date) {
-        console.log(date);
         props.dispatch(editPlans(props.planCards, date));
     }
 
     function handleEditChange(e, index) {
-        let updateCards = props.planCards.find(planCard => planCard.date === props.currentDate);
-        updateCards.plans[index] = e.target.value;
-        props.dispatch(addPlan(updateCards));
+        updatePlans = props.planCards.find(planCard => planCard.date === props.currentDate);
+        updatePlans.plans[index] = e.target.value;
+        props.dispatch(updatePlan(updatePlans.plans));
     }
 
     function handleDelete(e, date, index) {
@@ -100,7 +105,7 @@ function DailyPlanCard(props) {
             );
         }
         return (
-            props.plans.map((plan, index) => 
+            props.planCards[index].plans.map((plan, index) => 
                 (
                     <li key={index}>
                         <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
@@ -134,6 +139,7 @@ function DailyPlanCard(props) {
                     </div>
             </section>
         );
+
 });
 
     return (
@@ -154,7 +160,7 @@ const mapStateToProps = (state, props) => {
         currentDate: state.date,
         plans: state.plans,
         editing: state.editing,
-        editPlans: state.planCards
+        editPlanCards: state.planCards
     });
 };
 

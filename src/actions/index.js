@@ -28,15 +28,13 @@ export const editPlans = (planCards, date) => ({
     date
 });
 
-export const cancelEditPlan = (tripId, planCards) => ({
-    type: CANCEL_EDIT_PLAN,
-    tripId,
-    planCards
+export const cancelEditPlan = () => ({
+    type: CANCEL_EDIT_PLAN
 });
 
-export const updatePlan = (planCards) => ({
+export const updatePlan = (plans) => ({
     type: UPDATE_PLAN,
-    planCards
+    plans
 });
 
 export const deletePlan = (planCard) => ({

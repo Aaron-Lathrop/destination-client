@@ -76,10 +76,12 @@ const reducer = (state=initialState, action) => {
 
     switch(action.type) {
         case actions.SET_PLAN_CARDS:
+        console.log('setplancards')
         return Object.assign({}, state, {
             planCards: [...action.planCards]
         });
         case actions.ADD_PLAN:
+        console.log('addplan');
             let trips = state.trips.map((trip, index) => {
                 if(trip.tripId !== action.planCard.tripId) {
                     return trip;
@@ -90,15 +92,15 @@ const reducer = (state=initialState, action) => {
             });
 
             return Object.assign({}, state, {
-                trips,
-                plans: action.planCard.plans
+                trips
+               // plans: action.planCard.plans
             });
 
         case actions.GET_PLANS:
             console.log(actions.GET_PLANS);
             break;
         case actions.EDIT_PLANS:
-        console.log(action);
+        console.log('edit plans');
             let date = action.date;
             if(!Array.isArray(action.planCards)) {
                 action.planCards = [action.planCards]
@@ -113,26 +115,14 @@ const reducer = (state=initialState, action) => {
             });
 
         case actions.CANCEL_EDIT_PLAN:
-            console.log(action.planCards);
-            let cancel = state.trips.map((trip, index) => {
-                if(trip.tripId !== action.tripId) {
-                    return trip;
-                }
-                
-                return Object.assign({}, trip, {
-                    planCards: action.planCards
-                    
-                });
-            });
-            console.log(cancel);
+            
             return Object.assign({}, state, {
-                trips: cancel,
                 editing: !state.editing
             });
 
         case actions.UPDATE_PLAN:
             return Object.assign({}, state, {
-                planCards: action.planCards
+                plans: [...action.plans]
             });
 
         case actions.DELETE_PLAN:
