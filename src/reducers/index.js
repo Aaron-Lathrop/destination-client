@@ -18,26 +18,26 @@ const initialState = {
     trips: [{
         userId: 12345,
         tripId: 54321,
-        startDate: "01/01/2019",
-        endDate: "01/20/2019",
-        dateList: ["01/01/2019", "01/02/2019", "01/03/2019"],
+        startDate: "1/1/2019",
+        endDate: "1/3/2019",
+        dateList: ["1/1/2019", "1/2/2019", "1/3/2019"],
         destination: "Tokyo, Japan",
         icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
         planCards: [{
             tripId: 54321,
-            date: "01/01/2019",
+            date: "1/1/2019",
             weather: "bloody cold",
             plans: ["01 plan 1", "01 plan 2", "01 plan 3"]
         },
         {
             tripId: 54321,
-            date: "01/02/2019",
+            date: "1/2/2019",
             weather: "bloody cold",
             plans: ["eat ramen", "get rental car", "wander around"]
         },
         {
             tripId: 54321,
-            date: "01/03/2019",
+            date: "1/3/2019",
             weather: "bloody cold",
             plans: ["eat ramen", "get rental car", "wander around"]
         }]
@@ -45,8 +45,8 @@ const initialState = {
         {
             userId: 12345,
             tripId: 67890,
-            startDate: "05/01/2019",
-            endDate: "05/03/2019",
+            startDate: "5/1/2019",
+            endDate: "5/3/2019",
             dateList: ["05/01/2019", "05/02/2019", "05/03/2019"],
             destination: "Madrid",
             icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
@@ -168,7 +168,8 @@ const reducer = (state=initialState, action) => {
             const updatedTrip = Object.assign({}, trip, {
                 destination: action.trip.destination ? action.trip.destination : trip.destination,
                 startDate: action.trip.startDate ? action.trip.startDate : trip.startDate,
-                endDate: action.trip.endDate ? action.trip.endDate : trip.endDate
+                endDate: action.trip.endDate ? action.trip.endDate : trip.endDate,
+                dateList: action.trip.dateList ? action.trip.dateList : trip.dateList
             });
 
             const newTripList = state.trips.map(trip => {
