@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTrip, updatePlan, cancelEditPlan } from '../actions';
+import { addPlan, deletePlan, editPlans, deleteTrip, updatePlan, cancelEditPlan, setEditing } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -24,12 +24,13 @@ function DailyPlanCard(props) {
             };
         } else {
             if(save) {
+                console.log('this code ran because save was TRUE');
                 props.dispatch(deletePlan(deleteThisPlan));
                 save = false;
                 resetDelete();
                 props.dispatch(editPlans(props.editPlanCards, props.currentDate));
             }
-            props.dispatch(cancelEditPlan());
+            props.dispatch(cancelEditPlan(props.trip.tripId, props.trip.planCards));
         }
         
         
@@ -84,6 +85,7 @@ function DailyPlanCard(props) {
 
     function handleSave() {
         save = true;
+        props.dispatch(setEditing());
     }
 
     function plans(date, index) {
@@ -103,17 +105,18 @@ function DailyPlanCard(props) {
                     </li>
                 )
             );
-        }
-        return (
-            props.planCards[index].plans.map((plan, index) => 
-                (
-                    <li key={index}>
-                        <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
-                        <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
-                    </li>
+        } else if(props.editing){
+            return (
+                props.planCards[index].plans.map((plan, index) => 
+                    (
+                        <li key={index}>
+                            <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
+                            <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
+                        </li>
+                    )
                 )
-            )
-        );
+            );
+        }
     }
 
     const dailyPlans = props.dates.map((date, index) => {

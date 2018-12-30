@@ -59,8 +59,11 @@ const reducer = (state=initialState, action) => {
 
         case actions.CANCEL_EDIT_PLAN:
             
+            let cancelPlanCards = state.trips.find(trip => trip.tripId === action.tripId).planCards.find(planCard => planCard.date === action.date);
+
             return Object.assign({}, state, {
-                editing: !state.editing
+                editing: !state.editing,
+                planCards: cancelPlanCards
             });
 
         case actions.UPDATE_PLAN:
