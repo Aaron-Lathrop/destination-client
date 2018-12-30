@@ -1,0 +1,93 @@
+export const storeState = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem('state', serializedState);
+    } catch {
+        console.error("Something went oh so wrong");
+    }
+};
+
+export const loadState = () => {
+    try {
+      const serializedState = localStorage.getItem('state');
+      if (serializedState === null) {
+        return undefined;
+      }
+      return JSON.parse(serializedState);
+    } catch (err) {
+      return undefined;
+    }
+};
+
+//This serves as dummy data for testing
+// const initialState = {
+//     authToken: "",
+//     dateList: [],
+//     destination: "",
+//     error: null,
+//     icon: "",
+//     editing: false,
+//     loading: false,
+//     name: "",
+//     planCards: [],
+//     username: "",
+//     userID: null,
+//     plans: [],
+//     editCurrent: null,
+//     date: null,
+//     trips: [{
+//         userId: 12345,
+//         tripId: 54321,
+//         startDate: "1/1/2019",
+//         endDate: "1/3/2019",
+//         dateList: ["1/1/2019", "1/2/2019", "1/3/2019"],
+//         destination: "Tokyo, Japan",
+//         icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
+//         planCards: [{
+//             tripId: 54321,
+//             date: "1/1/2019",
+//             weather: "bloody cold",
+//             plans: ["01 plan 1", "01 plan 2", "01 plan 3"]
+//         },
+//         {
+//             tripId: 54321,
+//             date: "1/2/2019",
+//             weather: "bloody cold",
+//             plans: ["eat ramen", "get rental car", "wander around"]
+//         },
+//         {
+//             tripId: 54321,
+//             date: "1/3/2019",
+//             weather: "bloody cold",
+//             plans: ["eat ramen", "get rental car", "wander around"]
+//         }]
+//     },
+//         {
+//             userId: 12345,
+//             tripId: 67890,
+//             startDate: "5/1/2019",
+//             endDate: "5/3/2019",
+//             dateList: ["05/01/2019", "05/02/2019", "05/03/2019"],
+//             destination: "Madrid",
+//             icon: "https://rawgit.com/gorangajic/react-icons/master/react-icons.svg",
+//             planCards: [{
+//                 tripId: 67890,
+//                 date: "05/01/2019",
+//                 weather: "one million degrees",
+//                 plans: ["eat stuff", "get rental car", "wander around"]
+//             },
+//             {
+//                 tripId: 67890,
+//                 date: "05/02/2019",
+//                 weather: "maybe rain?",
+//                 plans: ["eat stuff", "get rental car", "wander around"]
+//             },
+//             {
+//                 tripId: 67890,
+//                 date: "05/03/2019",
+//                 weather: "bloody hot",
+//                 plans: ["eat stuff", "get rental car", "wander around"]
+//             }]
+//     }],
+//     userList: []
+// };
