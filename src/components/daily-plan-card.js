@@ -121,14 +121,14 @@ function DailyPlanCard(props) {
 
     const dailyPlans = props.dates.map((date, index) => {
         return (
-            <section key={date} id={date}>
+            <section key={date} id={date} className="plancard__card">
                     <div>
-                        <div className="daily">
+                        <div>
                         <p>{date}</p>
                         <p>{props.planCards[index].weather ? props.planCards[index].weather : ""}</p>
                         </div>
                     </div>
-                    <div className="daily-plans">
+                    <div>
                         <form onSubmit={e => onSubmit(e)}>
                             <ul>
                                 {plans(date, index)}
@@ -146,7 +146,7 @@ function DailyPlanCard(props) {
 });
 
     return (
-        <div className="sticky-footer">
+        <div className="grid grid__plancard sticky-footer plancard">
             {dailyPlans}
             <button onClick={e => handleDeleteTrip()} disabled={false}>Delete Trip</button>
         </div>
