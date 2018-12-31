@@ -42,16 +42,14 @@ function TripCard(props) {
         if(props.trips.length > 0) {
             return (
                 props.trips.map((trip, index) => (
-                    <section key={trip.tripId} id={trip.tripId} >
+                    <section key={trip.tripId} id={trip.tripId} className="tripcard" >
                         <div className="trip">
                             <div className="trip-description">
                                 <p>Trip to {trip.destination}!</p>
-                                <p><span id="start">{trip.startDate}</span> to <span id="end">{trip.endDate}</span></p>
+                                <p><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span></p>
                             </div>
                             <div>
-                                <img 
-                                src={trip.icon} 
-                                alt={trip.destination} className="trip-img" />
+                            {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
                             </div>
                         </div>
                         {userInteractions(trip)}

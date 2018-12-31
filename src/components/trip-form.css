@@ -3,10 +3,51 @@ fieldset {
     border: none;
 }
   
-legend {
+/* legend {
     margin-bottom: 50px;
 }
   
 input {
     margin-bottom: 10px;
+} */
+
+.tripform {
+    margin: 20px 10% 10% 10%;
+    background-color: #ddd;
+}
+
+.tripform__legend {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.tripform__label {
+    margin: 0 auto;
+    display: block;
+    max-width: 75%;
+    font-size: 18px;
+}
+
+.tripform__input {
+    margin: 10px auto;
+    min-width: 155px;
+    padding: 5px 0px;
+    font-size: 14px;
+    max-width: 50%;
+    border: none;
+    text-align: center;
+}
+
+.btn__form {
+    margin-bottom: 20px;
+}
+
+.btn__form--update {
+    margin: 20px;
+    background-color: lightgreen;
+    text-transform: uppercase;
+    border-radius: 25px;
+    font-weight: bold;
+    border: none;
+    padding: 20px 45px;
 }

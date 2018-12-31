@@ -74,37 +74,40 @@ function TripFormUpdate(props) {
     }
     
     return (
-        <section className="sticky-footer">
-            <form name="signup" action="/trips" onSubmit={e => onSubmit(e)}>
+        <section className="tripform">
+            <form name="tripupdate" action="/trips" onSubmit={e => onSubmit(e)}>
             <fieldset>
-            <legend>Update trip</legend>
+            <legend className=".tripform__legend">Update trip</legend>
             
                 <div>
-                <label htmlFor="location">Location</label>
+                <label htmlFor="location" className="tripform__label">Location</label>
                 <input id="location" 
                         name="location" 
                         type="text" 
                         placeholder={props.destination} 
-                        onChange={e => handleLocation(e)} />
+                        onChange={e => handleLocation(e)}
+                        className="tripform__input" />
                 </div>
 
                 <div>
-                <label htmlFor="arrival">First day</label>
+                <label htmlFor="arrival" className="tripform__label">First day</label>
                 <input id="arrival" 
                         name="arrival" 
                         type="date" 
-                        onChange={e => handleFirstDay(e)} />
+                        onChange={e => handleFirstDay(e)}
+                        className="tripform__input" />
                 </div>
 
                 <div>
-                <label htmlFor="return">Last day</label>
+                <label htmlFor="return" className="tripform__label">Last day</label>
                 <input id="return" 
                         name="return" 
                         type="date" 
-                        onChange={e => handleLastDay(e)} />
+                        onChange={e => handleLastDay(e)}
+                        className="tripform__input" />
                 </div>
 
-                <button type="submit">Submit</button>
+                <button type="submit" className="btn btn__form">Update</button>
             </fieldset>
             </form>
         </section>
