@@ -1,3 +1,8 @@
+.grid__tripcard {
+    grid-template-columns: 1fr 1fr;
+    margin: 70px;
+}
+
 .tripcard {
     margin: 20px 40px;
     border-radius: 5px;
@@ -15,13 +20,8 @@
     width: 75px;
 }
 
-.grid__tripcard {
-    grid-template-columns: 1fr 1fr;
-    margin: 70px;
-}
-
 .btn__tripcard {
-    padding: 5px 15px;
+    padding: 10px 20px;
     margin: 10px;
     border: none;
     border-radius: 10px;
@@ -38,4 +38,28 @@
 .btn__tripcard:active {
     transform: translateY(0px) scale(1.02);
     transition: 100ms ease-in-out;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid__tripcard {
+        grid-template-columns: 1fr;
+        margin: 70px auto;
+        width: 95%;
+    }
+
+    .btn__tripcard {
+        padding: 15px 35px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .grid__tripcard {
+        grid-template-columns: 1fr;
+        margin: 70px auto;
+        width: 95%;
+    }
+
+    .btn__tripcard {
+        padding: 10px 30px;
+    }
 }
