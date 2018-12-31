@@ -19,18 +19,18 @@ function TripCard(props) {
     function userInteractions(trip) {
         if(!props.editing) {
             return(
-                <li className="btn__container">
+                <div className="btn__container">
                     <button className="btn__tripcard" onClick={e => handleView()}>View</button>
                     <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
-                </li>
+                </div>
                     
             );
         }
         return (
-            <li className="btn__container">
+            <div className="btn__container">
                 <button className="btn__tripcard" onClick={e => handleEditing()}>Cancel</button>
                 <TripFormUpdate tripId={trip.tripId} />
-            </li>
+            </div>
         );
     }
 
@@ -50,17 +50,18 @@ function TripCard(props) {
             return (
                 props.trips.map((trip, index) => (
                     <div key={trip.tripId} id={trip.tripId} className="tripcard" onClick={e => handleView(trip.tripId)}>
-                        <li className="trip">
+                        <li className="tripcard__trip">
                             <div className="tripcard__details">
                                 <p><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
                                 <p></p>
                                 
                             </div>
                             <div>
-                            {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
+                                {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
                             </div>
+                            {userInteractions(trip)}
                         </li>
-                            {/* {userInteractions(trip)} */}
+
                         
                     </div>
                 ))

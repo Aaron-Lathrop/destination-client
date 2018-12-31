@@ -41,7 +41,7 @@
 .header__trips {
     font-size: 35px;
     font-weight: bold;
-    float: right;
+    /* float: right; */
     padding-right: 10%;
     display: inline-block;
 }
@@ -54,8 +54,15 @@
     list-style-type: circle;
 }
 
+.tripcard__trip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .tripcard__details {
     padding: 1px;
+    grid-row: 1/2;
+    grid-column: 1/2;
 }
 
 .trip-img {
@@ -63,7 +70,10 @@
 }
 
 .btn__container {
-    display: inline;
+    /* display: inline; */
+    grid-row: 1/2;
+    grid-column: 2/3;
+    justify-self: left;
 }
 
 .btn__tripcard {
