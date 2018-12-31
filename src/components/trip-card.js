@@ -20,14 +20,14 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div>
-                    <button onClick={e => handleView(trip.tripId)}>View</button>
-                    <button onClick={e => handleEditing()}>Update</button>
+                    <button className="btn__tripcard" onClick={e => handleView(trip.tripId)}>View</button>
+                    <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
                 </div>
             );
         }
         return (
             <div>
-                <button onClick={e => handleEditing()}>Cancel</button>
+                <button className="btn__tripcard" onClick={e => handleEditing()}>Cancel</button>
                 <TripFormUpdate tripId={trip.tripId} />
             </div>
         );
@@ -45,7 +45,7 @@ function TripCard(props) {
                     <section key={trip.tripId} id={trip.tripId} className="tripcard" >
                         <div className="trip">
                             <div className="trip-description">
-                                <p>Trip to {trip.destination}!</p>
+                                <p>{trip.destination}</p>
                                 <p><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span></p>
                             </div>
                             <div>
@@ -61,7 +61,7 @@ function TripCard(props) {
         return (
             <section>
                 <h1>You haven't created any trips yet.</h1>
-                <button onClick={e => handleGetStarted()}>Get Started</button>
+                <button className="btn__tripcard" onClick={e => handleGetStarted()}>Get Started</button>
             </section>
         );
         

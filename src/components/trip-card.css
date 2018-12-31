@@ -1,5 +1,14 @@
 .tripcard {
     margin: 20px 40px;
+    border-radius: 5px;
+    background-color: #ddd;
+    box-shadow: 0.5px 1px 5px #000;
+}
+
+.tripcard:hover {
+    transform: translateY(-2px) scale(1.01);
+    transition: 100ms ease-in-out;
+    box-shadow: 1px 1.5px 5px #000;
 }
 
 .trip-img {
@@ -9,4 +18,24 @@
 .grid__tripcard {
     grid-template-columns: 1fr 1fr;
     margin: 70px;
+}
+
+.btn__tripcard {
+    padding: 5px 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: .1px .1px .1px #d8d8d8;
+}
+
+.btn__tripcard:hover {
+    transform: translateY(-2px) scale(1.05);
+    transition: 100ms ease-in-out;
+    box-shadow: 1px 1px 1px #000;
+}
+
+.btn__tripcard:active {
+    transform: translateY(0px) scale(1.02);
+    transition: 100ms ease-in-out;
 }
