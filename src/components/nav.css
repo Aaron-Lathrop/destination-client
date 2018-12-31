@@ -1,7 +1,8 @@
 nav,
 footer {
   padding: 1% 0;
-  background-color: #aaa;
+  background-color: #0079bf;
+  color: white;
 }
 
 nav {
@@ -11,6 +12,7 @@ nav {
   right: 0;
   z-index: 10;
   text-align: left;
+  box-shadow: 0.1px 0.1px 7px 1px #000;
 }
 
 nav a:first-child {
@@ -20,5 +22,24 @@ nav a:first-child {
 
 nav a {
   float: right;
-  padding-right: 10px;
+  padding-right: 15px;
+  color: white;
+}
+
+@media only screen and (max-width: 680px) {
+  nav {
+    padding: 3% 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  nav {
+    padding: 2% 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  nav {
+    padding: 1.75% 0;
+  }
 }
