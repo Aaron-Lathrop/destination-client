@@ -20,7 +20,7 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div>
-                    <button className="btn__tripcard" onClick={e => handleView(trip.tripId)}>View</button>
+                    {/* <button className="btn__tripcard" onClick={e => handleView(trip.tripId)}>View</button> */}
                     <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
                 </div>
             );
@@ -42,7 +42,7 @@ function TripCard(props) {
         if(props.trips.length > 0) {
             return (
                 props.trips.map((trip, index) => (
-                    <section key={trip.tripId} id={trip.tripId} className="tripcard" >
+                    <section key={trip.tripId} id={trip.tripId} className="tripcard"  onClick={e => handleView(trip.tripId)}>
                         <div className="trip">
                             <div className="trip-description">
                                 <p>{trip.destination}</p>

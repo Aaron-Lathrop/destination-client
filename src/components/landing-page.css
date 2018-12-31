@@ -9,6 +9,8 @@
     color: #444;
     text-align: center;
     line-height: 1.5;
+    /* background-color: #7b8fd1; */
+    /* background-color: #e9e8ed; */
   }
 
   button:hover {
@@ -30,23 +32,32 @@ input {
 section {
     min-height: 200px;
     padding: 6% 0;
-    background-color: #bbb;
+    /* background-color: #2acce5; */
 }
   
-section:nth-child(even) {
-    background-color: #ddd;
-}
+/* section:nth-child(even) {
+    background-color: #2acce5;
+} */
 
-.feature-section {
+.feature {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-  
-.feature {
+
+.feature--purple {
+    background-color: #7b8fd1;
+    border-top: 2px solid #7b8fd18f;
+}
+
+.feature--blue {
+    background-color: #0c81c6;
+    color: white;
+}
+
+.feature__img {
     flex-wrap: wrap;
     border: 1px solid black;
     border-radius: 100px;
     padding: 30px;
 }
-  

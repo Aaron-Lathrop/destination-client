@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 function Header(props) {
     return (
         <header role="banner">
-            <h1>DestiNation</h1>
-            <h2>because so much depends upon the weather</h2>
+            <h1>Destino</h1>
+            <h2>Simple Travel Planning</h2>
             <button onClick={() => window.location = "/newtrip"}>Plan Trip</button>
         </header>
     );
