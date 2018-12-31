@@ -1,13 +1,23 @@
 .grid__tripcard {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr 1fr;
     margin: 70px;
 }
 
-.tripcard {
+/* .tripcard {
     margin: 20px 40px;
     border-radius: 5px;
     background-color: #2acce5;
     box-shadow: 0.5px 1px 5px #000;
+} */
+
+.tripcard {
+    margin: 20px 40px;
+    border-radius: 5px;
+    /* background-color: #2acce5; */
+    /* box-shadow: 0.5px 1px 5px #000; */
+    text-align: left;
+    font-size: 16px;
 }
 
 .tripcard:hover {
@@ -15,11 +25,45 @@
     transform: translateY(-2px) scale(1.01);
     transition: 100ms ease-in-out;
     box-shadow: 1px 1.5px 5px #000;
-    background-color: #2acce5da;
+    /* background-color: #2acce5da; */
+}
+
+.tripcard__header {
+    background-color: rgba(0, 121, 191, .99);
+    color: ghostwhite;
+    font-size: 30px;
+    text-align: left;
+    padding-left: 10%;
+    height: 150px;
+    align-self: end;
+}
+
+.header__trips {
+    font-size: 35px;
+    font-weight: bold;
+    float: right;
+    padding-right: 10%;
+    display: inline-block;
+}
+
+.tripcard__container {
+    box-shadow: 0.1px 0.1px 10px 0.1px #c8c8c8;
+}
+
+.tripcard__container ul {
+    list-style-type: circle;
+}
+
+.tripcard__details {
+    padding: 1px;
 }
 
 .trip-img {
     width: 75px;
+}
+
+.btn__container {
+    display: inline;
 }
 
 .btn__tripcard {
@@ -27,8 +71,10 @@
     margin: 10px;
     border: none;
     border-radius: 10px;
-    background-color: white;
+    background-color: #b8b8b8;
     box-shadow: .1px .1px .1px #d8d8d8;
+    /* float: right; */
+    display: inline;
 }
 
 .btn__tripcard:hover {
@@ -52,6 +98,24 @@
     .btn__tripcard {
         padding: 15px 35px;
     }
+
+    .tripcard__header {
+    background-color: rgba(0, 121, 191, .99);
+    color: ghostwhite;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 10%;
+    height: 150px;
+    align-self: end;
+}
+
+.header__trips {
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    padding-right: 10%;
+    display: inline-block;
+}
 }
 
 @media only screen and (max-width: 850px) {
