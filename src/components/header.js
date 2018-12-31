@@ -11,7 +11,7 @@ function Header(props) {
         <header role="banner">
             <h1>DestiNation</h1>
             <h2>because so much depends upon the weather</h2>
-            <button onClick={() => window.location = "/signup"}>Plan Trip</button>
+            <button onClick={() => window.location = "/newtrip"}>Plan Trip</button>
         </header>
     );
 }

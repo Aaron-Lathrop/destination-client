@@ -34,7 +34,7 @@ function TripCard(props) {
     }
 
     function handleGetStarted() {
-        props.history.push('/dashboard');
+        props.history.push('/newtrip');
     }
 
     const tripsValue = () => {
@@ -70,7 +70,7 @@ function TripCard(props) {
     const trips = tripsValue();
 
     return (
-        <div className="sticky-footer">
+        <div className="sticky-footer grid grid__tripcard">
             {trips}
         </div>
     );

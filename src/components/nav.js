@@ -8,9 +8,9 @@ export function Nav(props) {
             <div>
                 <nav role="navigation">
                     <Link to={`/`}>DestiNation</Link>
-                    <Link to={`/login`}>Login</Link>
+                    {/* <Link to={`/login`}>Login</Link> */}
                     <Link to={`/trips`}>Trips</Link>
-                    <Link to={`/dashboard`}>New Trip</Link>
+                    <Link to={`/newtrip`}>New Trip</Link>
                 </nav>
             </div>
     );

@@ -11,7 +11,6 @@ function SignUp(props) {
   function onSubmit(e) {
     e.preventDefault();
     props.dispatch(signup(user));
-    //window.location = "/dashboard"
   }
 
   function handleFirstName(e) {

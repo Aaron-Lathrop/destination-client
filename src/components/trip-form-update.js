@@ -107,7 +107,7 @@ function TripFormUpdate(props) {
                         className="tripform__input" />
                 </div>
 
-                <button type="submit" className="btn btn__form">Update</button>
+                <button type="submit" className="btn btn__form btn__form--update">Update</button>
             </fieldset>
             </form>
         </section>

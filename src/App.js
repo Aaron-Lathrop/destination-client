@@ -23,7 +23,7 @@ class App extends Component {
                       <Route exact path="/" component={LandingPage} />
                       <Route exact path="/login" component={LogIn} /> 
                       <Route exact path="/signup" component={SignUp} />
-                      <Route exact path="/dashboard" component={TripSection} />
+                      <Route exact path="/newtrip" component={TripSection} />
                       <Route exact path="/trips" component={TripCard} />
                       <Route exact path="/trips/:tripId" component={DailyPlanCard} />
                     </Switch>

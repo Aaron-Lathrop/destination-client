@@ -43,3 +43,7 @@ input {
 label {
   margin-right: 10px;
 }
+
+.grid {
+  display: grid;
+}

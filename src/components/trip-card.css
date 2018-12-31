@@ -1,7 +1,12 @@
 .tripcard {
-    margin: 10%;
+    margin: 20px 40px;
 }
 
 .trip-img {
     width: 75px;
+}
+
+.grid__tripcard {
+    grid-template-columns: 1fr 1fr;
+    margin: 70px;
 }
