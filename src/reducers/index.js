@@ -45,10 +45,18 @@ const reducer = (state=initialState, action) => {
             break;
         case actions.EDIT_PLANS:
             let date = action.date;
+            let plans;
             if(!Array.isArray(action.planCards)) {
                 action.planCards = [action.planCards]
             }
-            let plans = action.planCards.find(planCard => planCard.date === action.date).plans;
+
+            try {
+                plans = action.planCards.find(planCard => planCard.date === action.date).plans;
+            }
+            catch {
+                console.error('date is undefined');
+            }
+            
 
             return Object.assign({}, state, {
                 editing: !state.editing,

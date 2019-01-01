@@ -15,8 +15,10 @@ function DailyPlanCard(props) {
     let deleteList = [];
     let save = false;
 
+
     function onSubmit(e) {
         e.preventDefault();
+        console.log('form was submitted');
         if(!props.editing) {
             props.dispatch(addPlan(plan));
             if(document.getElementById(plan.index)) {
@@ -29,6 +31,7 @@ function DailyPlanCard(props) {
                 save = false;
                 resetDelete();
                 props.dispatch(editPlans(props.editPlanCards, props.currentDate));
+                // props.dispatch(setEditing());
             }
             props.dispatch(cancelEditPlan(props.trip.tripId, props.trip.planCards));
         }
@@ -85,7 +88,7 @@ function DailyPlanCard(props) {
 
     function handleSave() {
         save = true;
-        props.dispatch(setEditing());
+        console.log('save was clicked', save);
     }
 
     const planCardHeader = (
@@ -142,7 +145,7 @@ function DailyPlanCard(props) {
                                 {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required /><input type="submit" value="Add" /></div>) : ""}
                                 </li>
                             </ul>
-                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave()} /></div> : ""}
+                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave(e)} /></div> : ""}
                             {!props.editing ? <button onClick={e => handleEditClick(date)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
                         </form>
                     </div>
