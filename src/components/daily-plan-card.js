@@ -88,6 +88,12 @@ function DailyPlanCard(props) {
         props.dispatch(setEditing());
     }
 
+    const planCardHeader = (
+        <div className="plancard__header">
+            <p>{props.trip.destination} - {props.trip.dateList[0]} to {props.trip.dateList[props.trip.dateList.length-1]}</p>
+        </div>
+    );
+
     function plans(date, index) {
         if(!props.editing) {
             return (
@@ -121,7 +127,7 @@ function DailyPlanCard(props) {
 
     const dailyPlans = props.dates.map((date, index) => {
         return (
-            <section key={date} id={date} className="plancard__card">
+            <li key={date} id={date}>
                     <div>
                         <div>
                         <p>{date}</p>
@@ -140,16 +146,22 @@ function DailyPlanCard(props) {
                             {!props.editing ? <button onClick={e => handleEditClick(date)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
                         </form>
                     </div>
-            </section>
+            </li>
         );
 
 });
 
     return (
-        <div className="grid grid__plancard sticky-footer plancard">
-            {dailyPlans}
-            <button onClick={e => handleDeleteTrip()} disabled={false}>Delete Trip</button>
+        <div className="grid grid__plancard sticky-footer">
+            {planCardHeader}
+            <div className="plancard__container">
+                <ul>
+                    {dailyPlans}
+                    <button onClick={e => handleDeleteTrip()} disabled={false}>Delete Trip</button>
+                </ul>
+            </div>
         </div>
+        
     );
 }
 

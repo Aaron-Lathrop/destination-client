@@ -8,8 +8,9 @@ import LandingPage from './components/landing-page';
 import Footer from './components/footer';
 import LogIn from './components/login';
 import SignUp from './components/signup';
+import TripForm from './components/trip-form';
+// import TripCard from './components/trip-card';
 import TripSection from './components/trip-section';
-import TripCard from './components/trip-card';
 import DailyPlanCard from './components/daily-plan-card';
 
 class App extends Component {
@@ -23,8 +24,8 @@ class App extends Component {
                       <Route exact path="/" component={LandingPage} />
                       <Route exact path="/login" component={LogIn} /> 
                       <Route exact path="/signup" component={SignUp} />
-                      <Route exact path="/newtrip" component={TripSection} />
-                      <Route exact path="/trips" component={TripCard} />
+                      <Route exact path="/newtrip" component={TripForm} />
+                      <Route exact path="/trips" component={TripSection} />
                       <Route exact path="/trips/:tripId" component={DailyPlanCard} />
                     </Switch>
                     <Footer />

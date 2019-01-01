@@ -20,7 +20,7 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div className="btn__container">
-                    <button className="btn__tripcard" onClick={e => handleView()}>View</button>
+                    {/* <button className="btn__tripcard" onClick={e => handleView()}>View</button> */}
                     <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
                 </div>
                     
@@ -49,20 +49,17 @@ function TripCard(props) {
         if(props.trips.length > 0) {
             return (
                 props.trips.map((trip, index) => (
-                    <div key={trip.tripId} id={trip.tripId} className="tripcard" onClick={e => handleView(trip.tripId)}>
+                    <div key={trip.tripId} id={trip.tripId} className="tripcard" >
                         <li className="tripcard__trip">
                             <div className="tripcard__details">
-                                <p><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
-                                <p></p>
+                                <p onClick={e => handleView(trip.tripId)}><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
                                 
                             </div>
                             <div>
                                 {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
                             </div>
                             {userInteractions(trip)}
-                        </li>
-
-                        
+                        </li> 
                     </div>
                 ))
             );

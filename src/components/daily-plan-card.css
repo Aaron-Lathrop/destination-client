@@ -3,22 +3,47 @@
 } */
 
 .grid__plancard {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr 1fr;
     margin: 70px;
 }
 
+.plancard {
+    margin: 20px 40px;
+    border-radius: 5px;
+    /* background-color: #2acce5; */
+    /* box-shadow: 0.5px 1px 5px #000; */
+    text-align: left;
+    font-size: 16px;
+}
+
 .plancard__card {
-    background-color: rgba(0, 121, 191, .99);
-    color: white;
+    /* background-color: rgba(0, 121, 191, .99); */
+    /* color: white; */
     height: 300px;
     min-width: 90%;
     border-radius: 5px;
 }
 
-.plancard__card ul {
-    list-style-type: none;
+.plancard__header {
+    background-color: #16b429;
+    color: ghostwhite;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 10%;
+    height: 150px;
+    align-self: end;
 }
+
+.plancard__container {
+    box-shadow: 0.1px 0.1px 10px 0.1px #c8c8c8;
+}
+
+.plancard__container ul {
+    list-style-type: none;
+    text-align: left;
+}
+
 
 @media only screen and (max-width: 800px) {
     .grid__plancard {
