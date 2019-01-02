@@ -57,6 +57,12 @@
     grid-column: 1/2;
 }
 
+.tripcard__input {
+    font-size: 15px;
+    color: rgb(0,0,0);
+    border-bottom: 1.5px solid rgb(0,0,0);
+}
+
 .trip-img {
     width: 75px;
 }
@@ -68,16 +74,18 @@
 }
 
 .btn__tripcard {
-    padding: 10px 20px;
+    padding: 10px 0;
+    width: 90px;
     margin: 10px;
     border: none;
     border-radius: 10px;
     background-color: #b8b8b8;
     box-shadow: .1px .1px .1px #d8d8d8;
-    display: inline;
+    display: inline-block;
 }
 
 .btn__tripcard:hover {
+    cursor: pointer;
     transform: translateY(-2px) scale(1.05);
     transition: 100ms ease-in-out;
     box-shadow: 1px 1px 1px #000;
@@ -86,6 +94,14 @@
 .btn__tripcard:active {
     transform: translateY(0px) scale(1.02);
     transition: 100ms ease-in-out;
+}
+
+.btn__tripcard--blue {
+    background-color: lightblue;
+}
+
+.btn__tripcard--red {
+    background-color: lightcoral;
 }
 
 @media only screen and (max-width: 600px) {
@@ -126,6 +142,6 @@
     }
 
     .btn__tripcard {
-        padding: 10px 30px;
+        padding: 10px 0;
     }
 }

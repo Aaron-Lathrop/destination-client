@@ -119,8 +119,8 @@ function DailyPlanCard(props) {
                 props.planCards[index].plans.map((plan, index) => 
                     (
                         <li key={index}>
-                            <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} />
-                            <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" />
+                            <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} className="tripcard__input" />
+                            <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn__tripcard btn__tripcard--red" />
                         </li>
                     )
                 )
@@ -142,11 +142,11 @@ function DailyPlanCard(props) {
                             <ul>
                                 {plans(date, index)}
                                 <li>
-                                {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required /><input type="submit" value="Add" /></div>) : ""}
+                                {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" /><input type="submit" value="Add" className="btn__tripcard btn__tripcard--blue"/></div>) : ""}
                                 </li>
                             </ul>
-                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave(e)} /></div> : ""}
-                            {!props.editing ? <button onClick={e => handleEditClick(date)}>Edit</button> : <input id="cancel" type="submit" value="Cancel" />}
+                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave(e)} className="btn__tripcard" /></div> : ""}
+                            {!props.editing ? <button onClick={e => handleEditClick(date)} className="btn__tripcard">Edit</button> : <input id="cancel" type="submit" value="Cancel" className="btn__tripcard" />}
                         </form>
                     </div>
             </li>
@@ -160,7 +160,7 @@ function DailyPlanCard(props) {
             <div className="plancard__container">
                 <ul>
                     {dailyPlans}
-                    <button onClick={e => handleDeleteTrip()} disabled={false}>Delete Trip</button>
+                    <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
                 </ul>
             </div>
         </div>
