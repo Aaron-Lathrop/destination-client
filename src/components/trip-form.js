@@ -69,7 +69,9 @@ function getDates(startDate, stopDate) {
     return (
         <div className="form__container">
             <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
-              <fieldset>
+            <div className="form__highlight"></div>
+              <fieldset className="form__fieldset">
+              
               <legend className="tripform__legend">Create A New Trip</legend>
               
                 <div className="form__element">
@@ -100,7 +102,7 @@ function getDates(startDate, stopDate) {
                          required />
                 </div>
 
-                <button type="submit">Submit</button>
+                <button className="btn__form--update" type="submit">Submit</button>
               </fieldset>
             </form>
         </div>
