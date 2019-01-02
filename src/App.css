@@ -54,6 +54,13 @@ legend {
 
 input {
   margin-bottom: 10px;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  border-bottom: 1px solid #e8e8e8;
+  color: white;
+  width: 200px;
+  padding-bottom: 7px;
+  /* padding-left: 10px; */
 }
 
 label {

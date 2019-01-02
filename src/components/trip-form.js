@@ -67,23 +67,23 @@ function getDates(startDate, stopDate) {
   }
 
     return (
-        <section className="sticky-footer">
-            <form name="signup" action="/trips" onSubmit={e => onSubmit(e)}>
+        <div className="form__container">
+            <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
               <fieldset>
-              <legend>Create A New Trip</legend>
+              <legend className="tripform__legend">Create A New Trip</legend>
               
-                <div>
-                  <label htmlFor="location">Destination?</label>
+                <div className="form__element">
+                  <label htmlFor="location" className="tripform__label">Destination?</label>
                   <input id="location" 
                          name="location" 
                          type="text" 
-                         placeholder="Example: Tokyo, Japan" 
+                         
                          onChange={e => handleLocation(e)} 
                          required />
                 </div>
 
-                <div>
-                  <label htmlFor="arrival">Date of Arrival</label>
+                <div className="form__element">
+                  <label htmlFor="arrival" className="tripform__label">Date of Arrival</label>
                   <input id="arrival" 
                          name="arrival" 
                          type="date" 
@@ -91,8 +91,8 @@ function getDates(startDate, stopDate) {
                          required />
                 </div>
 
-                <div>
-                  <label htmlFor="return">Date of Return</label>
+                <div className="form__element">
+                  <label htmlFor="return" className="tripform__label">Date of Return</label>
                   <input id="return" 
                          name="return" 
                          type="date" 
@@ -103,7 +103,7 @@ function getDates(startDate, stopDate) {
                 <button type="submit">Submit</button>
               </fieldset>
             </form>
-        </section>
+        </div>
     );
 }
 

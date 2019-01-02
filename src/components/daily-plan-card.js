@@ -31,7 +31,7 @@ function DailyPlanCard(props) {
                 save = false;
                 resetDelete();
                 props.dispatch(editPlans(props.editPlanCards, props.currentDate));
-                // props.dispatch(setEditing());
+                props.dispatch(setEditing());
             }
             props.dispatch(cancelEditPlan(props.trip.tripId, props.trip.planCards));
         }
