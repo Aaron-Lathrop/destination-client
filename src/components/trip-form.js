@@ -50,6 +50,7 @@ function getDates(startDate, stopDate) {
     }));
     
     props.dispatch(addTrip(trip));
+    handleCloseModal();
     props.history.push("/trips");
   }
 
@@ -68,7 +69,6 @@ function getDates(startDate, stopDate) {
 
   function handleCloseModal(e) {
     props.dispatch(setTripStatus(false));
-    // document.getElementById('form-container').classList.toggle('hide');
   }
 
     return (

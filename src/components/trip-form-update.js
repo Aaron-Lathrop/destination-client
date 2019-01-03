@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
-import { updateTrip } from '../actions';
+import { updateTrip, setEditing, setTripStatus } from '../actions';
 
 function TripFormUpdate(props) {
     const trip = {};
@@ -41,6 +41,11 @@ function TripFormUpdate(props) {
     function onSubmit(e) {
         e.preventDefault();
         trip.tripId = props.tripId;
+        
+        //If the user changed a value, then use that, otherwise default to the value before updating
+        trip.destination = trip.destination !== undefined ? trip.destination : props.trip.destination;
+        trip.startDate = trip.startDate !== undefined ? trip.startDate : props.trip.startDate;
+        trip.endDate = trip.endDate !== undefined ? trip.endDate : props.trip.endDate;
         trip.dateList = getDates(new Date(trip.startDate), new Date(trip.endDate));
         trip.userId = props.trip.userId;
         trip.planCards = trip.dateList.map(date => {
@@ -59,6 +64,7 @@ function TripFormUpdate(props) {
         });
 
         props.dispatch(updateTrip(trip));
+        handleCloseModal();
     }
 
     function handleLocation(e) {
@@ -72,46 +78,96 @@ function TripFormUpdate(props) {
     function handleLastDay(e) {
         trip.endDate = e.target.value !== undefined ? e.target.value : props.trip.endDate;
     }
+
+    function handleCloseModal(e) {
+        props.dispatch(setTripStatus(false));
+    }
     
     return (
-        <section className="tripform">
-            <form name="tripupdate" action="/trips" onSubmit={e => onSubmit(e)}>
-            <fieldset>
-            <legend className=".tripform__legend">Update trip</legend>
+
+        <div id="form-container" className="form__container">
+        
+            <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
             
-                <div>
-                <label htmlFor="location" className="tripform__label">Location</label>
-                <input id="location" 
-                        name="location" 
-                        type="text" 
-                        placeholder={props.destination} 
-                        onChange={e => handleLocation(e)}
-                        className="tripform__input" />
+            <div className="form__highlight"></div>
+           
+              <fieldset className="form__fieldset">
+              
+              <legend className="tripform__legend">Update Trip</legend>
+              
+                <div className="form__element">
+                  <label htmlFor="location" className="tripform__label">Location</label>
+                  <input id="location" 
+                         name="location" 
+                         type="text" 
+                         
+                         onChange={e => handleLocation(e)} 
+                         required />
                 </div>
 
-                <div>
-                <label htmlFor="arrival" className="tripform__label">First day</label>
-                <input id="arrival" 
-                        name="arrival" 
-                        type="date" 
-                        onChange={e => handleFirstDay(e)}
-                        className="tripform__input" />
+                <div className="form__element">
+                  <label htmlFor="arrival" className="tripform__label">First Day</label>
+                  <input id="arrival" 
+                         name="arrival" 
+                         type="date" 
+                         onChange={e => handleFirstDay(e)} 
+                         required />
                 </div>
 
-                <div>
-                <label htmlFor="return" className="tripform__label">Last day</label>
-                <input id="return" 
-                        name="return" 
-                        type="date" 
-                        onChange={e => handleLastDay(e)}
-                        className="tripform__input" />
+                <div className="form__element">
+                  <label htmlFor="return" className="tripform__label">Last Day</label>
+                  <input id="return" 
+                         name="return" 
+                         type="date" 
+                         onChange={e => handleLastDay(e)} 
+                         required />
                 </div>
 
-                <button type="submit" className="btn btn__form btn__form--update">Update</button>
-            </fieldset>
+                <button className="btn__form--update" type="submit">Update</button>
+                <span id="closeModal" className="form__closemodal" onClick={e => handleCloseModal(e)}>&times;</span>
+              </fieldset>
             </form>
-        </section>
+        </div>
     );
+
+    //     <section className="tripform">
+    //         <form name="tripupdate" action="/trips" onSubmit={e => onSubmit(e)}>
+    //         <fieldset>
+    //         <legend className=".tripform__legend">Update trip</legend>
+            
+    //             <div>
+    //             <label htmlFor="location" className="tripform__label">Location</label>
+    //             <input id="location" 
+    //                     name="location" 
+    //                     type="text" 
+    //                     placeholder={props.destination} 
+    //                     onChange={e => handleLocation(e)}
+    //                     className="tripform__input" />
+    //             </div>
+
+    //             <div>
+    //             <label htmlFor="arrival" className="tripform__label">First day</label>
+    //             <input id="arrival" 
+    //                     name="arrival" 
+    //                     type="date" 
+    //                     onChange={e => handleFirstDay(e)}
+    //                     className="tripform__input" />
+    //             </div>
+
+    //             <div>
+    //             <label htmlFor="return" className="tripform__label">Last day</label>
+    //             <input id="return" 
+    //                     name="return" 
+    //                     type="date" 
+    //                     onChange={e => handleLastDay(e)}
+    //                     className="tripform__input" />
+    //             </div>
+
+    //             <button type="submit" className="btn btn__form btn__form--update">Update</button>
+    //         </fieldset>
+    //         </form>
+    //     </section>
+    // );
 }
 
 const mapStateToProps = (state, props) => {

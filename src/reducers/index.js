@@ -8,6 +8,7 @@ const initialState = {
     icon: "",
     editing: false,
     addTrip: false,
+    tripId: null,
     loading: false,
     name: "",
     planCards: [],
@@ -199,12 +200,13 @@ const reducer = (state=initialState, action) => {
 
         case actions.SET_EDITING:
             return Object.assign({}, state, {
-                editing: !state.editing
+                editing: action.editingStatus
             });
 
         case actions.SET_TRIP_STATUS:
             return Object.assign({}, state, {
-                addTrip: action.newTrip
+                addTrip: action.newTrip,
+                tripId: action.tripId
             })
         default:
             return state;
