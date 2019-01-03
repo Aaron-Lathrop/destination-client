@@ -120,11 +120,13 @@ export const logIn = (user) => ({
     user
 });
 
-export const setEditing = () => ({
-    type: SET_EDITING
+export const setEditing = (editingStatus) => ({
+    type: SET_EDITING,
+    editingStatus
 });
 
-export const setTripStatus = (newTrip) => ({
+export const setTripStatus = (newTrip, tripId) => ({
     type: SET_TRIP_STATUS,
-    newTrip
+    newTrip,
+    tripId
 });

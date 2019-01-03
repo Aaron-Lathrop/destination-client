@@ -57,10 +57,9 @@ input {
   border: none;
   background-color: rgba(0,0,0,0);
   border-bottom: 1px solid #e8e8e8;
-  color: white;
+  color: black;
   width: 200px;
   padding-bottom: 7px;
-  /* padding-left: 10px; */
 }
 
 label {

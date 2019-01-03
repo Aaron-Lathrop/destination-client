@@ -15,25 +15,8 @@ function TripCard(props) {
         props.history.push(`/trips/${tripId}`)
     }
 
-    function handleEditing(trip) {
-        props.dispatch(setEditing());
-    }
-
-    function userInteractions(trip) {
-        if(!props.editing) {
-            return(
-                <div className="btn__container">
-                    <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
-                </div>
-                    
-            );
-        }
-        return (
-            <div className="btn__container">
-                <button className="btn__tripcard" onClick={e => handleEditing()}>Cancel</button>
-                <TripFormUpdate tripId={trip.tripId} />
-            </div>
-        );
+    function handleEditing(editingStatus) {
+        props.dispatch(setEditing(editingStatus));
     }
 
     function handleGetStarted() {
@@ -41,7 +24,21 @@ function TripCard(props) {
     }
 
     function handleAddTrip(e) {
-        props.dispatch(setTripStatus(true));
+        props.dispatch(setTripStatus('add'));
+    }
+
+    function handleUpdate(editingStatus, tripId) {
+        props.dispatch(setTripStatus('update', tripId));
+    }
+
+    function userInteractions(trip) {
+        if(!props.editing) {
+            return(
+                <div className="btn__container">
+                    <button id={trip.tripId} className="btn__tripcard" onClick={e => handleUpdate('update', trip.tripId)}>Update</button>
+                </div>
+            );
+        }
     }
 
     const tripHeader = (
@@ -94,8 +91,10 @@ function TripCard(props) {
         );
 
 
-    if(props.addTrip) {
-        return <TripForm />
+    if(props.addTrip === 'add') {
+        return <TripForm />;
+    } else if(props.addTrip === 'update') {
+        return <TripFormUpdate tripId={props.tripId} />
     } else {
         return (
             <div className="sticky-footer grid grid__tripcard">
@@ -109,6 +108,7 @@ function TripCard(props) {
 
 const mapStateToProps = state => ({
     trips: state.trips,
+    tripId: state.tripId,
     editing: state.editing,
     addTrip: state.addTrip
 });
