@@ -8,6 +8,7 @@
 .form__fieldset {
     border: none;
     grid-column: 2/3;
+    position: relative;
 }
 
 .form__highlight {
@@ -15,6 +16,18 @@
     padding: 0;
     color: white;
     grid-column: 1/2;
+}
+
+.form__closemodal {
+    color: rgba(0,0,0);
+    font-size: 40px;
+    position: absolute;
+    right: 20px;
+    top: -5px;
+}
+
+.form__closemodal:hover {
+    cursor: pointer;
 }
 
 .form__element {
@@ -26,19 +39,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-  
-/* legend {
-    margin-bottom: 50px;
-}
-  
-input {
-    margin-bottom: 10px;
-} */
-
-/* .tripform {
-    margin: 20px 10% 10% 10%;
-    background-color: #ddd;
-} */
 
 .tripform {
     color: black;
@@ -62,7 +62,7 @@ input {
     font-size: 27px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 25px;
+    padding-top: 35px;
 }
 
 .tripform__label {
@@ -93,4 +93,8 @@ input {
     font-weight: bold;
     border: none;
     padding: 20px 45px;
+}
+
+.hide {
+    display:none;
 }

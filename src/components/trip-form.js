@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
-import { addTrip } from '../actions';
+import { addTrip, setTripStatus } from '../actions';
 
 function TripForm(props) {
 
@@ -66,10 +66,18 @@ function getDates(startDate, stopDate) {
     trip.endDate = e.target.value;
   }
 
+  function handleCloseModal(e) {
+    props.dispatch(setTripStatus(false));
+    // document.getElementById('form-container').classList.toggle('hide');
+  }
+
     return (
-        <div className="form__container">
+        <div id="form-container" className="form__container">
+        
             <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
+            
             <div className="form__highlight"></div>
+           
               <fieldset className="form__fieldset">
               
               <legend className="tripform__legend">Create A New Trip</legend>
@@ -103,6 +111,7 @@ function getDates(startDate, stopDate) {
                 </div>
 
                 <button className="btn__form--update" type="submit">Submit</button>
+                <span id="closeModal" className="form__closemodal" onClick={e => handleCloseModal(e)}>&times;</span>
               </fieldset>
             </form>
         </div>

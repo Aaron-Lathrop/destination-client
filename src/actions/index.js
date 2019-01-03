@@ -84,6 +84,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const LOG_IN = 'LOG_IN';
 export const SET_EDITING = 'SET_EDITING';
+export const SET_TRIP_STATUS= 'SET_TRIP_STATUS';
 export const STORE_STATE = 'STORE_STATE';
 
 
@@ -121,4 +122,9 @@ export const logIn = (user) => ({
 
 export const setEditing = () => ({
     type: SET_EDITING
+});
+
+export const setTripStatus = (newTrip) => ({
+    type: SET_TRIP_STATUS,
+    newTrip
 });

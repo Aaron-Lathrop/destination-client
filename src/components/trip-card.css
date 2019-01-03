@@ -25,9 +25,12 @@
     color: ghostwhite;
     font-size: 30px;
     text-align: left;
-    padding-left: 10%;
     height: 150px;
     align-self: end;
+}
+
+.header__yourtrips {
+    padding-left: 10%;
 }
 
 .header__trips {
@@ -36,6 +39,26 @@
     float: right;
     padding-right: 10%;
     display: inline-block;
+}
+
+.tripcard__header--addcontainer {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.tripcard__header--add:hover {
+    cursor: pointer;
+    font-weight: 600;
+    border: 3px solid white;
+    transition: 20ms ease-in-out;
+}
+
+.tripcard__header--add {
+    text-align: center;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 100px;
+    padding: 0 8px;
 }
 
 .tripcard__container {

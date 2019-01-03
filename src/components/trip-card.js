@@ -3,10 +3,13 @@ import './trip-card.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import TripForm from './trip-form';
 import TripFormUpdate from './trip-form-update';
-import { setEditing } from '../actions';
+import { setEditing, setTripStatus } from '../actions';
 
 function TripCard(props) {
+
+    let showTripForm = false;
 
     function handleView(tripId) {
         props.history.push(`/trips/${tripId}`)
@@ -20,7 +23,6 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div className="btn__container">
-                    {/* <button className="btn__tripcard" onClick={e => handleView()}>View</button> */}
                     <button className="btn__tripcard" onClick={e => handleEditing()}>Update</button>
                 </div>
                     
@@ -38,13 +40,22 @@ function TripCard(props) {
         props.history.push('/newtrip');
     }
 
+    function handleAddTrip(e) {
+        props.dispatch(setTripStatus(true));
+    }
+
     const tripHeader = (
         <div className="tripcard__header">
-            <p>Your trips <span className="header__trips">{props.trips.length}</span></p>
+            <p className="header__yourtrips">Your trips <span className="header__trips">{props.trips.length} </span></p>
+            <p className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span></p>
         </div>
     );
 
     const tripsValue = () => {
+
+        if(showTripForm) {
+            return <TripForm />
+        }
 
         if(props.trips.length > 0) {
             return (
@@ -82,17 +93,24 @@ function TripCard(props) {
         </div>
         );
 
-    return (
-        <div className="sticky-footer grid grid__tripcard">
-            {tripHeader}
-            {trips}
-        </div>
-    );
+
+    if(props.addTrip) {
+        return <TripForm />
+    } else {
+        return (
+            <div className="sticky-footer grid grid__tripcard">
+                {tripHeader}
+                {trips}
+            </div>
+        );
+    }
+
 }
 
 const mapStateToProps = state => ({
     trips: state.trips,
-    editing: state.editing
+    editing: state.editing,
+    addTrip: state.addTrip
 });
 
 export default withRouter(connect(mapStateToProps)(TripCard));
