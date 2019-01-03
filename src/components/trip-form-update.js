@@ -20,7 +20,7 @@ function TripFormUpdate(props) {
         return dateValues;
       }
     
-    //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays and function getDates()
+    //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for and function getDates()
     
     function addDays(currentDate, days) {
       var date = new Date(currentDate.valueOf());
@@ -41,7 +41,6 @@ function TripFormUpdate(props) {
     function onSubmit(e) {
         e.preventDefault();
         trip.tripId = props.tripId;
-        
         //If the user changed a value, then use that, otherwise default to the value before updating
         trip.destination = trip.destination !== undefined ? trip.destination : props.trip.destination;
         trip.startDate = trip.startDate !== undefined ? trip.startDate : props.trip.startDate;
@@ -68,23 +67,26 @@ function TripFormUpdate(props) {
     }
 
     function handleLocation(e) {
+        console.log(props.trip.destination);
         trip.destination = e.target.value !== undefined ? e.target.value : props.trip.destination;
     }
 
     function handleFirstDay(e) {
+        console.log(props.trip.startDate);
         trip.startDate = e.target.value !== undefined ? e.target.value : props.trip.startDate;
     }
 
     function handleLastDay(e) {
+        console.log(props.trip.endDate);
         trip.endDate = e.target.value !== undefined ? e.target.value : props.trip.endDate;
     }
 
     function handleCloseModal(e) {
         props.dispatch(setTripStatus(false));
+        props.dispatch(setEditing(false));
     }
     
     return (
-
         <div id="form-container" className="form__container">
         
             <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
@@ -102,7 +104,7 @@ function TripFormUpdate(props) {
                          type="text" 
                          
                          onChange={e => handleLocation(e)} 
-                         required />
+                          />
                 </div>
 
                 <div className="form__element">
@@ -111,7 +113,7 @@ function TripFormUpdate(props) {
                          name="arrival" 
                          type="date" 
                          onChange={e => handleFirstDay(e)} 
-                         required />
+                          />
                 </div>
 
                 <div className="form__element">
@@ -119,8 +121,7 @@ function TripFormUpdate(props) {
                   <input id="return" 
                          name="return" 
                          type="date" 
-                         onChange={e => handleLastDay(e)} 
-                         required />
+                         onChange={e => handleLastDay(e)} />
                 </div>
 
                 <button className="btn__form--update" type="submit">Update</button>
@@ -129,45 +130,6 @@ function TripFormUpdate(props) {
             </form>
         </div>
     );
-
-    //     <section className="tripform">
-    //         <form name="tripupdate" action="/trips" onSubmit={e => onSubmit(e)}>
-    //         <fieldset>
-    //         <legend className=".tripform__legend">Update trip</legend>
-            
-    //             <div>
-    //             <label htmlFor="location" className="tripform__label">Location</label>
-    //             <input id="location" 
-    //                     name="location" 
-    //                     type="text" 
-    //                     placeholder={props.destination} 
-    //                     onChange={e => handleLocation(e)}
-    //                     className="tripform__input" />
-    //             </div>
-
-    //             <div>
-    //             <label htmlFor="arrival" className="tripform__label">First day</label>
-    //             <input id="arrival" 
-    //                     name="arrival" 
-    //                     type="date" 
-    //                     onChange={e => handleFirstDay(e)}
-    //                     className="tripform__input" />
-    //             </div>
-
-    //             <div>
-    //             <label htmlFor="return" className="tripform__label">Last day</label>
-    //             <input id="return" 
-    //                     name="return" 
-    //                     type="date" 
-    //                     onChange={e => handleLastDay(e)}
-    //                     className="tripform__input" />
-    //             </div>
-
-    //             <button type="submit" className="btn btn__form btn__form--update">Update</button>
-    //         </fieldset>
-    //         </form>
-    //     </section>
-    // );
 }
 
 const mapStateToProps = (state, props) => {

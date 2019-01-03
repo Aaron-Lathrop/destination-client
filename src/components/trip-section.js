@@ -9,7 +9,6 @@ class TripSection extends Component {
     componentWillMount() {
         this.props.dispatch(setTripStatus(false, null));
         this.props.dispatch(setEditing(false));
-
     }
 
     render() {

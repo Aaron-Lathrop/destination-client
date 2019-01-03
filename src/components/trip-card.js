@@ -39,7 +39,6 @@ function TripCard(props) {
                 <div className="btn__container">
                     <button id={trip.tripId} className="btn__tripcard" onClick={e => handleUpdate('update', trip.tripId)}>Update</button>
                 </div>
-                    
             );
         }
        
@@ -95,8 +94,8 @@ function TripCard(props) {
         );
 
 
-    if(props.addTrip) {
-        return <TripForm />
+    if(props.addTrip === 'add') {
+        return <TripForm />;
     } else if(props.addTrip === 'update') {
         return <TripFormUpdate tripId={props.tripId} />
     } else {
@@ -112,6 +111,7 @@ function TripCard(props) {
 
 const mapStateToProps = state => ({
     trips: state.trips,
+    tripId: state.tripId,
     editing: state.editing,
     addTrip: state.addTrip
 });
