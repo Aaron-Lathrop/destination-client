@@ -10,7 +10,8 @@ function SignUp(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    props.dispatch(signup(user));
+    console.log('user', user);
+    return props.dispatch(signup(user));
   }
 
   function handleFirstName(e) {
@@ -31,7 +32,7 @@ function SignUp(props) {
 
     return (
         <section className="sticky-footer">
-            <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
+            <form name="signup" onSubmit={e => onSubmit(e)}>
               <fieldset>
               <legend>Plan your DestiNation</legend>
                 <div>
@@ -66,7 +67,7 @@ function SignUp(props) {
                   <input id="password" 
                          name="password" 
                          type="password" 
-                         placeholder="First Name"
+                         placeholder="Password"
                          onChange={e => handlePassword(e)} />
                 </div>
 

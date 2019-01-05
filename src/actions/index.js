@@ -1,5 +1,8 @@
-import { normalizeResponseErrors } from './utils';
 import { SubmissionError } from 'redux-form';
+
+import {API_BASE_URL} from '../config';
+import { normalizeResponseErrors } from './utils';
+
 
 //plan actions
 export const SET_PLAN_CARDS = 'SET_PLAN_CARDS';
@@ -113,8 +116,8 @@ export const logOut = () => ({
     type: LOG_OUT
 });
 
-export const signup = (user) => dispatch => {
-    return fetch(`/users/signup`, {
+export const signup = user => dispatch => {
+    return fetch(`${API_BASE_URL}/users/signup`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -126,13 +129,13 @@ export const signup = (user) => dispatch => {
     .catch(err => {
         console.error(err);
         // const { reason, code, message } = err;
-        // // if(reason === 'ValidationError') {
-        // //     return Promise.reject(
-        // //         new SubmissionError({
-        // //             [location]: message
-        // //         })
-        // //     );
-        // // }
+        // if(reason === 'ValidationError') {
+        //     return Promise.reject(
+        //         new SubmissionError({
+        //             [location]: message
+        //         })
+        //     );
+        // }
     })
 };
 
