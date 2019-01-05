@@ -150,21 +150,13 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 trips: state.trips.filter(trip => trip.tripId !== action.tripId)
             });
+
+        //handle basic user sign up, login, and logout process    
         case actions.AUTH_REQUEST:
+        console.log('authorization requested, our worker elves are on the case');
             return Object.assign({}, state, {
-                authToken: "",
-                dateList: [],
-                destination: "",
                 error: null,
-                icon: "",
-                loading: false,
-                name: "",
-                planCards: [],
-                username: "",
-                userID: null,
-                text: "",
-                trips: [0],
-                userList: []
+                loading: true,
             });
         case actions.SET_AUTH_TOKEN:
             const authToken = action.authToken;
@@ -173,8 +165,11 @@ const reducer = (state=initialState, action) => {
                 authToken
             })
         case actions.AUTH_SUCCESS:
-            console.log(actions.AUTH_SUCCESS);
-            break;
+        console.log('authorization was successful!');
+            return Object.assign({}, state, {
+                error: null,
+                loading: false,
+            });
         case actions.LOG_OUT:
             return Object.assign({}, state, {
                 authToken: "",
@@ -188,7 +183,7 @@ const reducer = (state=initialState, action) => {
                 username: "",
                 userID: null,
                 text: "",
-                trips: [0],
+                trips: [],
                 userList: []
             });
         case actions.SIGN_UP: {

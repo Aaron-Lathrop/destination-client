@@ -1,7 +1,9 @@
 import { SubmissionError } from 'redux-form';
+import { jwtDecode } from 'jwt-decode';
 
-import {API_BASE_URL} from '../config';
+import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
+import { loadAuthToken, saveAuthToken, clearAuthToken } from '../localStorage';
 
 
 //plan actions
@@ -130,6 +132,9 @@ export const signup = user => dispatch => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
+    .then(user => {
+        dispatch(login(user.username, user.password));
+    })
     .catch(err => {
         console.error(err);
         // const { reason, code, message } = err;
@@ -143,7 +148,16 @@ export const signup = user => dispatch => {
     })
 };
 
+const storeAuthInfo = (authToken, user, dispatch) => {
+    // console.dir(jwtDecode(authToken));
+    // const decodedToken = jwtDecode(authToken);
+    dispatch(setAuthToken(authToken));
+    dispatch(authSuccess(user));
+    saveAuthToken(authToken);
+}
+
 export const login = (username, password) => dispatch => {
+    dispatch(authRequest());
     return fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
@@ -158,7 +172,8 @@ export const login = (username, password) => dispatch => {
     .then(res => res.json())
     .then(payload => {
         const { jwtToken, user } = payload;
-        dispatch(setAuthToken(jwtToken));
+        console.log(jwtToken);
+        storeAuthInfo(jwtToken, user, dispatch);
     })
     .catch(err => console.error(err));
 };
