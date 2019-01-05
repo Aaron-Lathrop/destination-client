@@ -167,8 +167,11 @@ const reducer = (state=initialState, action) => {
                 userList: []
             });
         case actions.SET_AUTH_TOKEN:
-            console.log(actions.SET_AUTH_TOKEN);
-            break;
+            const authToken = action.authToken;
+            
+            return Object.assign({}, state, {
+                authToken
+            })
         case actions.AUTH_SUCCESS:
             console.log(actions.AUTH_SUCCESS);
             break;

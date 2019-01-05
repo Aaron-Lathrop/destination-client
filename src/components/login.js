@@ -11,7 +11,6 @@ function Login(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log('user ', user);
     return props.dispatch(login(user.username, user.password));
   }
 

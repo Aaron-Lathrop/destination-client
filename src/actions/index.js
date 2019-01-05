@@ -102,10 +102,14 @@ export const authRequest = () => ({
     type: AUTH_REQUEST
 });
 
-export const setAuthToken = authToken => ({
-    type: SET_AUTH_TOKEN,
-    authToken
-});
+export const setAuthToken = authToken => {
+    localStorage.setItem('authToken', authToken);
+
+    return ({
+        type: SET_AUTH_TOKEN,
+        authToken
+    });
+};
 
 export const authSuccess = currentUser => ({
     type: AUTH_SUCCESS,
@@ -151,7 +155,11 @@ export const login = (username, password) => dispatch => {
         })
     })
     .then(res => normalizeResponseErrors(res))
-    .then(res => console.log(res.json()))
+    .then(res => res.json())
+    .then(payload => {
+        const { jwtToken, user } = payload;
+        dispatch(setAuthToken(jwtToken));
+    })
     .catch(err => console.error(err));
 };
 
