@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Nav from './components/nav';
 import LandingPage from './components/landing-page';
 import Footer from './components/footer';
-import LogIn from './components/login';
+import Login from './components/login';
 import SignUp from './components/signup';
 import TripForm from './components/trip-form';
 // import TripCard from './components/trip-card';
@@ -22,7 +22,7 @@ class App extends Component {
                     <Nav />
                     <Switch>
                       <Route exact path="/" component={LandingPage} />
-                      <Route exact path="/login" component={LogIn} /> 
+                      <Route exact path="/login" component={Login} /> 
                       <Route exact path="/signup" component={SignUp} />
                       <Route exact path="/newtrip" component={TripForm} />
                       <Route exact path="/trips" component={TripSection} />

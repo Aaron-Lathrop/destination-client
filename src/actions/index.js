@@ -139,10 +139,21 @@ export const signup = user => dispatch => {
     })
 };
 
-export const logIn = (user) => ({
-    type: LOG_IN,
-    user
-});
+export const login = (username, password) => dispatch => {
+    return fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            password
+        })
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => console.log(res.json()))
+    .catch(err => console.error(err));
+};
 
 export const setEditing = (editingStatus) => ({
     type: SET_EDITING,
