@@ -1,3 +1,6 @@
+import { normalizeResponseErrors } from './utils';
+import { SubmissionError } from 'redux-form';
+
 //plan actions
 export const SET_PLAN_CARDS = 'SET_PLAN_CARDS';
 export const ADD_PLAN = 'ADD_PLAN';
@@ -110,10 +113,28 @@ export const logOut = () => ({
     type: LOG_OUT
 });
 
-export const signup = (user) => ({
-    type: SIGN_UP,
-    user
-});
+export const signup = (user) => dispatch => {
+    return fetch(`/users/signup`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .catch(err => {
+        console.error(err);
+        // const { reason, code, message } = err;
+        // // if(reason === 'ValidationError') {
+        // //     return Promise.reject(
+        // //         new SubmissionError({
+        // //             [location]: message
+        // //         })
+        // //     );
+        // // }
+    })
+};
 
 export const logIn = (user) => ({
     type: LOG_IN,

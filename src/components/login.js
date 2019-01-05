@@ -11,26 +11,29 @@ export default function LogIn(props) {
   }
 
     return (
-        <section className="sticky-footer">
-            <form name="signup" action="#" onSubmit={e => onSubmit(e)}>
-              <fieldset>
-              <legend>Plan your DestiNation</legend>
+      <div id="form-container" className="form__container">
+            <form className="tripform" name="signup" action="#" onSubmit={e => onSubmit(e)}>
+            <div className="form__highlight form__highlight--auth"></div>
+              <fieldset className="form__fieldset form__fieldset--auth">
+              <legend className="tripform__legend">Login</legend>
 
-                <div>
-                  <label htmlFor="username">Username</label>
+                <div className="form__element">
+                  <label htmlFor="username" className="tripform__label">Username</label>
                   <input id="username" name="username" type="text" placeholder="Username" />
                 </div>
 
-                <div>
-                  <label htmlFor="password">Password</label>
-                  <input id="password" name="password" type="password" placeholder="First Name" />
+                <div className="form__element">
+                  <label htmlFor="password" className="tripform__label">Password</label>
+                  <input id="password" name="password" type="password" placeholder="Password" />
                 </div>
 
-                <button type="submit">Log In</button>
+                <button className="btn__form--update" type="submit">Log In</button>
+                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </fieldset>
+                
             </form>
           
-          <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-        </section>
+          
+        </div>
     );
 }

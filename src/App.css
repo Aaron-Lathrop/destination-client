@@ -9,6 +9,7 @@ body {
   color: #444;
   text-align: center;
   line-height: 1.5;
+  background-image: linear-gradient(to bottom, #ffffff, #f8f8f8);
 }
 
 a {

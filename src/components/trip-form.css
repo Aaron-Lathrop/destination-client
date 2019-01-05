@@ -11,10 +11,17 @@
 }
 
 .form__highlight {
-    background-color: blue;
     padding: 0;
     color: white;
     grid-column: 1/2;
+}
+
+.form__highlight--blue {
+    background-color: blue;
+}
+
+.form__highlight--green {
+    background-color: #16b429;
 }
 
 .form__closemodal {

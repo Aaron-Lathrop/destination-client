@@ -76,7 +76,7 @@ function getDates(startDate, stopDate) {
         
             <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
             
-            <div className="form__highlight"></div>
+            <div className="form__highlight form__highlight--blue"></div>
            
               <fieldset className="form__fieldset">
               

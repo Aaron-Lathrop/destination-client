@@ -8,7 +8,7 @@ function DailyPlanCard(props) {
 
     const plan = {};
     
-    let updatePlans = props.planCards.find(planCard => planCard.date === props.currentDate);
+    let updatePlans;
     let deleteThisPlan = {
         hasContents: false
     };
@@ -18,7 +18,6 @@ function DailyPlanCard(props) {
 
     function onSubmit(e) {
         e.preventDefault();
-        console.log('form was submitted');
         if(!props.editing) {
             props.dispatch(addPlan(plan));
             if(document.getElementById(plan.index)) {
@@ -26,18 +25,18 @@ function DailyPlanCard(props) {
             };
         } else {
             if(save) {
-                console.log('this code ran because save was TRUE');
                 props.dispatch(deletePlan(deleteThisPlan));
                 save = false;
                 resetDelete();
-                props.dispatch(editPlans(props.editPlanCards, props.currentDate));
-                props.dispatch(setEditing());
+                props.dispatch(editPlans(updatePlans, props.currentDate));
+                
             }
-            props.dispatch(cancelEditPlan(props.trip.tripId, props.trip.planCards));
+            console.log('in onSubmit props.plans ', props.editPlans);
+
+            // props.dispatch(editPlans(props.plans, props.currentDate));
+            props.dispatch(cancelEditPlan(props.trip.tripId, props.plans));
         }
-        
-        
-        //props.dispatch(setPlanCards(props.planCards));
+        props.dispatch(setEditing(false));
     }
 
     function handleAddChange(e, date, weather, index) {
@@ -55,7 +54,7 @@ function DailyPlanCard(props) {
     function handleEditChange(e, index) {
         updatePlans = props.planCards.find(planCard => planCard.date === props.currentDate);
         updatePlans.plans[index] = e.target.value;
-        props.dispatch(updatePlan(updatePlans.plans));
+        // props.dispatch(updatePlan(updatePlans.plans));
     }
 
     function handleDelete(e, date, index) {
@@ -88,7 +87,6 @@ function DailyPlanCard(props) {
 
     function handleSave() {
         save = true;
-        console.log('save was clicked', save);
     }
 
     const planCardHeader = (
@@ -116,11 +114,11 @@ function DailyPlanCard(props) {
             );
         } else if(props.editing){
             return (
-                props.planCards[index].plans.map((plan, index) => 
+                props.plans.map((plan, index) => 
                     (
                         <li key={index}>
-                            <input type="text" onChange={e => handleEditChange(e, index)} value={props.plans[index]} className="tripcard__input" />
-                            <input id={plan} type="button" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn__tripcard btn__tripcard--red" />
+                            <input type="text" onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
+                            <input id={plan} type="reset" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn__tripcard btn__tripcard--red" />
                         </li>
                     )
                 )
@@ -145,7 +143,7 @@ function DailyPlanCard(props) {
                                 {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" /><input type="submit" value="Add" className="btn__tripcard btn__tripcard--blue"/></div>) : ""}
                                 </li>
                             </ul>
-                            {props.editing ? <div><input id="save" type="submit" value="Save" onClick={e => handleSave(e)} className="btn__tripcard" /></div> : ""}
+                            {props.editing ? <input id="save" type="submit" value="Save" onClick={e => handleSave(e)} className="btn__tripcard" /> : ""}
                             {!props.editing ? <button onClick={e => handleEditClick(date)} className="btn__tripcard">Edit</button> : <input id="cancel" type="submit" value="Cancel" className="btn__tripcard" />}
                         </form>
                     </div>
@@ -178,7 +176,7 @@ const mapStateToProps = (state, props) => {
         currentDate: state.date,
         plans: state.plans,
         editing: state.editing,
-        editPlanCards: state.planCards
+        editPlanCards: state.planCards,
     });
 };
 

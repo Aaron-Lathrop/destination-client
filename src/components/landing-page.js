@@ -7,7 +7,7 @@ export default class LandingPage extends Component {
         return (
             <div>
                 <Header />
-                <section className="feature--purple">
+                {/* <section className="feature--purple">
                 <div className="feature">
                     <div className="feature__img">
                         Feature 1 img
@@ -48,7 +48,7 @@ export default class LandingPage extends Component {
                         <div className="feature__img">Feature 3 img</div>
                         <p>Add activities, flights, hotel information, or anything really.</p>
                     </div>
-                </section>
+                </section> */}
             </div>
             );
     }

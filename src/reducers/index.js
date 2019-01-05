@@ -7,6 +7,7 @@ const initialState = {
     error: null,
     icon: "",
     editing: false,
+    isSaving: false,
     addTrip: false,
     tripId: null,
     loading: false,
@@ -15,6 +16,7 @@ const initialState = {
     username: "",
     userID: null,
     plans: [],
+    editedPlans: [],
     editCurrent: null,
     date: null,
     trips: [],
@@ -64,21 +66,26 @@ const reducer = (state=initialState, action) => {
                 editing: !state.editing,
                 planCards: action.planCards,
                 plans,
+                editPlans: plans,
                 date
             });
 
         case actions.CANCEL_EDIT_PLAN:
-            
             let cancelPlanCards = state.trips.find(trip => trip.tripId === action.tripId).planCards.find(planCard => planCard.date === action.date);
+
+            // cancelPlanCards = Object.assign({}, cancelPlanCards, {
+            //     plans: state.editPlans
+            // });
 
             return Object.assign({}, state, {
                 editing: !state.editing,
-                planCards: cancelPlanCards
+                planCards: cancelPlanCards,
+                editPlans: state.plans
             });
 
         case actions.UPDATE_PLAN:
             return Object.assign({}, state, {
-                plans: [...action.plans]
+                editPlans: [...action.plans]
             });
 
         case actions.DELETE_PLAN:

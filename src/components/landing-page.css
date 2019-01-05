@@ -2,7 +2,7 @@
     box-sizing: border-box;
   }
   
-  body {
+body {
     font-family: "Open Sans",
     sans-serif; 
     font-size: 20px;
@@ -11,15 +11,15 @@
     line-height: 1.5;
     /* background-color: #7b8fd1; */
     /* background-color: #e9e8ed; */
-  }
+}
 
-  button:hover {
-      cursor: pointer;
-  }
+button:hover {
+    cursor: pointer;
+}
 
-  fieldset {
-    border: none;
-  }
+fieldset {
+border: none;
+}
   
 legend {
     margin-bottom: 50px;

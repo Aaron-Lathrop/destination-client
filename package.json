@@ -12,7 +12,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-form": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,6 +21,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aaron-Lathrop/destination-client"
+  },
+  "author": "Aaron-Lathrop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aaron-Lathrop/destination-client/issues"
+  },
+  "homepage": "https://github.com/Aaron-Lathrop/destination-client#readme",
   "eslintConfig": {
     "extends": "react-app"
   },
