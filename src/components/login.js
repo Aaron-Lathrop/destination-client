@@ -11,7 +11,13 @@ function Login(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    return props.dispatch(login(user.username, user.password));
+    return (
+      props.dispatch(login(user.username, user.password))
+      .then(props.history.push("/trips"))
+      .catch(err =>
+          console.error(err)
+        )
+      );
   }
 
   function handleUsername(e) {

@@ -1,7 +1,8 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-    authToken: "",
+    authToken: null,
+    currentUser: null,
     dateList: [],
     destination: "",
     error: null,
@@ -13,14 +14,12 @@ const initialState = {
     loading: false,
     name: "",
     planCards: [],
-    username: "",
     userID: null,
     plans: [],
     editedPlans: [],
     editCurrent: null,
     date: null,
-    trips: [],
-    userList: []
+    trips: []
 };
 
 const reducer = (state=initialState, action) => {
@@ -167,24 +166,30 @@ const reducer = (state=initialState, action) => {
         case actions.AUTH_SUCCESS:
         console.log('authorization was successful!');
             return Object.assign({}, state, {
-                error: null,
                 loading: false,
+                currentUser: action.currentUser
             });
         case actions.LOG_OUT:
             return Object.assign({}, state, {
-                authToken: "",
+                authToken: null,
+                currentUser: null,
                 dateList: [],
                 destination: "",
                 error: null,
                 icon: "",
+                editing: false,
+                isSaving: false,
+                addTrip: false,
+                tripId: null,
                 loading: false,
                 name: "",
                 planCards: [],
-                username: "",
                 userID: null,
-                text: "",
-                trips: [],
-                userList: []
+                plans: [],
+                editedPlans: [],
+                editCurrent: null,
+                date: null,
+                trips: []
             });
         case actions.SIGN_UP: {
             const users = [...state.userList, action.user];

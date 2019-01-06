@@ -118,11 +118,15 @@ export const authSuccess = currentUser => ({
     currentUser
 });
 
-export const logOut = () => ({
-    type: LOG_OUT
-});
+export const logOut = () => {
+    clearAuthToken();
+    return ({
+        type: LOG_OUT
+    })
+};
 
 export const signup = user => dispatch => {
+    dispatch(authRequest());
     return fetch(`${API_BASE_URL}/users/signup`, {
         method: 'POST',
         headers: {
@@ -132,7 +136,7 @@ export const signup = user => dispatch => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(user => {
+    .then(userAuth => {
         dispatch(login(user.username, user.password));
     })
     .catch(err => {
@@ -149,8 +153,6 @@ export const signup = user => dispatch => {
 };
 
 const storeAuthInfo = (authToken, user, dispatch) => {
-    // console.dir(jwtDecode(authToken));
-    // const decodedToken = jwtDecode(authToken);
     dispatch(setAuthToken(authToken));
     dispatch(authSuccess(user));
     saveAuthToken(authToken);
@@ -172,7 +174,6 @@ export const login = (username, password) => dispatch => {
     .then(res => res.json())
     .then(payload => {
         const { jwtToken, user } = payload;
-        console.log(jwtToken);
         storeAuthInfo(jwtToken, user, dispatch);
     })
     .catch(err => console.error(err));
