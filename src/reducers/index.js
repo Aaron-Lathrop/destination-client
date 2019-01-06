@@ -117,6 +117,7 @@ const reducer = (state=initialState, action) => {
             console.log(actions.GET_WEATHER);
             break;
         case actions.ADD_TRIP:
+            console.log('reducer addTrip: ', action.trip)
             return Object.assign({}, state, {
                 trips: [...state.trips, action.trip]
             });
@@ -206,6 +207,13 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 error: null,
                 loading: true
+            });
+
+        case actions.SUCCESS:
+        console.log('success!')
+            return Object.assign({}, state, {
+                error: null,
+                loading: false
             });
 
         case actions.SET_EDITING:

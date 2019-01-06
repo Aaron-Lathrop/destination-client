@@ -64,16 +64,10 @@ export const GET_TRIPS = 'GET_TRIPS';
 export const UPDATE_TRIP = 'UPDATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';
 
-export const addTrip = trip => dispatch => {
-    dispatch(success());
-
-    return ( 
-        {
-            type: ADD_TRIP,
-            trip
-        }
-    ); 
-};
+export const addTrip = trip => ({
+    type: ADD_TRIP,
+    trip
+});
 
 export const addTripToDatabase = (trip, auth) => dispatch => {
     dispatch(request());
@@ -87,8 +81,11 @@ export const addTripToDatabase = (trip, auth) => dispatch => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(trip => {
+    .then(res => {
         dispatch(addTrip(trip));
+    })
+    .then(res => {
+        dispatch(success());
     })
     .catch(err => console.error(err))
 }
