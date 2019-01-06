@@ -59,14 +59,39 @@ export const getWeather = () => ({
 
 //trip actions
 export const ADD_TRIP = 'ADD_TRIP';
+export const ADD_TRIP_TO_DATABASE = 'ADD_TRIP_TO_DATABASE';
 export const GET_TRIPS = 'GET_TRIPS';
 export const UPDATE_TRIP = 'UPDATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';
 
-export const addTrip = (trip) => ({
-    type: ADD_TRIP,
-    trip 
-});
+export const addTrip = trip => dispatch => {
+    dispatch(success());
+
+    return ( 
+        {
+            type: ADD_TRIP,
+            trip
+        }
+    ); 
+};
+
+export const addTripToDatabase = (trip, auth) => dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${auth}`
+        },
+        body: JSON.stringify({trip})
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(trip => {
+        dispatch(addTrip(trip));
+    })
+    .catch(err => console.error(err))
+}
 
 export const getTrips = () => ({
     type: GET_TRIPS
@@ -85,6 +110,7 @@ export const deleteTrip = (tripId) => ({
 
 //user actions
 export const REQUEST = 'REQUEST';
+export const SUCCESS = 'SUCCESS';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -98,6 +124,10 @@ export const STORE_STATE = 'STORE_STATE';
 
 export const request = () => ({
     type: REQUEST
+});
+
+export const success = () => ({
+    type: SUCCESS
 });
 
 export const authRequest = () => ({
