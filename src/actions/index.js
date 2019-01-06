@@ -118,7 +118,7 @@ export const authSuccess = currentUser => ({
     currentUser
 });
 
-export const logOut = () => {
+export const logout = () => {
     clearAuthToken();
     return ({
         type: LOG_OUT

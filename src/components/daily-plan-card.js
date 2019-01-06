@@ -170,6 +170,7 @@ const mapStateToProps = (state, props) => {
     const tripId = parseInt(props.match.params.tripId, 10);
     const trip = state.trips.find(item => item.tripId === tripId);
     return ({
+        user: state.currentUser,
         trip,
         planCards: trip.planCards,
         dates: trip.dateList,

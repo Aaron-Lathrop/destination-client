@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import Nav from './components/nav';
 import LandingPage from './components/landing-page';
 import Footer from './components/footer';
 import Login from './components/login';
+import Logout from './components/logout';
 import SignUp from './components/signup';
 import TripForm from './components/trip-form';
 // import TripCard from './components/trip-card';
@@ -21,12 +22,15 @@ class App extends Component {
                 <main role="main">
                     <Nav />
                     <Switch>
-                      <Route exact path="/" component={LandingPage} />
-                      <Route exact path="/login" component={Login} /> 
-                      <Route exact path="/signup" component={SignUp} />
-                      <Route exact path="/newtrip" component={TripForm} />
-                      <Route exact path="/trips" component={TripSection} />
-                      <Route exact path="/trips/:tripId" component={DailyPlanCard} />
+                        {!(this.props.user) ? <Redirect from="/trips" to="/" /> : null}
+                        <Route exact path="/" component={LandingPage} />
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/logout" component={Logout} /> 
+                        <Route exact path="/signup" component={SignUp} />
+                        <Route exact path="/newtrip" component={TripForm} />
+                        <Route exact path="/trips" component={TripSection} />
+                        <Route exact path="/trips/:tripId" component={DailyPlanCard} />
+                        
                     </Switch>
                     <Footer />
                 </main>
@@ -36,7 +40,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    state
+    state,
+    user: state.currentUser
 }); 
 
 export default connect(mapStateToProps)(App);
