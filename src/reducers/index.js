@@ -121,9 +121,11 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 trips: [...state.trips, action.trip]
             });
-        case actions.GET_TRIPS:
-            console.log(actions.GET_TRIPS);
-            break;
+        case actions.LOAD_TRIPS:
+            console.log('Load Trips ', action.trips)
+            return Object.assign({}, state, {
+                trips: [...action.trips]
+            })
         case actions.UPDATE_TRIP:
             const trip = state.trips.find(trip => trip.tripId === action.trip.tripId);
             
@@ -210,7 +212,6 @@ const reducer = (state=initialState, action) => {
             });
 
         case actions.SUCCESS:
-        console.log('success!')
             return Object.assign({}, state, {
                 error: null,
                 loading: false

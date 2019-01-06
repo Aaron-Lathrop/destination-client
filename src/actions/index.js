@@ -61,6 +61,7 @@ export const getWeather = () => ({
 export const ADD_TRIP = 'ADD_TRIP';
 export const ADD_TRIP_TO_DATABASE = 'ADD_TRIP_TO_DATABASE';
 export const GET_TRIPS = 'GET_TRIPS';
+export const LOAD_TRIPS = 'LOAD_TRIPS';
 export const UPDATE_TRIP = 'UPDATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';
 
@@ -90,8 +91,28 @@ export const addTripToDatabase = (trip, auth) => dispatch => {
     .catch(err => console.error(err))
 }
 
-export const getTrips = () => ({
-    type: GET_TRIPS
+export const getTrips = (auth) => dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${auth}`
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(res => {
+        dispatch(loadTrips(res))
+    })
+    .then(res => {
+        dispatch(success())
+    })
+    .catch(err => console.error(err))
+};
+
+export const loadTrips = trips => ({
+    type: LOAD_TRIPS,
+    trips
 });
 
 export const updateTrip = (trip) => ({
