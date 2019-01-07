@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
-import { updateTrip, setEditing, setTripStatus } from '../actions';
+import { updateTripToDatabase, setEditing, setTripStatus } from '../actions';
 
 function TripFormUpdate(props) {
     const trip = {};
-    console.log(trip);
-        console.log(props.trip);
 
     function parseDate(date) {
         const dateValues = {
@@ -62,7 +60,7 @@ function TripFormUpdate(props) {
             
         });
 
-        props.dispatch(updateTrip(trip));
+        props.dispatch(updateTripToDatabase(props.auth, trip, trip.tripId));
         handleCloseModal();
     }
 
@@ -135,6 +133,7 @@ function TripFormUpdate(props) {
 const mapStateToProps = (state, props) => {
     const trip = state.trips.find(trip => trip.tripId === props.tripId);
     return({ 
+        auth: state.authToken,
         trip,
         destination: trip.destination,
         startDate: trip.startDate,

@@ -120,6 +120,29 @@ export const updateTrip = (trip) => ({
     trip
 });
 
+export const updateTripToDatabase = (auth, trip, tripId)=> dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips/${tripId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${auth}`
+        },
+        body: JSON.stringify({
+            destination: trip.destination,
+            startDate: trip.startDate,
+            endDate: trip.endDate,
+            dateList: trip.dateList,
+            planCards: trip.planCards
+        })
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(updatedTrip => dispatch(updateTrip(updatedTrip.trip)))
+    .then(res => dispatch(success()))
+    .catch(err => console.error(err))
+}
+
 export const deleteTrip = (tripId) => ({
     type: DELETE_TRIP,
     tripId

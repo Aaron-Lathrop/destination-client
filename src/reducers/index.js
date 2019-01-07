@@ -122,12 +122,11 @@ const reducer = (state=initialState, action) => {
                 trips: [...state.trips, action.trip]
             });
         case actions.LOAD_TRIPS:
-            console.log('Load Trips ', action.trips)
             return Object.assign({}, state, {
                 trips: [...action.trips]
             })
         case actions.UPDATE_TRIP:
-            const trip = state.trips.find(trip => trip.tripId === action.trip.tripId);
+            const trip = state.trips.find(trip => trip.tripId === action.trip._id);
             
             const updatedTrip = Object.assign({}, trip, {
                 destination: action.trip.destination ? action.trip.destination : trip.destination,
@@ -136,16 +135,18 @@ const reducer = (state=initialState, action) => {
                 dateList: action.trip.dateList ? action.trip.dateList : trip.dateList,
                 planCards: action.trip.planCards ? action.trip.planCards : trip.planCards
             });
+            
 
             const newTripList = state.trips.map(trip => {
-                if(trip.tripId !== action.trip.tripId) {
+                if(trip.tripId !== action.trip._id) {
                     return trip;
                 }
                 return updatedTrip;
             });
 
+
             return Object.assign({}, state, {
-                editing: !state.editing,
+                editing: false,
                 trips: newTripList
             });
         case actions.DELETE_TRIP:
