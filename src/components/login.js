@@ -52,7 +52,7 @@ function Login(props) {
                          placeholder="Password"
                          onChange={e =>handlePassword(e)} />
                 </div>
-
+                <p>Try out our demo account: <br /> Username: Admin007 <br /> Password: demo123456</p>
                 <button className="btn__form--update" type="submit">Log In</button>
                 <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </fieldset>

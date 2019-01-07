@@ -47,6 +47,32 @@ export const updatePlan = (plans) => ({
     plans
 });
 
+export const updatePlansToDatabase = (auth, planCard) => dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips/updateplan/${planCard.tripId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${auth}`
+        },
+        body: JSON.stringify({
+            tripId: planCard.tripId,
+            date: planCard.date,
+            weather: planCard.weather,
+            plans: planCard.plans
+        })
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(update => {
+        dispatch(addPlan(update.updatedPlanCard))
+    })
+    .then(res => {
+        dispatch(success())
+    })
+    .catch(err => console.error(err))
+}
+
 export const deletePlan = (planCard) => ({
     type: DELETE_PLAN,
     planCard

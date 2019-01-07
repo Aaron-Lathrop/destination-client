@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { signup } from '../actions/index';
 
 function SignUp(props) {
+
   const user = {};
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log('user', user);
     return (props.dispatch(signup(user))
       .then(props.history.push("/trips"))
       .catch(err =>
@@ -46,7 +46,8 @@ function SignUp(props) {
                          name="firstName" 
                          type="text" 
                          placeholder="First Name"
-                         onChange={e => handleFirstName(e)} />
+                         onChange={e => handleFirstName(e)} 
+                         required />
                 </div>
 
                 <div>
@@ -55,7 +56,8 @@ function SignUp(props) {
                          name="username" 
                          type="text" 
                          placeholder="Username"
-                         onChange={e => handleUserName(e)} />
+                         onChange={e => handleUserName(e)} 
+                         required />
                 </div>
 
                 <div>
@@ -64,7 +66,8 @@ function SignUp(props) {
                          name="email" 
                          type="email" 
                          placeholder="Email"
-                         onChange={e => handleEmail(e)} />
+                         onChange={e => handleEmail(e)} 
+                         required />
                 </div>
 
                 <div>
@@ -73,7 +76,8 @@ function SignUp(props) {
                          name="password" 
                          type="password" 
                          placeholder="Password"
-                         onChange={e => handlePassword(e)} />
+                         onChange={e => handlePassword(e)} 
+                         required />
                 </div>
 
                 <button type="submit">Sign Up</button>

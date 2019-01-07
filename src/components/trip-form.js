@@ -20,7 +20,7 @@ function TripForm(props) {
     return dateValues;
   }
 
-//Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays and function getDates()
+//Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays, refactored to function addDays(), and function getDates()
 
 //addDays helps create the list of dates for each trip
 function addDays(currentDate, days) {

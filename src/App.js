@@ -10,7 +10,6 @@ import Login from './components/login';
 import Logout from './components/logout';
 import SignUp from './components/signup';
 import TripForm from './components/trip-form';
-// import TripCard from './components/trip-card';
 import TripSection from './components/trip-section';
 import DailyPlanCard from './components/daily-plan-card';
 
