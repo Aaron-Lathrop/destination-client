@@ -28,7 +28,8 @@ function DailyPlanCard(props) {
                 props.dispatch(deletePlan(deleteThisPlan));
                 save = false;
                 resetDelete();
-                props.dispatch(editPlans(updatePlans, props.currentDate));
+                props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
+                //props.dispatch(editPlans(updatePlans, props.currentDate));
                 
             }
 
