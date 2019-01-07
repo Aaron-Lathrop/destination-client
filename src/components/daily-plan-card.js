@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTrip, updatePlan, cancelEditPlan, setEditing } from '../actions';
+import { addPlan, deletePlan, editPlans, deleteTripFromDatabase, updatePlan, cancelEditPlan, setEditing } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -79,7 +79,7 @@ function DailyPlanCard(props) {
     function handleDeleteTrip() {
         const confirming = window.confirm("Are you sure you want to delete your trip? There's no going back once it's gone.");
         if(confirming) {
-            props.dispatch(deleteTrip(props.trip.tripId));
+            props.dispatch(deleteTripFromDatabase(props.auth, props.trip.tripId));
             props.history.push('/trips');
             return alert("Trip deleted successfully.");
         }
@@ -167,10 +167,11 @@ function DailyPlanCard(props) {
 }
 
 const mapStateToProps = (state, props) => {
-    const tripId = parseInt(props.match.params.tripId, 10);
+    const tripId = props.match.params.tripId;
     const trip = state.trips.find(item => item.tripId === tripId);
     return ({
         user: state.currentUser,
+        auth: state.authToken,
         trip,
         planCards: trip.planCards,
         dates: trip.dateList,

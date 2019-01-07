@@ -125,6 +125,28 @@ export const deleteTrip = (tripId) => ({
     tripId
 });
 
+export const deleteTripFromDatabase = (auth, tripId) => dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips/${tripId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${auth}`
+        },
+        body: JSON.stringify({
+            id: tripId
+        })
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => {
+        dispatch(deleteTrip(tripId));
+    })
+    .then(res => {
+        dispatch(success());
+    })
+    .catch(err => console.error(err));
+}
+
 
 //user actions
 export const REQUEST = 'REQUEST';
