@@ -48,8 +48,11 @@ export const updatePlan = (plans) => ({
 });
 
 export const updatePlansToDatabase = (auth, planCard) => dispatch => {
-    dispatch(request());
-    return fetch(`${API_BASE_URL}/trips/updateplan/${planCard.tripId}`, {
+    if(!planCard) {
+        return null
+    } else {
+        dispatch(request());
+        return fetch(`${API_BASE_URL}/trips/updateplan/${planCard.tripId}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json',
@@ -61,22 +64,50 @@ export const updatePlansToDatabase = (auth, planCard) => dispatch => {
             weather: planCard.weather,
             plans: planCard.plans
         })
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(update => {
+            dispatch(addPlan(update.updatedPlanCard))
+        })
+        .then(res => {
+            dispatch(success())
+        })
+        .catch(err => console.error(err))
+        }
+}
+
+export const deletePlan = planCard => ({
+    type: DELETE_PLAN,
+    planCard
+});
+
+export const deletePlanFromDatabase = (auth, planCard) => dispatch => {
+    dispatch(request());
+    return fetch(`${API_BASE_URL}/trips/deleteplan/${planCard.tripId}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${auth}` 
+        },
+        body: JSON.stringify({
+            hasContentToDelete: planCard.hasContentToDelete,
+            date: planCard.date,
+            index: planCard.index,
+            plans: planCard.plans,
+            tripId: planCard.tripId
+        })
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(update => {
-        dispatch(addPlan(update.updatedPlanCard))
+        dispatch(deletePlan(update.originalRequest))
     })
     .then(res => {
         dispatch(success())
     })
     .catch(err => console.error(err))
 }
-
-export const deletePlan = (planCard) => ({
-    type: DELETE_PLAN,
-    planCard
-});
 
 export const getWeather = () => ({
     type: GET_WEATHER

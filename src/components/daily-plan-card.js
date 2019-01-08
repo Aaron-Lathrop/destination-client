@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTripFromDatabase, updatePlansToDatabase, cancelEditPlan, setEditing } from '../actions';
+import { addPlan, deletePlan, editPlans, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, cancelEditPlan, setEditing } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -10,7 +10,7 @@ function DailyPlanCard(props) {
     
     let updatePlans;
     let deleteThisPlan = {
-        hasContents: false
+        hasContentToDelete: false
     };
     let deleteList = [];
     let save = false;
@@ -25,7 +25,9 @@ function DailyPlanCard(props) {
             };
         } else {
             if(save) {
-                props.dispatch(deletePlan(deleteThisPlan));
+                if(deleteThisPlan.hasContentToDelete) {
+                    props.dispatch(deletePlanFromDatabase(props.auth, deleteThisPlan));
+                }
                 save = false;
                 resetDelete();
                 props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
@@ -37,6 +39,7 @@ function DailyPlanCard(props) {
             props.dispatch(cancelEditPlan(props.trip.tripId, props.plans));
         }
         props.dispatch(setEditing(false));
+        console.log(props.planCards);
     }
 
     function handleAddChange(e, date, weather, index) {
@@ -63,8 +66,10 @@ function DailyPlanCard(props) {
         deleteThisPlan.plans = deleteList;
         deleteThisPlan.date = date;
         deleteThisPlan.index = index;
-        deleteThisPlan.hasContents = true;
+        deleteThisPlan.hasContentToDelete = true;
         e.target.value = "X";
+        console.log(deleteThisPlan);
+
     }
 
     function resetDelete() {
@@ -72,7 +77,7 @@ function DailyPlanCard(props) {
         deleteThisPlan.plans = null;
         deleteThisPlan.date = null;
         deleteThisPlan.index = null;
-        deleteThisPlan.hasContents = false;
+        deleteThisPlan.hasContentToDelete = false;
         deleteList = [];
     }
 
