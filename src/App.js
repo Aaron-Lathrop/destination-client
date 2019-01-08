@@ -19,6 +19,7 @@ class App extends Component {
         return (
             <Router>
                 <main role="main">
+                <div className="image__container"></div>
                     <Nav />
                     <Switch>
                         {!(this.props.user) ? <Redirect from="/trips" to="/" /> : null}

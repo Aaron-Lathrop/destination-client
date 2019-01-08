@@ -2,6 +2,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 150px 1fr 1fr;
     margin: 70px;
+    max-width: 500px;
 }
 
 .tripcard {
@@ -27,6 +28,7 @@
     text-align: left;
     height: 150px;
     align-self: end;
+    border-radius: 25px 25px 0 0;
 }
 
 .header__yourtrips {

@@ -34,12 +34,14 @@ function DailyPlanCard(props) {
                 //props.dispatch(editPlans(updatePlans, props.currentDate));
                 
             }
-
+            console.log('props.plans', props.plans);
+            console.log('props.planCards', props.planCards);
+            console.log('props.trip', props.trip);
+            
             // props.dispatch(editPlans(props.plans, props.currentDate));
-            props.dispatch(cancelEditPlan(props.trip.tripId, props.plans));
+            // props.dispatch(cancelEditPlan(props.trip.tripId, props.plans));
         }
         props.dispatch(setEditing(false));
-        console.log(props.planCards);
     }
 
     function handleAddChange(e, date, weather, index) {
@@ -61,15 +63,18 @@ function DailyPlanCard(props) {
     }
 
     function handleDelete(e, date, index) {
-        deleteList.push(e.target.id);
-        deleteThisPlan.tripId = props.trip.tripId;
-        deleteThisPlan.plans = deleteList;
-        deleteThisPlan.date = date;
-        deleteThisPlan.index = index;
-        deleteThisPlan.hasContentToDelete = true;
-        e.target.value = "X";
-        console.log(deleteThisPlan);
-
+        if(e.target.value === "Undo") {
+            e.target.value = "Delete";
+            deleteThisPlan.plans = deleteThisPlan.plans.filter(plan => plan !== e.target.id);
+        } else {
+            deleteList.push(e.target.id);
+            deleteThisPlan.tripId = props.trip.tripId;
+            deleteThisPlan.plans = deleteList;
+            deleteThisPlan.date = date;
+            deleteThisPlan.index = index;
+            deleteThisPlan.hasContentToDelete = true;
+            e.target.value = "Undo";
+        }
     }
 
     function resetDelete() {
@@ -122,7 +127,7 @@ function DailyPlanCard(props) {
                 props.plans.map((plan, index) => 
                     (
                         <li key={index}>
-                            <input type="text" onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
+                            <input type="text" name={`plan-${index}`} onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
                             <input id={plan} type="reset" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn__tripcard btn__tripcard--red" />
                         </li>
                     )

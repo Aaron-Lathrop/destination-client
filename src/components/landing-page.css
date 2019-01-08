@@ -13,6 +13,13 @@ body {
     /* background-color: #e9e8ed; */
 }
 
+.image__container {
+    background-image: url('../assets/destino-simple-planning.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 250px;
+}
+
 button:hover {
     cursor: pointer;
 }

@@ -25,7 +25,7 @@ export function Nav(props) {
     const auth = [
         {
             path: '/',
-            text: 'Destination'
+            text: 'Destino'
         },
         // {
         //     text: `Welcome ${props.user.firstName}`

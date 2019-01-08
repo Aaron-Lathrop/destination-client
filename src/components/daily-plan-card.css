@@ -6,6 +6,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 150px 1fr 1fr;
     margin: 70px;
+    max-width: 500px;
 }
 
 .plancard {
@@ -33,6 +34,7 @@
     padding-left: 10%;
     height: 150px;
     align-self: end;
+    border-radius: 25px 25px 0 0;
 }
 
 .plancard__container {
@@ -42,6 +44,10 @@
 .plancard__container ul {
     list-style-type: none;
     text-align: left;
+}
+
+.plancard__container--linethrough {
+    text-decoration: line-through;
 }
 
 

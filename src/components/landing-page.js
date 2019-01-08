@@ -6,6 +6,7 @@ export default class LandingPage extends Component {
     render() {
         return (
             <div>
+                
                 <Header />
                 {/* <section className="feature--purple">
                 <div className="feature">
