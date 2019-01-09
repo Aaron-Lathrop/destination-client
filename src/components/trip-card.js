@@ -100,9 +100,11 @@ function TripCard(props) {
         return <TripFormUpdate tripId={props.tripId} />
     } else {
         return (
-            <div className="sticky-footer grid grid__tripcard">
-                {tripHeader}
-                {trips}
+            <div className="grid__layout--main">
+                <div className="sticky-footer grid grid__card">
+                    {tripHeader}
+                    {trips}
+                </div>
             </div>
         );
     }

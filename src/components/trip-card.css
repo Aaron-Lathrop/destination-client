@@ -1,8 +1,9 @@
-.grid__tripcard {
+.grid__card {
     grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 1fr;
-    margin: 70px;
+    grid-template-rows: 200px 1fr 1fr;
     max-width: 500px;
+    grid-column: 2/3;
+    justify-self: center;
 }
 
 .tripcard {
@@ -71,7 +72,7 @@
     
     border-bottom: 1px solid #ccc;
     margin-left: 0;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .tripcard__container ul {

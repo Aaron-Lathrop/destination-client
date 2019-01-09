@@ -65,3 +65,8 @@ label {
 .grid {
   display: grid;
 }
+
+.grid__layout--main {
+  display: grid;
+  grid-template-columns: 1fr 700px 1fr;
+}

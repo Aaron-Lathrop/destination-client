@@ -2,16 +2,15 @@
     box-sizing: border-box;
   }
   
-body {
+/* body {
     font-family: "Open Sans",
     sans-serif; 
     font-size: 20px;
     color: #444;
     text-align: center;
     line-height: 1.5;
-    /* background-color: #7b8fd1; */
-    /* background-color: #e9e8ed; */
-}
+    
+} */
 
 .image__container {
     background-image: url('../assets/destino-simple-planning.jpg');

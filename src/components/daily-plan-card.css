@@ -2,20 +2,21 @@
     background-color: ghostwhite;
 } */
 
-.grid__plancard {
+.grid__card {
     grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 1fr;
-    margin: 70px;
-    max-width: 500px;
+    grid-template-rows: 200px 1fr 1fr;
+    width: 500px;
+    grid-column: 2/3;
+    justify-self: center;
 }
 
 .plancard {
-    margin: 20px 40px;
-    border-radius: 5px;
-    /* background-color: #2acce5; */
-    /* box-shadow: 0.5px 1px 5px #000; */
     text-align: left;
-    font-size: 16px;
+    margin: 10px 40px 0px 40px;
+    
+    border-bottom: 1px solid #ccc;
+    margin-left: 0;
+    font-size: 1em;
 }
 
 .plancard__card {
@@ -29,16 +30,17 @@
 .plancard__header {
     background-color: #26b416;
     color: ghostwhite;
-    font-size: 20px;
-    text-align: left;
-    padding-left: 10%;
+    font-size: 1.5em;
+    text-align: center;
     height: 150px;
     align-self: end;
     border-radius: 25px 25px 0 0;
+    
 }
 
 .plancard__container {
     box-shadow: 0.1px 0.1px 10px 0.1px #c8c8c8;
+    font-size: 1em;
 }
 
 .plancard__container ul {

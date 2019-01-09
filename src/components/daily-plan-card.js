@@ -163,16 +163,17 @@ function DailyPlanCard(props) {
 });
 
     return (
-        <div className="grid grid__plancard sticky-footer">
-            {planCardHeader}
-            <div className="plancard__container">
-                <ul>
-                    {dailyPlans}
-                    <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
-                </ul>
+        <div className="grid__layout--main">
+            <div className="grid grid__card sticky-footer">
+                {planCardHeader}
+                <div className="plancard__container">
+                    <ul>
+                        {dailyPlans}
+                        <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
+                    </ul>
+                </div>
             </div>
         </div>
-        
     );
 }
 
