@@ -59,7 +59,7 @@ export function Nav(props) {
     });
 
     return (        
-            <div>
+            <div className="sticky">
                 <nav role="navigation">
                     {navLinks}
                 </nav>

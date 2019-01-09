@@ -7,11 +7,9 @@
 
 .tripcard {
     margin: 20px 40px;
-    border-radius: 5px;
-    /* background-color: #2acce5; */
-    /* box-shadow: 0.5px 1px 5px #000; */
     text-align: left;
     font-size: 16px;
+    padding-left: 10px;
 }
 
 .tripcard:hover {
@@ -67,6 +65,15 @@
     box-shadow: 0.1px 0.1px 10px 0.1px #c8c8c8;
 }
 
+.tripcard {
+    text-align: left;
+    margin: 10px 40px 0px 40px;
+    
+    border-bottom: 1px solid #ccc;
+    margin-left: 0;
+    font-size: 16px;
+}
+
 .tripcard__container ul {
     list-style-type: circle;
 }
@@ -104,7 +111,8 @@
     margin: 10px;
     border: none;
     border-radius: 10px;
-    background-color: #b8b8b8;
+    background-color: #90e38f;
+    /* background-color: #b8b8b8; */
     box-shadow: .1px .1px .1px #d8d8d8;
     display: inline-block;
 }
@@ -145,7 +153,6 @@
     color: ghostwhite;
     font-size: 25px;
     text-align: left;
-    padding-left: 10%;
     height: 150px;
     align-self: end;
 }
