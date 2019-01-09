@@ -1,20 +1,10 @@
 nav,
 footer {
-  padding: 1% 0;
+  padding: 3% 0;
   background-color: #8fe3d9;
-  /* background-color: rgba(0, 121, 191, .99); */
   color: white;
 }
 
-/* nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  text-align: left;
-  box-shadow: 0.1px 0.1px 7px .1px #000;
-} */
 
 nav {
   overflow: hidden;
@@ -23,7 +13,8 @@ nav {
 
 nav a:first-child {
   float: left;
-  padding-left: 10px;
+  padding-left: 25px;
+  font-weight: bold;
 }
 
 nav a {
@@ -37,20 +28,20 @@ nav a {
   top: 0;
 }
 
-@media only screen and (max-width: 680px) {
-  nav {
-    padding: 3% 0;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 600px) {
   nav {
     padding: 2% 0;
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 800px) {
   nav {
     padding: 1.75% 0;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  nav {
+    padding: 1% 0;
   }
 }

@@ -9,7 +9,7 @@ export function Nav(props) {
     const noAuth = [
         {
             path: '/',
-            text: 'Destination'
+            text: 'Destino'
         },
         {
             path: '/login',
@@ -59,7 +59,7 @@ export function Nav(props) {
     });
 
     return (        
-            <div className="sticky">
+            <div className="sticky nav__content">
                 <nav role="navigation">
                     {navLinks}
                 </nav>

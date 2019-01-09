@@ -1,25 +1,12 @@
-/* .plancard {
-    background-color: ghostwhite;
-} */
-
-/* .grid__card {
-    
-    width: 500px;
-    max-width: 95%;
-} */
-
 .plancard {
     text-align: left;
     margin: 10px 40px 0px 40px;
-    
     border-bottom: 1px solid #ccc;
     margin-left: 0;
     font-size: 1em;
 }
 
 .plancard__card {
-    /* background-color: rgba(0, 121, 191, .99); */
-    /* color: white; */
     height: 300px;
     min-width: 90%;
     border-radius: 5px;
@@ -33,7 +20,6 @@
     height: 150px;
     align-self: end;
     border-radius: 25px 25px 0 0;
-    
 }
 
 .plancard__container {
@@ -49,7 +35,6 @@
 .plancard__container--linethrough {
     text-decoration: line-through;
 }
-
 
 @media only screen and (min-width: 800px) {
     .grid__plancard {

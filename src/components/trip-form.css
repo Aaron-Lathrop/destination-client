@@ -6,14 +6,11 @@
 
 .form__fieldset {
     border: none;
-    grid-column: 2/3;
     position: relative;
 }
 
 .form__highlight {
-    padding: 0;
-    color: white;
-    grid-column: 1/2;
+    display: none;
 }
 
 .form__highlight--blue {
@@ -48,7 +45,7 @@
 
 .tripform {
     color: black;
-    margin: 0;
+    margin: 100px 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,7 +55,9 @@
     background-color: white;
     color: black;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
+    border: 4px solid rgba(0, 121, 191, .99);
+    border-radius: 25px;
 }
 
 .tripform__legend {
@@ -103,4 +102,25 @@
 
 .hide {
     display:none;
+}
+
+@media screen and (min-width: 600px) {
+    .form__highlight {
+        padding: 0;
+        color: #ffffff;
+        grid-column: 1/2;
+        display: block;
+    }
+
+    .tripform {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        border: none;
+    }
+
+    .form__fieldset {
+        border: none;
+        grid-column: 2/3;
+        position: relative;
+    }
 }
