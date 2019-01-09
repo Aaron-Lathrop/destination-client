@@ -68,5 +68,15 @@ label {
 
 .grid__layout--main {
   display: grid;
-  grid-template-columns: 1fr 700px 1fr;
+  grid-template-columns: 1fr;
 }
+
+@media screen and (min-width: 800px) {
+
+  .grid__layout--main {
+    display: grid;
+    grid-template-columns: 1fr 700px 1fr;
+  }
+
+}
+

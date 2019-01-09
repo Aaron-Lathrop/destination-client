@@ -2,13 +2,11 @@
     background-color: ghostwhite;
 } */
 
-.grid__card {
-    grid-template-columns: 1fr;
-    grid-template-rows: 200px 1fr 1fr;
+/* .grid__card {
+    
     width: 500px;
-    grid-column: 2/3;
-    justify-self: center;
-}
+    max-width: 95%;
+} */
 
 .plancard {
     text-align: left;
@@ -53,7 +51,7 @@
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (min-width: 800px) {
     .grid__plancard {
         grid-template-columns: 1fr;
         grid-gap: 20px;
