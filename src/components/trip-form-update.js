@@ -39,6 +39,7 @@ function TripFormUpdate(props) {
     function onSubmit(e) {
         e.preventDefault();
         trip.tripId = props.tripId;
+
         //If the user changed a value, then use that, otherwise default to the value before updating
         trip.destination = trip.destination !== undefined ? trip.destination : props.trip.destination;
         trip.startDate = trip.startDate !== undefined ? trip.startDate : props.trip.startDate;
@@ -65,17 +66,14 @@ function TripFormUpdate(props) {
     }
 
     function handleLocation(e) {
-        console.log(props.trip.destination);
         trip.destination = e.target.value !== undefined ? e.target.value : props.trip.destination;
     }
 
     function handleFirstDay(e) {
-        console.log(props.trip.startDate);
         trip.startDate = e.target.value !== undefined ? e.target.value : props.trip.startDate;
     }
 
     function handleLastDay(e) {
-        console.log(props.trip.endDate);
         trip.endDate = e.target.value !== undefined ? e.target.value : props.trip.endDate;
     }
 

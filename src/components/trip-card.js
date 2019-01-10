@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import TripForm from './trip-form';
 import TripFormUpdate from './trip-form-update';
-import { setEditing, setTripStatus } from '../actions';
+import { setTripStatus } from '../actions';
 
 function TripCard(props) {
 
@@ -13,10 +13,6 @@ function TripCard(props) {
 
     function handleView(tripId) {
         props.history.push(`/trips/${tripId}`)
-    }
-
-    function handleEditing(editingStatus) {
-        props.dispatch(setEditing(editingStatus));
     }
 
     function handleGetStarted() {
@@ -30,8 +26,6 @@ function TripCard(props) {
     function handleUpdate(editingStatus, tripId) {
         props.dispatch(setTripStatus('update', tripId));
     }
-
-    
 
     function userInteractions(trip) {
         if(!props.editing) {

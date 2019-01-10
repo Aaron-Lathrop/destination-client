@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlan, deletePlan, editPlans, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, cancelEditPlan, setEditing } from '../actions';
+import { editPlans, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, setEditing } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -31,15 +31,9 @@ function DailyPlanCard(props) {
                 save = false;
                 resetDelete();
                 props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
-                //props.dispatch(editPlans(updatePlans, props.currentDate));
                 
             }
-            console.log('props.plans', props.plans);
-            console.log('props.planCards', props.planCards);
-            console.log('props.trip', props.trip);
-            
-            // props.dispatch(editPlans(props.plans, props.currentDate));
-            // props.dispatch(cancelEditPlan(props.trip.tripId, props.plans));
+
         }
         props.dispatch(setEditing(false));
     }
@@ -59,7 +53,6 @@ function DailyPlanCard(props) {
     function handleEditChange(e, index) {
         updatePlans = props.planCards.find(planCard => planCard.date === props.currentDate);
         updatePlans.plans[index] = e.target.value;
-        // props.dispatch(updatePlan(updatePlans.plans));
     }
 
     function handleDelete(e, date, index) {

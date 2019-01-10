@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import TripForm from './trip-form';
 import TripCard from './trip-card';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setTripStatus, setEditing, getTrips, loadTrips } from '../actions';
+import { setTripStatus, setEditing, getTrips } from '../actions';
 
 class TripSection extends Component {
     componentWillMount() {
