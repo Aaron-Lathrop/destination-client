@@ -25,10 +25,6 @@ const initialState = {
 const reducer = (state=initialState, action) => {
 
     switch(action.type) {
-        case actions.SET_PLAN_CARDS:
-        return Object.assign({}, state, {
-            planCards: [...action.planCards]
-        });
         
         case actions.ADD_PLAN:
             let trips = state.trips.map((trip, index) => {
@@ -58,22 +54,12 @@ const reducer = (state=initialState, action) => {
                 console.error('date is undefined');
             }
             
-
             return Object.assign({}, state, {
                 editing: !state.editing,
                 planCards: action.planCards,
                 plans,
                 editPlans: plans,
                 date
-            });
-
-        case actions.CANCEL_EDIT_PLAN:
-            let cancelPlanCards = state.trips.find(trip => trip.tripId === action.tripId).planCards.find(planCard => planCard.date === action.date);
-
-            return Object.assign({}, state, {
-                editing: !state.editing,
-                planCards: cancelPlanCards,
-                editPlans: state.plans
             });
 
         case actions.UPDATE_PLAN:
@@ -104,7 +90,7 @@ const reducer = (state=initialState, action) => {
             
             return Object.assign({}, state, {trips: deleteTrips});
 
-        
+        //trip reducers
         case actions.ADD_TRIP:
             return Object.assign({}, state, {
                 trips: [...state.trips, action.trip]
