@@ -5,8 +5,8 @@ header {
         url('../assets/quino-al-121406-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     color: ghostwhite;
-    height: calc(100vh - 50px);
+    height: calc(100vh);
     font-size: 2em;
 }

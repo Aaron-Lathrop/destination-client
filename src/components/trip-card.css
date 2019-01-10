@@ -38,8 +38,9 @@
 }
 
 .tripcard__header--addcontainer {
-    text-align: center;
-    margin-top: -10px;
+    display: inline-block;
+    float: right;
+    padding-right: 25px;
 }
 
 .tripcard__header--add:hover {

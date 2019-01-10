@@ -13,6 +13,7 @@ const store = createStore(
 
 store.subscribe(() => {
     storeState({
+        authToken: store.getState().authToken,
         trips: store.getState().trips
     });
 });

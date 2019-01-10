@@ -1,3 +1,21 @@
-footer {
+.footer {
     height: 50px;
+    background-color: #8fe3d9;
+}
+
+.footer-container {
+    margin: 0;
+    text-align: center;
+    background-color: #8fe3d9;
+}
+
+.copyright {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.footer-image {
+    height: 40px;
+    margin: 15px 5px 25px 5px;
 }

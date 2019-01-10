@@ -40,8 +40,8 @@ function TripCard(props) {
 
     const tripHeader = (
         <div className="tripcard__header">
-            <p className="header__yourtrips">Your trips <span className="header__trips">{props.trips.length} </span></p>
-            <p className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span></p>
+            <p className="header__yourtrips">{props.trips.length} trips <span className="header__trips"></span> <div className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span> </div></p> 
+            {/* <p className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span></p> */}
         </div>
     );
 
