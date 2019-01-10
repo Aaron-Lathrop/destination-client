@@ -112,7 +112,6 @@ const reducer = (state=initialState, action) => {
                 planCards: action.trip.planCards ? action.trip.planCards : trip.planCards
             });
             
-
             const newTripList = state.trips.map(trip => {
                 if(trip.tripId !== action.trip._id) {
                     return trip;

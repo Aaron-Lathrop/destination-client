@@ -1,7 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
-import { saveAuthToken, clearAuthToken } from '../localStorage';
-
+import { saveAuthToken, loadAuthToken, clearAuthToken } from '../localStorage';
 
 //plan actions
 export const ADD_PLAN = 'ADD_PLAN';
@@ -29,12 +28,13 @@ export const updatePlansToDatabase = (auth, planCard) => dispatch => {
     if(!planCard) {
         return null
     } else {
+        const authToken = loadAuthToken();
         dispatch(request());
         return fetch(`${API_BASE_URL}/trips/updateplan/${planCard.tripId}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${auth}`
+            'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
             tripId: planCard.tripId,
@@ -61,12 +61,13 @@ export const deletePlan = planCard => ({
 });
 
 export const deletePlanFromDatabase = (auth, planCard) => dispatch => {
+    const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips/deleteplan/${planCard.tripId}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${auth}` 
+            'Authorization': `Bearer ${authToken}` 
         },
         body: JSON.stringify({
             hasContentToDelete: planCard.hasContentToDelete,
@@ -102,12 +103,13 @@ export const addTrip = trip => ({
 });
 
 export const addTripToDatabase = (trip, auth) => dispatch => {
+    const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${auth}`
+            'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({trip})
     })
@@ -123,11 +125,12 @@ export const addTripToDatabase = (trip, auth) => dispatch => {
 }
 
 export const getTrips = (auth) => dispatch => {
+    const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips`, {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${auth}`
+            'Authorization': `Bearer ${authToken}`
         }
     })
     .then(res => normalizeResponseErrors(res))
@@ -152,12 +155,13 @@ export const updateTrip = (trip) => ({
 });
 
 export const updateTripToDatabase = (auth, trip, tripId)=> dispatch => {
+    const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips/${tripId}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${auth}`
+            'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
             destination: trip.destination,
@@ -180,12 +184,13 @@ export const deleteTrip = (tripId) => ({
 });
 
 export const deleteTripFromDatabase = (auth, tripId) => dispatch => {
+    const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips/${tripId}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${auth}`
+            'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
             id: tripId
@@ -228,12 +233,12 @@ export const authRequest = () => ({
     type: AUTH_REQUEST
 });
 
-export const setAuthToken = authToken => {
-    localStorage.setItem('authToken', authToken);
+export const setAuthToken = authorizationToken => {
+    localStorage.setItem('authToken', authorizationToken);
 
     return ({
         type: SET_AUTH_TOKEN,
-        authToken
+        authorizationToken
     });
 };
 
@@ -268,10 +273,10 @@ export const signup = user => dispatch => {
     })
 };
 
-const storeAuthInfo = (authToken, user, dispatch) => {
-    dispatch(setAuthToken(authToken));
+const storeAuthInfo = (authorizationToken, user, dispatch) => {
+    dispatch(setAuthToken(authorizationToken));
     dispatch(authSuccess(user));
-    saveAuthToken(authToken);
+    saveAuthToken(authorizationToken);
 }
 
 export const login = (username, password) => dispatch => {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setTripStatus, setEditing, getTrips } from '../actions';
 
+import { loadAuthToken } from '../localStorage';
+
 class TripSection extends Component {
     componentWillMount() {
         this.props.dispatch(setTripStatus(false, null));
@@ -23,10 +25,14 @@ class TripSection extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    trips: state.trips,
-    editing: state.editing,
-    auth: state.authToken
-});
+const mapStateToProps = state => {
+    const authToken = loadAuthToken();
+
+    return ({
+        trips: state.trips,
+        editing: state.editing,
+        auth: authToken
+    })
+};
 
 export default withRouter(connect(mapStateToProps)(TripSection));

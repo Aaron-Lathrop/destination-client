@@ -6,6 +6,15 @@ import './daily-plan-card.css';
 
 function DailyPlanCard(props) {
 
+    //if no trip was found, for example an incorrect tripId was given,
+    //we go back to /trips. this is to prevent errors trying to load
+    //the planCards for a certain trip
+    if(!(props.trip)) {
+        props.history.push('/trips');
+        return null;
+    }
+
+    //a trip was found and we can load the rest of the page
     const plan = {};
     
     let updatePlans;
@@ -31,7 +40,6 @@ function DailyPlanCard(props) {
                 save = false;
                 resetDelete();
                 props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
-                
             }
 
         }
@@ -173,6 +181,10 @@ function DailyPlanCard(props) {
 const mapStateToProps = (state, props) => {
     const tripId = props.match.params.tripId;
     const trip = state.trips.find(item => item.tripId === tripId);
+    if(!(trip)) {
+        props.history.push('/trips');
+        return null;
+    }
     return ({
         user: state.currentUser,
         auth: state.authToken,

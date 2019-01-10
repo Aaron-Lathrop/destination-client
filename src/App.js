@@ -13,16 +13,20 @@ import TripForm from './components/trip-form';
 import TripSection from './components/trip-section';
 import DailyPlanCard from './components/daily-plan-card';
 
+import { loadAuthToken } from './localStorage';
+
 class App extends Component {
 
     render() {
+        const auth = loadAuthToken();
+        
         return (
             <Router>
                 <main role="main">
                 <div className="image__container"></div>
                     <Nav />
                     <Switch>
-                        {!(this.props.user) ? <Redirect from="/trips" to="/" /> : null}
+                        {!(auth) ? <Redirect from="/trips" to="/" /> : null}
                         <Route exact path="/" component={LandingPage} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/logout" component={Logout} /> 
@@ -30,7 +34,6 @@ class App extends Component {
                         <Route exact path="/newtrip" component={TripForm} />
                         <Route exact path="/trips" component={TripSection} />
                         <Route exact path="/trips/:tripId" component={DailyPlanCard} />
-                        
                     </Switch>
                     <Footer />
                 </main>

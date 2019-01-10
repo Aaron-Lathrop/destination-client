@@ -46,7 +46,7 @@ function getDates(startDate, stopDate) {
 function onSubmit(e) {
   e.preventDefault();
   trip.dateList = getDates(new Date(trip.startDate), new Date(trip.endDate));
-  trip.tripId = Math.floor(Math.random() * 9999999999999999);
+  // trip.tripId = Math.floor(Math.random() * 9999999999999999);
   trip.planCards = trip.dateList.map(date => ({
     tripId: trip.tripId,
     date,
@@ -58,7 +58,6 @@ function onSubmit(e) {
   handleCloseModal();
   props.history.push("/trips");
 }
-
 
 function handleLocation(e) {
   trip.destination = e.target.value;

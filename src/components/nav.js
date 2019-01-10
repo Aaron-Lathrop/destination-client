@@ -1,7 +1,11 @@
 import React from 'react';
-import './nav.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { loadAuthToken } from '../localStorage';
+
+import './nav.css';
+
 
 export function Nav(props) {
 
@@ -38,9 +42,10 @@ export function Nav(props) {
     ];
 
     //determine whether or not a user is logged in
+    const authToken = loadAuthToken();
     let navbar;
     
-    if(!props.user) {
+    if(!(authToken)) {
         navbar = noAuth;
     } else {
         navbar = auth;
