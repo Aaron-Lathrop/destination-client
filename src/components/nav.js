@@ -27,9 +27,6 @@ export function Nav(props) {
             path: '/',
             text: 'Destino'
         },
-        // {
-        //     text: `Welcome ${props.user.firstName}`
-        // },
         {
             path: '/logout',
             text: 'Log Out'

@@ -29,6 +29,7 @@ const reducer = (state=initialState, action) => {
         return Object.assign({}, state, {
             planCards: [...action.planCards]
         });
+        
         case actions.ADD_PLAN:
             let trips = state.trips.map((trip, index) => {
                 if(trip.tripId !== action.planCard.tripId) {
@@ -43,9 +44,6 @@ const reducer = (state=initialState, action) => {
                 trips
             });
 
-        case actions.GET_PLANS:
-            console.log(actions.GET_PLANS);
-            break;
         case actions.EDIT_PLANS:
             let date = action.date;
             let plans;
@@ -72,10 +70,6 @@ const reducer = (state=initialState, action) => {
         case actions.CANCEL_EDIT_PLAN:
             let cancelPlanCards = state.trips.find(trip => trip.tripId === action.tripId).planCards.find(planCard => planCard.date === action.date);
 
-            // cancelPlanCards = Object.assign({}, cancelPlanCards, {
-            //     plans: state.editPlans
-            // });
-
             return Object.assign({}, state, {
                 editing: !state.editing,
                 planCards: cancelPlanCards,
@@ -88,7 +82,6 @@ const reducer = (state=initialState, action) => {
             });
 
         case actions.DELETE_PLAN:
-        console.log(action)
             let deleteTarget = state.trips.find(trip => trip.tripId === action.planCard.tripId).planCards.find(planCard => planCard.date === action.planCard.date);
 
             let deletePlanCard = Object.assign({}, deleteTarget, 
@@ -111,18 +104,17 @@ const reducer = (state=initialState, action) => {
             
             return Object.assign({}, state, {trips: deleteTrips});
 
-        case actions.GET_WEATHER:
-            console.log(actions.GET_WEATHER);
-            break;
+        
         case actions.ADD_TRIP:
-            console.log('reducer addTrip: ', action.trip)
             return Object.assign({}, state, {
                 trips: [...state.trips, action.trip]
             });
+
         case actions.LOAD_TRIPS:
             return Object.assign({}, state, {
                 trips: [...action.trips]
             })
+
         case actions.UPDATE_TRIP:
             const trip = state.trips.find(trip => trip.tripId === action.trip._id);
             
@@ -147,6 +139,7 @@ const reducer = (state=initialState, action) => {
                 editing: false,
                 trips: newTripList
             });
+
         case actions.DELETE_TRIP:
             return Object.assign({}, state, {
                 trips: state.trips.filter(trip => trip.tripId !== action.tripId)
@@ -154,23 +147,24 @@ const reducer = (state=initialState, action) => {
 
         //handle basic user sign up, login, and logout process    
         case actions.AUTH_REQUEST:
-        console.log('authorization requested, our worker elves are on the case');
             return Object.assign({}, state, {
                 error: null,
                 loading: true,
             });
+
         case actions.SET_AUTH_TOKEN:
             const authToken = action.authToken;
             
             return Object.assign({}, state, {
                 authToken
-            })
+            });
+
         case actions.AUTH_SUCCESS:
-        console.log('authorization was successful!');
             return Object.assign({}, state, {
                 loading: false,
                 currentUser: action.currentUser
             });
+
         case actions.LOG_OUT:
             return Object.assign({}, state, {
                 authToken: null,
@@ -193,6 +187,7 @@ const reducer = (state=initialState, action) => {
                 date: null,
                 trips: []
             });
+
         case actions.SIGN_UP: {
             const users = [...state.userList, action.user];
             return Object.assign({}, ...state.userList, {
@@ -201,9 +196,7 @@ const reducer = (state=initialState, action) => {
                 userList: users
             });
         }
-        case actions.LOG_IN:
-            console.log(actions.LOG_IN);
-            break;
+        
         case actions.REQUEST:
             return Object.assign({}, state, {
                 error: null,
@@ -225,12 +218,12 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 addTrip: action.newTrip,
                 tripId: action.tripId
-            })
+            });
+
         default:
             return state;
     }
 
-    return state;
 };
 
 export default reducer;
