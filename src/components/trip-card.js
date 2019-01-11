@@ -31,7 +31,7 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div className="btn__container">
-                    <button id={trip.tripId} className="btn__tripcard" onClick={e => handleUpdate('update', trip.tripId)}>Update</button>
+                    <button id={trip.tripId} className="btn--confirm btn--small btn--smallshadow" onClick={e => handleUpdate('update', trip.tripId)}>Update</button>
                 </div>
             );
         }
@@ -40,8 +40,7 @@ function TripCard(props) {
 
     const tripHeader = (
         <div className="tripcard__header">
-            <p className="header__yourtrips">{props.trips.length} trips <span className="header__trips"></span> <div className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span> </div></p> 
-            {/* <p className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span></p> */}
+            <p className="header__yourtrips">{props.trips.length} trips <span className="header__trips"></span> <span className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span> </span></p> 
         </div>
     );
 
@@ -73,7 +72,7 @@ function TripCard(props) {
         return (
             <section>
                 <h1>You haven't created any trips yet.</h1>
-                <button className="btn__tripcard" onClick={e => handleGetStarted()}>Get Started</button>
+                <button onClick={e => handleGetStarted()}>Get Started</button>
             </section>
         );
         

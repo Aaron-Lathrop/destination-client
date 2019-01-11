@@ -13,10 +13,10 @@ function Login(props) {
     e.preventDefault();
     return (
       props.dispatch(login(user.username, user.password))
-      .then(props.history.push("/trips"))
-      .catch(err =>
-          console.error(err)
-        )
+      // .then(props.history.push("/trips"))
+      // .catch(err =>
+      //     console.error(err)
+      //   )
       );
   }
 
@@ -40,7 +40,8 @@ function Login(props) {
                   <input id="username" 
                          name="username" 
                          type="text" 
-                         placeholder="Username"
+                         placeholder="Admin007"
+                         
                          onChange={e => handleUsername(e)} />
                 </div>
 
@@ -49,11 +50,12 @@ function Login(props) {
                   <input id="password" 
                          name="password" 
                          type="password" 
-                         placeholder="Password"
+                         placeholder="demo123456"
+                         
                          onChange={e =>handlePassword(e)} />
                 </div>
                 <p>Try out our demo account: <br /> Username: Admin007 <br /> Password: demo123456</p>
-                <button className="btn__form--update" type="submit">Log In</button>
+                <button className="btn--confirm" type="submit">Login</button>
                 <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </fieldset>
                 

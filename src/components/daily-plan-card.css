@@ -15,11 +15,18 @@
 .plancard__header {
     background-color: #26b416;
     color: ghostwhite;
-    font-size: 1.5em;
     text-align: center;
     height: 150px;
     align-self: end;
     border-radius: 25px 25px 0 0;
+}
+
+.plancard__header--content {
+    font-size: 1.5em;
+}
+
+.plancard__header--backlink {
+    font-size: 1em;
 }
 
 .plancard__container {

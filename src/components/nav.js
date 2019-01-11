@@ -61,9 +61,9 @@ export function Nav(props) {
     });
 
     return (        
-            <div className="sticky nav__content">
+            <div className="sticky">
                 <nav role="navigation">
-                    {navLinks}
+                    <span >{navLinks}</span>
                 </nav>
             </div>
     );

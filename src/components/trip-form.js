@@ -79,9 +79,7 @@ function handleCloseModal(e) {
       <div id="form-container" className="form__container">
       
           <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
-          
-          <div className="form__highlight form__highlight--blue"></div>
-          
+                    
             <fieldset className="form__fieldset">
             
             <legend className="tripform__legend">Create A New Trip</legend>
@@ -114,7 +112,7 @@ function handleCloseModal(e) {
                         required />
               </div>
 
-              <button className="btn__form--update" type="submit">Submit</button>
+              <button className="btn--confirm" type="submit">Submit</button>
               <span id="closeModal" className="form__closemodal" onClick={e => handleCloseModal(e)}>&times;</span>
             </fieldset>
           </form>

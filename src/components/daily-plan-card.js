@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { editPlans, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, setEditing } from '../actions';
 
 import './daily-plan-card.css';
@@ -102,7 +104,8 @@ function DailyPlanCard(props) {
 
     const planCardHeader = (
         <div className="plancard__header">
-            <p>{props.trip.destination} - {props.trip.dateList[0]} to {props.trip.dateList[props.trip.dateList.length-1]}</p>
+            <p className="plancard__header--content">{props.trip.destination} - {props.trip.dateList[0]} to {props.trip.dateList[props.trip.dateList.length-1]}</p>
+            <p className="plancard__header--backlink"><Link to="/trips">{'<<< Back to trips'}</Link></p>
         </div>
     );
 
@@ -170,9 +173,10 @@ function DailyPlanCard(props) {
                 <div className="plancard__container">
                     <ul>
                         {dailyPlans}
-                        <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
                     </ul>
                 </div>
+                <p className="plancard__header--backlink"><Link to="/trips">{'<<< Back to trips'}</Link></p>
+                <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
             </div>
         </div>
     );

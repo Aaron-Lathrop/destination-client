@@ -27,6 +27,7 @@ class App extends Component {
                     <Nav />
                     <Switch>
                         {!(auth) ? <Redirect from="/trips" to="/" /> : null}
+                        {(auth) ? <Redirect from="/login" to="/trips" /> : null}
                         <Route exact path="/" component={LandingPage} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/logout" component={Logout} /> 

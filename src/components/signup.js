@@ -36,56 +36,40 @@ function SignUp(props) {
   }
 
     return (
-        <section className="sticky-footer">
-            <form name="signup" onSubmit={e => onSubmit(e)}>
-              <fieldset>
-              <legend>Plan your DestiNation</legend>
-                <div>
-                  <label htmlFor="firstName">First Name</label>
-                  <input id="firstName" 
-                         name="firstName" 
-                         type="text" 
-                         placeholder="First Name"
-                         onChange={e => handleFirstName(e)} 
-                         required />
-                </div>
+        <div id="form-container" className="form__container">
+                
+                <form name="signup" className="tripform" onSubmit={e => onSubmit(e)}>
+                <fieldset className="form__fieldset">
+                <legend className="tripform__legend">Sign Up</legend>
 
-                <div>
-                  <label htmlFor="username">Username</label>
-                  <input id="username" 
-                         name="username" 
-                         type="text" 
-                         placeholder="Username"
-                         onChange={e => handleUserName(e)} 
-                         required />
-                </div>
+                  <div className="form__element">
+                    <label htmlFor="username" className="tripform__label">Username</label>
+                    <input id="username" 
+                          name="username" 
+                          type="text" 
+                          placeholder="Username"
+                          onChange={e => handleUserName(e)} 
+                          required />
+                  </div>
 
-                <div>
-                  <label htmlFor="email">Email</label>
-                  <input id="email" 
-                         name="email" 
-                         type="email" 
-                         placeholder="Email"
-                         onChange={e => handleEmail(e)} 
-                         required />
-                </div>
+                  <div className="form__element">
+                    <label htmlFor="password" className="tripform__label">Password</label>
+                    <input id="password" 
+                          name="password" 
+                          type="password" 
+                          placeholder="Password"
+                          onChange={e => handlePassword(e)} 
+                          required />
+                  </div>
 
-                <div>
-                  <label htmlFor="password">Password</label>
-                  <input id="password" 
-                         name="password" 
-                         type="password" 
-                         placeholder="Password"
-                         onChange={e => handlePassword(e)} 
-                         required />
-                </div>
+                  <button type="submit" className="btn--confirm">Sign Up</button>
+                  <p>Already have an account? <Link to="/login">Log In</Link></p>
+                  </fieldset>
+              </form>
+            
+            
+          </div>
 
-                <button type="submit">Sign Up</button>
-                </fieldset>
-            </form>
-          
-          <p>Already have an account? <Link to="/login">Log In</Link></p>
-        </section>
     );
 }
 

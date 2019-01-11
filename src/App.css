@@ -18,8 +18,8 @@ body {
   color: #444;
   text-align: center;
   line-height: 1.5;
-  background-image: linear-gradient(to bottom, #ffffff, #f8f8f8);
-  
+  /* background-image: linear-gradient(to bottom, #ffffff, #efe6e9); */
+  background-color: white;
 }
 
 main {
@@ -36,12 +36,14 @@ a:hover {
 }
  
 button {
-  padding: 15px 35px;
+  padding: 15px 45px;
   margin: 10px;
   border: none;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: .1px .1px .1px #d8d8d8;
+  border-radius: 100px;
+  box-shadow: 1px 1px 6px 1px #0a0a0a;
+  font-size: .6em;
+  background-color: #8fe3d9;
+  color: white;
 }
 
 button:active {
@@ -50,7 +52,35 @@ button:active {
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
+  -webkit-transform: translateY(5px), scale(1.05);
+  transform: translateY(5px), scale(1.05);
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+  box-shadow: 1px 3px 25px 1px #0a0a0a;
+  font-weight: bold;
+}
+
+.btn--confirm {
+  margin: 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  font-size: .8em;
+  background-color: #8fe3d9a3;
+  color: black;
+}
+
+.btn--small {
+  padding: 10px 20px;
+}
+
+.btn--smallshadow {
+  box-shadow: .1px .1px 1px .1px #0a0a0a;
+}
+
+.btn--smallshadow:hover {
+  box-shadow: 1px 1px 5px 1px #0a0a0a;
 }
 
 fieldset {

@@ -86,8 +86,6 @@ function TripFormUpdate(props) {
         <div id="form-container" className="form__container">
         
             <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
-            
-            <div className="form__highlight form__highlight--green"></div>
            
               <fieldset className="form__fieldset">
               
@@ -120,7 +118,7 @@ function TripFormUpdate(props) {
                          onChange={e => handleLastDay(e)} />
                 </div>
 
-                <button className="btn__form--update" type="submit">Update</button>
+                <button className="btn--confirm" type="submit">Update</button>
                 <span id="closeModal" className="form__closemodal" onClick={e => handleCloseModal(e)}>&times;</span>
               </fieldset>
             </form>
