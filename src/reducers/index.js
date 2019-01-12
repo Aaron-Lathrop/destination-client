@@ -51,11 +51,10 @@ const reducer = (state=initialState, action) => {
                 plans = action.planCards.find(planCard => planCard.date === action.date).plans;
             }
             catch {
-                console.error('date is undefined');
             }
             
             return Object.assign({}, state, {
-                editing: !state.editing,
+                editing: true,
                 planCards: action.planCards,
                 plans,
                 editPlans: plans,

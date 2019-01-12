@@ -42,10 +42,9 @@ function DailyPlanCard(props) {
                 save = false;
                 resetDelete();
                 props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
+                props.dispatch(setEditing(false));
             }
-
         }
-        props.dispatch(setEditing(false));
     }
 
     function handleAddChange(e, date, weather, index) {
@@ -132,7 +131,7 @@ function DailyPlanCard(props) {
                     (
                         <li key={index}>
                             <input type="text" name={`plan-${index}`} onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
-                            <input id={plan} type="reset" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn__tripcard btn__tripcard--red" />
+                            <input id={plan} type="reset" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn--small btn--smallshadow btn--delete" />
                         </li>
                     )
                 )
@@ -154,11 +153,34 @@ function DailyPlanCard(props) {
                             <ul>
                                 {plans(date, index)}
                                 <li>
-                                {!props.editing ? (<div><input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" /><input type="submit" value="Add" className="btn__tripcard btn__tripcard--blue"/></div>) : ""}
+                                {
+                                    !props.editing ? 
+                                    
+                                    (<div>
+
+                                        <input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" />
+
+                                        <button type="submit" className="btn--conifrm btn--small btn--smallshadow">Add</button>
+
+                                    </div>) : ""
+                                }
                                 </li>
                             </ul>
-                            {props.editing ? <input id="save" type="submit" value="Save" onClick={e => handleSave(e)} className="btn__tripcard" /> : ""}
-                            {!props.editing ? <button onClick={e => handleEditClick(date)} className="btn__tripcard">Edit</button> : <input id="cancel" type="submit" value="Cancel" className="btn__tripcard" />}
+                            
+                            {
+                                props.editing ? 
+
+                                <button id="save" type="submit" onClick={e => handleSave(e)} className="btn--confirm btn--small btn--smallshadow">Save</button> : ""
+                            }
+
+                            {
+                                !props.editing ? 
+
+                                <button type="button" onClick={e => handleEditClick(date)} className="btn--action btn--small btn--smallshadow">Edit</button> : 
+
+                                <button id="cancel" type="submit" onClick={e =>                 props.dispatch(setEditing(false))
+                                } className="btn--action btn--small btn--smallshadow">Cancel</button>
+                            }
                         </form>
                     </div>
             </li>
@@ -176,7 +198,7 @@ function DailyPlanCard(props) {
                     </ul>
                 </div>
                 <p className="plancard__header--backlink"><Link to="/trips">{'<<< Back to trips'}</Link></p>
-                <button onClick={e => handleDeleteTrip()} className="btn__tripcard--red">Delete Trip</button>
+                <button onClick={e => handleDeleteTrip()} className="btn--delete btn--small btn--smallshadow">Delete Trip</button>
             </div>
         </div>
     );

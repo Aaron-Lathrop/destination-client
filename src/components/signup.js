@@ -19,21 +19,23 @@ function SignUp(props) {
       );
   }
 
-  function handleFirstName(e) {
-    user.firstName = e.target.value;
-  }
-
   function handleUserName(e) {
     user.username = e.target.value;
-  }
-
-  function handleEmail(e) {
-    user.email = e.target.value;
   }
 
   function handlePassword(e) {
     user.password = e.target.value;
   }
+
+  //handleEmail and handleFirstName may become available in a future version
+
+  // function handleEmail(e) {
+  //   user.email = e.target.value;
+  // }
+
+  // function handleFirstName(e) {
+  //   user.firstName = e.target.value;
+  // }
 
     return (
         <div id="form-container" className="form__container">

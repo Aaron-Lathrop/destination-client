@@ -61,18 +61,30 @@ button:hover {
   font-weight: bold;
 }
 
+.btn--action {
+  background-color: #e8e8e8;
+  color: black;
+}
+
 .btn--confirm {
-  margin: 20px;
-  border-radius: 25px;
-  font-weight: bold;
-  border: none;
-  font-size: .8em;
   background-color: #8fe3d9a3;
+  color: black;
+}
+
+.btn--delete {
+  background-color: #e38e99;
   color: black;
 }
 
 .btn--small {
   padding: 10px 20px;
+  margin: 20px;
+  width: 85px;
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  font-size: .8em;
+  color: black;
 }
 
 .btn--smallshadow {

@@ -31,13 +31,18 @@ function addDays(currentDate, days) {
 
 //getDates creates the list of dates to be used for each trip
 function getDates(startDate, stopDate) {
-  var dateArray = [];
-  var currentDate = startDate;
-  while (currentDate <= stopDate) {
-      dateArray.push(parseDate(new Date (currentDate)).string );
-      currentDate = addDays(currentDate, 1);
-  }
-  return dateArray;
+  
+    //using addDays() here corrects an issue while getting the date from the html input, namely that the date is 1 day behind what the user input
+    startDate = addDays(startDate, 1);
+    stopDate = addDays(stopDate, 1);
+
+    var dateArray = [];
+    var currentDate = startDate;
+    while (currentDate <= stopDate) {
+        dateArray.push(parseDate(new Date (currentDate)).string );
+        currentDate = addDays(currentDate, 1);
+    }
+    return dateArray;
 }
 
 //onSubmit builds the trip we are going to add by taking the form information, building a dateList and tripId

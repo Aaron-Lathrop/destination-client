@@ -21,19 +21,24 @@ function TripFormUpdate(props) {
     //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for and function getDates()
     
     function addDays(currentDate, days) {
-      var date = new Date(currentDate.valueOf());
-      date.setDate(date.getDate() + days);
-      return date;
+        var date = new Date(currentDate.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
     }
     
     function getDates(startDate, stopDate) {
-      var dateArray = [];
-      var currentDate = startDate;
-      while (currentDate <= stopDate) {
-          dateArray.push(parseDate(new Date (currentDate)).string );
-          currentDate = addDays(currentDate, 1);
-      }
-      return dateArray;
+        
+        //using addDays() here corrects an issue while getting the date from the html input, namely that the date is 1 day behind what the user input
+        startDate = addDays(startDate, 1);
+        stopDate = addDays(stopDate, 1);
+
+        var dateArray = [];
+        var currentDate = startDate;
+        while (currentDate <= stopDate) {
+            dateArray.push(parseDate(new Date (currentDate)).string );
+            currentDate = addDays(currentDate, 1);
+        }
+        return dateArray;
     }
 
     function onSubmit(e) {
