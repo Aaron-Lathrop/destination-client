@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { editPlans, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, setEditing } from '../actions';
+import { editPlans, getTrips, deleteTripFromDatabase, updatePlansToDatabase, deletePlanFromDatabase, setEditing } from '../actions';
 
 import './daily-plan-card.css';
 
@@ -101,6 +101,11 @@ function DailyPlanCard(props) {
         save = true;
     }
 
+    function handleCancel() {
+        props.dispatch(getTrips());
+        props.dispatch(setEditing(false));
+    }
+
     const planCardHeader = (
         <div className="plancard__header">
             <p className="plancard__header--content">{props.trip.destination} - {props.trip.dateList[0]} to {props.trip.dateList[props.trip.dateList.length-1]}</p>
@@ -178,7 +183,7 @@ function DailyPlanCard(props) {
 
                                 <button type="button" onClick={e => handleEditClick(date)} className="btn--action btn--small btn--smallshadow">Edit</button> : 
 
-                                <button id="cancel" type="submit" onClick={e =>                 props.dispatch(setEditing(false))
+                                <button id="cancel" type="submit" onClick={e => handleCancel()
                                 } className="btn--action btn--small btn--smallshadow">Cancel</button>
                             }
                         </form>

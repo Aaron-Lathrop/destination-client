@@ -124,7 +124,7 @@ export const addTripToDatabase = (trip, auth) => dispatch => {
     .catch(err => console.error(err))
 }
 
-export const getTrips = (auth) => dispatch => {
+export const getTrips = () => dispatch => {
     const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips`, {
