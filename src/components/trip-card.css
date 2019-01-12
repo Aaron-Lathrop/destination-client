@@ -71,6 +71,10 @@
     font-size: 1em;
 }
 
+.tripcard__notrips {
+    margin-left: -40px;
+}
+
 .tripcard__container ul {
     list-style-type: circle;
 }

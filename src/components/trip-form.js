@@ -77,6 +77,7 @@ function handleReturn(e) {
 }
 
 function handleCloseModal(e) {
+  console.log('closeModal')
   props.dispatch(setTripStatus(false));
 }
 

@@ -37,7 +37,8 @@ const reducer = (state=initialState, action) => {
             });
 
             return Object.assign({}, state, {
-                trips
+                trips,
+                error: null
             });
 
         case actions.EDIT_PLANS:
@@ -58,7 +59,8 @@ const reducer = (state=initialState, action) => {
                 planCards: action.planCards,
                 plans,
                 editPlans: plans,
-                date
+                date,
+                error: null
             });
 
         case actions.UPDATE_PLAN:
@@ -147,6 +149,13 @@ const reducer = (state=initialState, action) => {
             return Object.assign({}, state, {
                 loading: false,
                 currentUser: action.currentUser
+            });
+
+        case actions.FAIL:
+            console.log('action.error: ', action.error);
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.error
             });
 
         case actions.LOG_OUT:

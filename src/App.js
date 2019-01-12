@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import Nav from './components/nav';
+import Error from './components/error';
 import LandingPage from './components/landing-page';
 import Footer from './components/footer';
 import Login from './components/login';
@@ -19,22 +20,26 @@ class App extends Component {
 
     render() {
         const auth = loadAuthToken();
+        console.log('error: ', this.props.error);
         
         return (
             <Router>
                 <main role="main">
                 <div className="image__container"></div>
                     <Nav />
+                    {(this.props.error) ? <Error error={this.props.error} /> : ""}
                     <Switch>
                         {!(auth) ? <Redirect from="/trips" to="/" /> : null}
                         {(auth) ? <Redirect from="/login" to="/trips" /> : null}
+                        {(auth) ? <Redirect from="/signup" to="/trips" /> : null}
                         <Route exact path="/" component={LandingPage} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/logout" component={Logout} /> 
                         <Route exact path="/signup" component={SignUp} />
-                        <Route exact path="/newtrip" component={TripForm} />
+                        {/* <Route exact path="/newtrip" component={TripForm} /> */}
                         <Route exact path="/trips" component={TripSection} />
                         <Route exact path="/trips/:tripId" component={DailyPlanCard} />
+                        <Redirect from="/:unknown" to="/" />
                     </Switch>
                     <Footer />
                 </main>
@@ -45,7 +50,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
     state,
-    user: state.currentUser
+    user: state.currentUser,
+    error: state.error
 }); 
 
 export default connect(mapStateToProps)(App);

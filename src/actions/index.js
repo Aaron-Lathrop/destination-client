@@ -213,6 +213,7 @@ export const SUCCESS = 'SUCCESS';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const FAIL = 'FAIL';
 export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const LOG_IN = 'LOG_IN';
@@ -247,6 +248,11 @@ export const authSuccess = currentUser => ({
     currentUser
 });
 
+export const fail = (error) => ({
+    type: FAIL,
+    error
+});
+
 export const logout = () => {
     clearAuthToken();
     return ({
@@ -269,8 +275,9 @@ export const signup = user => dispatch => {
         dispatch(login(user.username, user.password));
     })
     .catch(err => {
-        console.error(err);
-    })
+        let message = err.message;
+        dispatch(fail(message));
+    });
 };
 
 const storeAuthInfo = (authorizationToken, user, dispatch) => {
@@ -297,7 +304,15 @@ export const login = (username, password) => dispatch => {
         const { jwtToken, user } = payload;
         storeAuthInfo(jwtToken, user, dispatch);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        let message;
+        if(err.code === 401) {
+            message = 'Incorrect username or password';
+        } else {
+            message = 'Unauthorized'
+        }
+        dispatch(fail(message));
+    });
 };
 
 export const setEditing = (editingStatus) => ({

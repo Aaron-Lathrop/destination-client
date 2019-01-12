@@ -11,11 +11,12 @@ function SignUp(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    return (props.dispatch(signup(user))
-      .then(props.history.push("/trips"))
-      .catch(err =>
-          console.error(err)
-        )
+    return (
+      props.dispatch(signup(user))
+      // .then(props.history.push("/trips"))
+      // .catch(err =>
+      //     console.error(err)
+      //   )
       );
   }
 

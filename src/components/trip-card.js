@@ -70,7 +70,7 @@ function TripCard(props) {
         }
 
         return (
-            <section>
+            <section className="tripcard__notrips">
                 <h1>You haven't created any trips yet.</h1>
                 <button onClick={e => handleGetStarted()}>Get Started</button>
             </section>
