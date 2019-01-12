@@ -1,26 +1,12 @@
 * {
     box-sizing: border-box;
   }
-  
-/* body {
-    font-family: "Open Sans",
-    sans-serif; 
-    font-size: 20px;
-    color: #444;
-    text-align: center;
-    line-height: 1.5;
-    
-} */
 
 .image__container {
     background-image: url('../assets/destino-simple-planning.jpg');
     background-repeat: no-repeat;
     background-position-x: center;
     height: 250px;
-}
-
-button:hover {
-    cursor: pointer;
 }
 
 fieldset {
@@ -38,22 +24,35 @@ input {
 section {
     min-height: 200px;
     padding: 6% 0;
-    /* background-color: #2acce5; */
 }
-  
-/* section:nth-child(even) {
-    background-color: #2acce5;
-} */
 
 .feature {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.feature--withimage {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     justify-content: space-evenly;
 }
 
-.feature--purple {
-    background-color: #7b8fd1;
-    border-top: 2px solid #7b8fd18f;
+.feature__content {
+    align-self: center;
+    max-width: 500px;
+}
+
+.landingpage__img {
+    max-width: 95%;
+}
+
+.landingpage__container--primarycolor {
+    background-color: #8fe3d9;
+}
+
+.landingpage__container--lightprimary {
+    background-color: #8fe3d970;
 }
 
 .feature--blue {
@@ -66,4 +65,23 @@ section {
     border: 1px solid black;
     border-radius: 100px;
     padding: 30px;
+}
+
+.landingpage__hr {
+    height: 5px;
+    border: none;
+    width: 90%;
+}
+
+.landingpage__hr--primarycolor {
+    background-color: #8fe3d9;
+    height: 5px;
+    border: none;
+    width: 90%;
+}
+
+@media only screen and (min-width: 800px) {
+    .feature {
+        max-width: 50%;
+    }
 }
