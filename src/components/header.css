@@ -10,3 +10,7 @@ header {
     height: calc(100vh);
     font-size: 2em;
 }
+
+.btn__header {
+    font-size: 18px;
+}

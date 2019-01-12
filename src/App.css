@@ -41,8 +41,8 @@ button {
   border: none;
   border-radius: 100px;
   box-shadow: 1px 1px 6px 1px #0a0a0a;
-  font-size: .6em;
-  background-color: #8fe3d9;
+  font-size: 1em;
+  background-color: dodgerblue;
   color: white;
 }
 
@@ -76,12 +76,17 @@ button:hover {
   color: black;
 }
 
+.btn__plancard--deletetrip {
+  justify-self: center;
+  width: 150px;
+  padding: 15px;
+}
+
 .btn--small {
   padding: 10px 20px;
   margin: 20px;
   width: 85px;
   border-radius: 25px;
-  font-weight: bold;
   border: none;
   font-size: .8em;
   color: black;

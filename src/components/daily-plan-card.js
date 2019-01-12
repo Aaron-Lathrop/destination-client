@@ -112,7 +112,7 @@ function DailyPlanCard(props) {
         if(!props.editing) {
             return (
                 props.planCards[index].plans.map((plan, index) => 
-                    <li key={index}>
+                    <li key={index} className="plancard__plan">
                         {plan}
                     </li>
                 )
@@ -144,7 +144,7 @@ function DailyPlanCard(props) {
             <li key={date} id={date}>
                     <div>
                         <div>
-                        <p>{date}</p>
+                        <p><b>{date}</b></p>
                         <p>{props.planCards[index].weather ? props.planCards[index].weather : ""}</p>
                         </div>
                     </div>
@@ -160,7 +160,7 @@ function DailyPlanCard(props) {
 
                                         <input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" />
 
-                                        <button type="submit" className="btn--conifrm btn--small btn--smallshadow">Add</button>
+                                        <button type="submit" className="btn--confirm btn--small btn--smallshadow">Add</button>
 
                                     </div>) : ""
                                 }
@@ -198,7 +198,7 @@ function DailyPlanCard(props) {
                     </ul>
                 </div>
                 <p className="plancard__header--backlink"><Link to="/trips">{'<<< Back to trips'}</Link></p>
-                <button onClick={e => handleDeleteTrip()} className="btn--delete btn--small btn--smallshadow">Delete Trip</button>
+                <button onClick={e => handleDeleteTrip()} className="btn--delete btn--smallshadow btn__plancard--deletetrip">Delete Trip</button>
             </div>
         </div>
     );

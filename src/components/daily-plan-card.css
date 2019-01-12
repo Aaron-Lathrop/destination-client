@@ -13,7 +13,7 @@
 }
 
 .plancard__header {
-    background-color: #26b416;
+    background-color: #8fe3ab;
     color: ghostwhite;
     text-align: center;
     height: 150px;
@@ -41,6 +41,14 @@
 
 .plancard__container--linethrough {
     text-decoration: line-through;
+}
+
+.plancard__plan {
+    padding: 5px 0;
+    margin: -1px 0;
+    max-width: 75%;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 @media only screen and (min-width: 800px) {

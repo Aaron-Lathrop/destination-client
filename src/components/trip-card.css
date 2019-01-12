@@ -20,7 +20,8 @@
 }
 
 .tripcard__header {
-    background-color: rgba(0, 121, 191, .99);
+    /* background-color: rgba(0, 121, 191, .99); */
+    background-color: #0c81c6d4;
     color: ghostwhite;
     font-size: 30px;
     text-align: left;
@@ -145,12 +146,9 @@
     }
 
     .tripcard__header {
-        background-color: rgba(0, 121, 191, .99);
-        color: ghostwhite;
+        
         font-size: 25px;
-        text-align: left;
         height: 150px;
-        align-self: end;
     }
 
     .header__trips {
