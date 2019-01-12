@@ -5,12 +5,26 @@ header {
         url('../assets/quino-al-121406-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
+    background-position: center;
     color: ghostwhite;
-    height: calc(100vh);
-    font-size: 2em;
+    height: 50vh;
+    font-size: 1em;
 }
 
 .btn__header {
     font-size: 18px;
+}
+
+@media only screen and (min-width: 600px) {
+    header {
+        padding: 7% 0;
+        font-size: 1.25em;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    header {
+        padding: 7% 0;
+        font-size: 1.5em;
+    }
 }

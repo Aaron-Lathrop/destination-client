@@ -6,50 +6,35 @@ export default class LandingPage extends Component {
     render() {
         return (
             <div>
-                
                 <Header />
-                {/* <section className="feature--purple">
+                <section className="landingpage__container">
                 <div className="feature">
-                    <div className="feature__img">
-                        Feature 1 img
-                        <p>Short description</p>
-                    </div>
-                    <div className="feature__img">
-                        Feature 2 img
-                        <p>Short description</p>
-                    </div>
-                    <div className="feature__img">
-                        Feature 3 img
-                        <p>Short description</p>
-                    </div>
+                    <h2>Destino Simple Planning</h2>
+                    <p>Need to plan a trip, but don't need fancy options and complicated menus? Destino let's you create trips, add the information you need for each day, and get on with your day.</p>
                 </div>
                 </section>
                 
-                <section>
-                <h2>Choose a destination</h2>
+                <section className="landingpage__container">
                 <div className="feature">
-                    <div className="feature__img">Feature 1 img</div>
-                    <p>Awesome feature description</p>
+                    <h2>See past and future trips</h2>
+                    <p>Plan for the future or go on a trip down memory lane with our simple and straight forward trip creator.</p>
                 </div>
-                
                 </section>
     
-                <section className="feature--blue">
-                <h2>See daily weather</h2>
+                <section className="landingpage__container">
                 <div className="feature">
-                    <div className="feature__img flex-start">Feature 2 img</div>
-                    <p>Live weather updates for each place you'll be visiting.</p>
+                    <h2>Add, edit, done</h2>
+                    <p>Destino makes it easy to add, edit and delete trip details for each day. Finally, you can eliminate the excess and only see what you need every day of your trip.</p>
                 </div>
-                
                 </section>
-    
-                <section>
-                    <h2>Make daily plans</h2>
-                    <div className="feature">
-                        <div className="feature__img">Feature 3 img</div>
-                        <p>Add activities, flights, hotel information, or anything really.</p>
-                    </div>
-                </section> */}
+
+                <section className="landingpage__container">
+                <div className="feature">
+                    <h2>Sign up for free</h2>
+                    <p>Sign up for your free account and start planning your next adventure!</p>
+                    <button onClick={() => window.location = `${this.props.auth ? "/trips" : "/signup"}`} className="btn__header">{this.props.auth ? "Trips" : "Sign Up"}</button>
+                </div>
+                </section>
             </div>
             );
     }

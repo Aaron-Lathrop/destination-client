@@ -10,7 +10,6 @@ import Footer from './components/footer';
 import Login from './components/login';
 import Logout from './components/logout';
 import SignUp from './components/signup';
-import TripForm from './components/trip-form';
 import TripSection from './components/trip-section';
 import DailyPlanCard from './components/daily-plan-card';
 
@@ -32,11 +31,10 @@ class App extends Component {
                         {!(auth) ? <Redirect from="/trips" to="/" /> : null}
                         {(auth) ? <Redirect from="/login" to="/trips" /> : null}
                         {(auth) ? <Redirect from="/signup" to="/trips" /> : null}
-                        <Route exact path="/" component={LandingPage} />
+                        <Route exact path="/" component={LandingPage} auth={auth} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/logout" component={Logout} /> 
                         <Route exact path="/signup" component={SignUp} />
-                        {/* <Route exact path="/newtrip" component={TripForm} /> */}
                         <Route exact path="/trips" component={TripSection} />
                         <Route exact path="/trips/:tripId" component={DailyPlanCard} />
                         <Redirect from="/:unknown" to="/" />
