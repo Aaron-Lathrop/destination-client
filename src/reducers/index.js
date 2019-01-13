@@ -152,7 +152,6 @@ const reducer = (state=initialState, action) => {
             });
 
         case actions.FAIL:
-            console.log('action.error: ', action.error);
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error

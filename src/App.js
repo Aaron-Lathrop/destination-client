@@ -19,7 +19,6 @@ class App extends Component {
 
     render() {
         const auth = loadAuthToken();
-        console.log('error: ', this.props.error);
         
         return (
             <Router>
