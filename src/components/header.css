@@ -1,5 +1,5 @@
 header {
-    padding: 12% 0;
+    /* padding: 12% 0; */
     background-image: 
         linear-gradient(to bottom right, rgba(168, 138, 101, 0.3), rgba(13, 3, 1, 0.3)),
         url('../assets/quino-al-121406-unsplash.jpg');
@@ -11,13 +11,17 @@ header {
     font-size: 1em;
 }
 
+.header__content {
+    padding-top: 70px;
+}
+
 .btn__header {
     font-size: 18px;
 }
 
 @media only screen and (min-width: 600px) {
     header {
-        padding: 7% 0;
+        /* padding: 7% 0; */
         font-size: 1.25em;
     }
 }
