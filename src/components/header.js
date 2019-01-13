@@ -5,9 +5,6 @@ import { loadAuthToken } from '../localStorage';
 import './header.css'
 
 import { connect } from 'react-redux';
-// import { request } from '../actions/index';
-
-// import SignUp from './signup';
 
 function Header(props) {
     const auth = loadAuthToken();
