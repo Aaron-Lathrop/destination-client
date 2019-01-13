@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd src && yarn && yarn run build"
+    "heroku-postbuild": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/Aaron-Lathrop/destination-client/issues"
   },
-  "homepage": "https://github.com/Aaron-Lathrop/destination-client#readme",
+  "homepage": "https://github.com/Aaron-Lathrop/destination-client",
   "eslintConfig": {
     "extends": "react-app"
   },
