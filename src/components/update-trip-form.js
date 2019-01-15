@@ -6,6 +6,7 @@ import './trip-form.css';
 import { updateTripToDatabase, setEditing, setTripStatus } from '../actions';
 
 function TripFormUpdate(props) {
+    console.log(props.tripId)
     const trip = {};
 
     function parseDate(date) {
@@ -66,7 +67,7 @@ function TripFormUpdate(props) {
             
         });
 
-        props.dispatch(updateTripToDatabase(props.auth, trip, trip.tripId));
+        props.dispatch(updateTripToDatabase(trip, trip.tripId));
         handleCloseModal();
     }
 

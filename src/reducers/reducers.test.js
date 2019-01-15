@@ -14,7 +14,7 @@ describe('Reducer', () => {
         expect(state.editing).toEqual(false);
         expect(state.isSaving).toEqual(false);
         expect(state.addTrip).toEqual(false);
-        expect(state.tripId).toEqual(false);
+        expect(state.tripId).toEqual(null);
         expect(state.loading).toEqual(false);
         expect(state.name).toEqual("");
     });

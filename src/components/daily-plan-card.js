@@ -217,7 +217,7 @@ const mapStateToProps = (state, props) => {
         return null;
     }
     return ({
-        user: state.currentUser,
+        // user: state.currentUser,
         auth: state.authToken,
         trip,
         planCards: trip.planCards,
@@ -225,7 +225,7 @@ const mapStateToProps = (state, props) => {
         currentDate: state.date,
         plans: state.plans,
         editing: state.editing,
-        editPlanCards: state.planCards,
+        // editPlanCards: state.planCards,
     });
 };
 

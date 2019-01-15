@@ -159,7 +159,7 @@ export const updateTrip = (trip) => ({
     trip
 });
 
-export const updateTripToDatabase = (auth, trip, tripId)=> dispatch => {
+export const updateTripToDatabase = (trip, tripId)=> dispatch => {
     const authToken = loadAuthToken();
     dispatch(request());
     return fetch(`${API_BASE_URL}/trips/${tripId}`, {

@@ -3,22 +3,22 @@ import * as actions from '../actions/index';
 
 const initialState = {
     authToken: null,
-    currentUser: null,
+    // currentUser: null,
     dateList: [],
     destination: "",
     error: null,
     icon: "",
     editing: false,
-    isSaving: false,
+    // isSaving: false,
     addTrip: false,
     tripId: null,
     loading: false,
-    name: "",
+    // name: "",
     planCards: [],
-    userID: null,
+    // userID: null,
     plans: [],
-    editedPlans: [],
-    editCurrent: null,
+    // editedPlans: [],
+    // editCurrent: null,
     date: null,
     trips: []
 };
