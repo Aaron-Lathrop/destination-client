@@ -1,5 +1,6 @@
 import * as actions from '../actions/index';
 
+
 const initialState = {
     authToken: null,
     currentUser: null,

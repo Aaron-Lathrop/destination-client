@@ -9,9 +9,11 @@ import LandingPage from './components/landing-page';
 import Footer from './components/footer';
 import Login from './components/login';
 import Logout from './components/logout';
-import SignUp from './components/signup';
+import Signup from './components/signup';
 import TripSection from './components/trip-section';
 import DailyPlanCard from './components/daily-plan-card';
+
+import { setEditing, fail } from './actions/index';
 
 import { loadAuthToken } from './localStorage';
 
@@ -33,7 +35,7 @@ class App extends Component {
                         <Route exact path="/" component={LandingPage} auth={auth} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/logout" component={Logout} /> 
-                        <Route exact path="/signup" component={SignUp} />
+                        <Route exact path="/signup" component={Signup} />
                         <Route exact path="/trips" component={TripSection} />
                         <Route exact path="/trips/:tripId" component={DailyPlanCard} />
                         <Redirect from="/:unknown" to="/" />

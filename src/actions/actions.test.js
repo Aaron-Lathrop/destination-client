@@ -12,8 +12,6 @@ import {
     SET_AUTH_TOKEN,
     AUTH_SUCCESS,
     LOG_OUT,
-    SIGN_UP,
-    LOG_IN,
     SET_EDITING,
     addPlan,
     editPlans,
@@ -28,8 +26,6 @@ import {
     setAuthToken,
     authSuccess,
     logout,
-    signup,
-    login,
     setEditing
 } from './index';
 
@@ -147,20 +143,6 @@ describe('logout', () => {
         expect(action.type).toEqual(LOG_OUT);
     });
 });
-
-// describe('signup', () => {
-//     it('Should return the action', () => {
-//         const action = signup();
-//         expect(action.type).toEqual(SIGN_UP);
-//     });
-// });
-
-// describe('login', () => {
-//     it('Should return the action', () => {
-//         const action = login();
-//         expect(action.type).toEqual(LOG_IN);
-//     });
-// });
 
 describe('setEditing', () => {
     it('Should return the action', () => {

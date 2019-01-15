@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../actions/index';
-import './signup.css';
+import { login, fail } from '../actions/index';
 
+import './signup.css';
 
 function Login(props) {
 
@@ -13,10 +13,6 @@ function Login(props) {
     e.preventDefault();
     return (
       props.dispatch(login(user.username, user.password))
-      // .then(props.history.push("/trips"))
-      // .catch(err =>
-      //     console.error(err)
-      //   )
       );
   }
 
@@ -54,7 +50,7 @@ function Login(props) {
                          
                          onChange={e =>handlePassword(e)} />
                 </div>
-                <p>Try out our demo account: <br /> Username: Admin007 <br /> Password: demo123456</p>
+                <p><b>Demo account:</b> <br /> Username: Admin007 <br /> Password: demo123456</p>
                 <button className="btn--confirm" type="submit">Login</button>
                 <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </fieldset>

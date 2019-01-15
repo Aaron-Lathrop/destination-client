@@ -4,7 +4,7 @@ The Destino app let's you plan trips with a minimal user interface. Users can cr
 
 ### Working Prototype
 
-View Node working prototype here: [Destino - Simple Planning](https://rocky-harbor-70453.herokuapp.com/)
+View working prototype here: [Destino - Simple Planning](https://rocky-harbor-70453.herokuapp.com/)
 
 This app was created using create-react-app.
 

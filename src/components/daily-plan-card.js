@@ -30,18 +30,18 @@ function DailyPlanCard(props) {
     function onSubmit(e) {
         e.preventDefault();
         if(!props.editing) {
-            props.dispatch(updatePlansToDatabase(props.auth, plan));
+            props.dispatch(updatePlansToDatabase(plan));
             if(document.getElementById(plan.index)) {
                 document.getElementById(plan.index).value = "";
             };
         } else {
             if(save) {
-                if(deleteThisPlan.hasContentToDelete) {
-                    props.dispatch(deletePlanFromDatabase(props.auth, deleteThisPlan));
+                if(deleteThisPlan.hasContentToDelete && deleteThisPlan.plans.length > 0) {
+                    props.dispatch(deletePlanFromDatabase(deleteThisPlan));
                 }
                 save = false;
                 resetDelete();
-                props.dispatch(updatePlansToDatabase(props.auth, updatePlans));
+                props.dispatch(updatePlansToDatabase(updatePlans));
                 props.dispatch(setEditing(false));
             }
         }

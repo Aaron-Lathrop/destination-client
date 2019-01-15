@@ -24,7 +24,7 @@ export const updatePlan = (plans) => ({
     plans
 });
 
-export const updatePlansToDatabase = (auth, planCard) => dispatch => {
+export const updatePlansToDatabase = (planCard) => dispatch => {
     if(!planCard) {
         return null
     } else {
@@ -60,32 +60,37 @@ export const deletePlan = planCard => ({
     planCard
 });
 
-export const deletePlanFromDatabase = (auth, planCard) => dispatch => {
-    const authToken = loadAuthToken();
-    dispatch(request());
-    return fetch(`${API_BASE_URL}/trips/deleteplan/${planCard.tripId}`, {
-        method: 'PATCH',
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': `Bearer ${authToken}` 
-        },
-        body: JSON.stringify({
-            hasContentToDelete: planCard.hasContentToDelete,
-            date: planCard.date,
-            index: planCard.index,
-            plans: planCard.plans,
-            tripId: planCard.tripId
+export const deletePlanFromDatabase = (planCard) => dispatch => {
+    if(planCard.plans.length > 0){
+        const authToken = loadAuthToken();
+        dispatch(request());
+        return fetch(`${API_BASE_URL}/trips/deleteplan/${planCard.tripId}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${authToken}` 
+            },
+            body: JSON.stringify({
+                hasContentToDelete: planCard.hasContentToDelete,
+                date: planCard.date,
+                index: planCard.index,
+                plans: planCard.plans,
+                tripId: planCard.tripId
+            })
         })
-    })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
-    .then(update => {
-        dispatch(deletePlan(update.originalRequest))
-    })
-    .then(res => {
-        dispatch(success())
-    })
-    .catch(err => console.error(err))
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(update => {
+            dispatch(deletePlan(update.originalRequest))
+        })
+        .then(res => {
+            dispatch(success())
+        })
+        .catch(err => console.error(err))
+    } else {
+        return null;
+    }
+    
 }
 
 
@@ -186,7 +191,7 @@ export const deleteTrip = (tripId) => ({
 export const deleteTripFromDatabase = (auth, tripId) => dispatch => {
     const authToken = loadAuthToken();
     dispatch(request());
-    return fetch(`${API_BASE_URL}/trips/${tripId}`, {
+    return fetch(`${API_BASE_URL}/trips/delete/${tripId}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',

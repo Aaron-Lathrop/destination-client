@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signup } from '../actions/index';
 
-function SignUp(props) {
+function Signup(props) {
 
   const user = {};
 
@@ -13,10 +13,6 @@ function SignUp(props) {
     e.preventDefault();
     return (
       props.dispatch(signup(user))
-      // .then(props.history.push("/trips"))
-      // .catch(err =>
-      //     console.error(err)
-      //   )
       );
   }
 
@@ -65,8 +61,8 @@ function SignUp(props) {
                           required />
                   </div>
 
-                  <button type="submit" className="btn--confirm">Sign Up</button>
-                  <p>Already have an account? <Link to="/login">Log In</Link></p>
+                  <button type="submit" className="btn--confirm">Sign up</button>
+                  <p>Already have an account? <Link to="/login">Login</Link></p>
                   </fieldset>
               </form>
             
@@ -76,10 +72,4 @@ function SignUp(props) {
     );
 }
 
-const mapStateToProps = state => ({
-  username: state.username,
-  name: state.firstName,
-  userList: state.userList
-});
-
-export default connect(mapStateToProps)(SignUp);
+export default connect()(Signup);

@@ -3,8 +3,8 @@ import './trip-card.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import TripForm from './trip-form';
-import TripFormUpdate from './trip-form-update';
+import CreateTripForm from './create-trip-form';
+import UpdateTripForm from './update-trip-form';
 import { setTripStatus } from '../actions';
 
 function TripCard(props) {
@@ -36,14 +36,14 @@ function TripCard(props) {
 
     const tripHeader = (
         <div className="tripcard__header">
-            <p className="header__yourtrips">{props.trips.length} trips <span className="header__trips"></span> <span className="tripcard__header--addcontainer"><span className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</span> </span></p> 
+            <p className="header__yourtrips">{props.trips.length} trips <span className="header__trips"></span> <span className="tripcard__header--addcontainer"><button className="tripcard__header--add" onClick={e => handleAddTrip(e)}>&#43;</button    > </span></p> 
         </div>
     );
 
     const tripsValue = () => {
 
         if(showTripForm) {
-            return <TripForm />
+            return <CreateTripForm />
         }
 
         if(props.trips.length > 0) {
@@ -71,7 +71,6 @@ function TripCard(props) {
                 <button onClick={e => handleAddTrip()}>Get Started</button>
             </section>
         );
-        
     }
     
     const trips = (
@@ -84,9 +83,9 @@ function TripCard(props) {
 
 
     if(props.addTrip === 'add') {
-        return <TripForm />;
+        return <CreateTripForm />;
     } else if(props.addTrip === 'update') {
-        return <TripFormUpdate tripId={props.tripId} />
+        return <UpdateTripForm tripId={props.tripId} />
     } else {
         return (
             <div className="grid__layout--main">
@@ -97,7 +96,6 @@ function TripCard(props) {
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => ({

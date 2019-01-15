@@ -5,7 +5,7 @@ import './trip-form.css';
 
 import { addTripToDatabase, setTripStatus } from '../actions';
 
-function TripForm(props) {
+function CreateTripForm(props) {
 
   const trip = {};
 
@@ -51,7 +51,6 @@ function getDates(startDate, stopDate) {
 function onSubmit(e) {
   e.preventDefault();
   trip.dateList = getDates(new Date(trip.startDate), new Date(trip.endDate));
-  // trip.tripId = Math.floor(Math.random() * 9999999999999999);
   trip.planCards = trip.dateList.map(date => ({
     tripId: trip.tripId,
     date,
@@ -129,4 +128,4 @@ const mapStateToProps = state => ({
   auth: state.authToken
 });
 
-export default withRouter(connect(mapStateToProps)(TripForm));
+export default withRouter(connect(mapStateToProps)(CreateTripForm));
