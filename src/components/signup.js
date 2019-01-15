@@ -1,5 +1,4 @@
 import React from 'react';
-import './signup.css';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -24,19 +23,8 @@ function Signup(props) {
     user.password = e.target.value;
   }
 
-  //handleEmail and handleFirstName may become available in a future version
-
-  // function handleEmail(e) {
-  //   user.email = e.target.value;
-  // }
-
-  // function handleFirstName(e) {
-  //   user.firstName = e.target.value;
-  // }
-
     return (
-        <div id="form-container" className="form__container">
-                
+        <div id="form-container" className="form__container"> 
                 <form name="signup" className="tripform" onSubmit={e => onSubmit(e)}>
                 <fieldset className="form__fieldset">
                 <legend className="tripform__legend">Sign Up</legend>
@@ -65,8 +53,6 @@ function Signup(props) {
                   <p>Already have an account? <Link to="/login">Login</Link></p>
                   </fieldset>
               </form>
-            
-            
           </div>
 
     );

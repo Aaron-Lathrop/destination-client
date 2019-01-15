@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import './landing-page.css';
-import Header from './header';
 
+import Header from './header';
 import Trips from '../assets/Trip-card.png';
 import Plans from '../assets/Plan-card.png';
+
+import './landing-page.css';
 
 export default class LandingPage extends Component {
     render() {

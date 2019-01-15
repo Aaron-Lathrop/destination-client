@@ -155,7 +155,7 @@ function DailyPlanCard(props) {
                     </div>
                     <div>
                         <form onSubmit={e => onSubmit(e)}>
-                            <ul>
+                            <ul className="planCard__ul">
                                 {plans(date, index)}
                                 <li>
                                 {
@@ -163,7 +163,7 @@ function DailyPlanCard(props) {
                                     
                                     (<div>
 
-                                        <input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} required className="tripcard__input" />
+                                        <input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} placeholder="Add a plan" required className="tripcard__input" />
 
                                         <button type="submit" className="btn--confirm btn--small btn--smallshadow">Add</button>
 
@@ -217,15 +217,13 @@ const mapStateToProps = (state, props) => {
         return null;
     }
     return ({
-        // user: state.currentUser,
         auth: state.authToken,
         trip,
         planCards: trip.planCards,
         dates: trip.dateList,
         currentDate: state.date,
         plans: state.plans,
-        editing: state.editing,
-        // editPlanCards: state.planCards,
+        editing: state.editing
     });
 };
 

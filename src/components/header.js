@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { loadAuthToken } from '../localStorage';
 
 import './header.css'

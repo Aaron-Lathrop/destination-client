@@ -6,7 +6,6 @@ import './trip-form.css';
 import { updateTripToDatabase, setEditing, setTripStatus } from '../actions';
 
 function TripFormUpdate(props) {
-    console.log(props.tripId)
     const trip = {};
 
     function parseDate(date) {

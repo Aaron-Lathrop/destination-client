@@ -21,7 +21,7 @@ export function Nav(props) {
         },
         {
             path: '/signup',
-            text: 'Sign Up'
+            text: 'Sign up'
         }
     ];
 
@@ -33,7 +33,7 @@ export function Nav(props) {
         },
         {
             path: '/logout',
-            text: 'Log Out'
+            text: 'Log out'
         },
         {
             path: '/trips',
