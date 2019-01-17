@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/Aaron-Lathrop/destination-client/issues"
   },
-  "homepage": "https://rocky-harbor-70453.herokuapp.com/",
+  "homepage": "https://destino-planning.herokuapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },

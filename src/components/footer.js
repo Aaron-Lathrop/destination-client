@@ -14,17 +14,17 @@ export default function Footer(props) {
                     Copyright 2018 - Aaron Lathrop Miller
                 </p>
 
-                <Link to="https://www.linkedin.com/in/aaron-lathrop-miller/" target="_blank">
+                <a href="https://www.linkedin.com/in/aaron-lathrop-miller/" target="_blank">
                     <img className="footer-image" src={linkedin} alt ="linkedin-logo"/>
-                </Link>
+                </a>
     
-                <Link to="https://github.com/Aaron-Lathrop" target="_blank">
+                <a href="https://github.com/Aaron-Lathrop" target="_blank">
                     <img className="footer-image" src={github} alt="git-hub-logo" />
-                </Link>
+                </a>
     
-                <Link to="mailto:aaron.s.lathrop@gmail.com?Subject=Hi%20Aaron" target="_blank">
+                <a href="mailto:aaron.s.lathrop@gmail.com?Subject=Hi%20Aaron" target="_blank">
                     <img className="footer-image" src={gmail} alt="gmail-logo" />
-                </Link>
+                </a>
             </div>
         </footer>
     );
