@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import linkedin from '../assets/linkedin-logo.png';
 import github from '../assets/git-hub-logo.png';
 import gmail from '../assets/gmail-logo.png';

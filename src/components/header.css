@@ -8,10 +8,18 @@ header {
     color: ghostwhite;
     height: 50vh;
     font-size: 1em;
+    position: relative;
 }
 
 .header__content {
-    padding-top: 1px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+
+.header__content h1 {
+    margin-top: 0px;
+    padding-top: 0px;
 }
 
 .btn__header {
@@ -21,6 +29,13 @@ header {
 @media only screen and (min-width: 600px) {
     header {
         font-size: 1.25em;
+    }
+
+    .header__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
