@@ -3,47 +3,48 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
-import { addTripToDatabase, setTripStatus } from '../actions';
+import { addTripToDatabase, setTripStatus, getTrips } from '../actions';
+import { getDates } from '../utils/dates';
 
 function CreateTripForm(props) {
 
   const trip = {};
 
-  //parseDate keeps track of all the date information in an easier to read format
-  function parseDate(date) {
-    const dateValues = {
-      month: new Date(date).getMonth() + 1,
-      day: new Date(date).getDate() + 1,
-      year: new Date(date).getFullYear(),
-      string: `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`
-    };
-    return dateValues;
-  }
+//   //parseDate keeps track of all the date information in an easier to read format
+//   function parseDate(date) {
+//     const dateValues = {
+//       month: new Date(date).getMonth() + 1,
+//       day: new Date(date).getDate() + 1,
+//       year: new Date(date).getFullYear(),
+//       string: `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`
+//     };
+//     return dateValues;
+//   }
 
-//Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays, refactored to function addDays(), and function getDates()
+// //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for Date.prototype.addDays, refactored to function addDays(), and function getDates()
 
-//addDays helps create the list of dates for each trip
-function addDays(currentDate, days) {
-  var date = new Date(currentDate.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-}
+// //addDays helps create the list of dates for each trip
+// function addDays(currentDate, days) {
+//   var date = new Date(currentDate.valueOf());
+//   date.setDate(date.getDate() + days);
+//   return date;
+// }
 
-//getDates creates the list of dates to be used for each trip
-function getDates(startDate, stopDate) {
+// //getDates creates the list of dates to be used for each trip
+// function getDates(startDate, stopDate) {
   
-    //using addDays() here corrects an issue while getting the date from the html input, namely that the date is 1 day behind what the user input
-    startDate = addDays(startDate, 1);
-    stopDate = addDays(stopDate, 1);
+//     //using addDays() here corrects an issue while getting the date from the html input, namely that the date is 1 day behind what the user input
+//     startDate = addDays(startDate, 1);
+//     stopDate = addDays(stopDate, 1);
 
-    var dateArray = [];
-    var currentDate = startDate;
-    while (currentDate <= stopDate) {
-        dateArray.push(parseDate(new Date (currentDate)).string );
-        currentDate = addDays(currentDate, 1);
-    }
-    return dateArray;
-}
+//     var dateArray = [];
+//     var currentDate = startDate;
+//     while (currentDate <= stopDate) {
+//         dateArray.push(parseDate(new Date (currentDate)).string );
+//         currentDate = addDays(currentDate, 1);
+//     }
+//     return dateArray;
+// }
 
 //onSubmit builds the trip we are going to add by taking the form information, building a dateList and tripId
 //and creates a blank planCard for each date in the date list so we have a default state to display
@@ -58,9 +59,11 @@ function onSubmit(e) {
     plans: []
   }));
   
-  props.dispatch(addTripToDatabase(trip, props.auth));
-  handleCloseModal();
-  props.history.push("/trips");
+  props.dispatch(addTripToDatabase(trip, props.auth))
+  .then(() => handleCloseModal())
+  .then(() => props.dispatch(getTrips(props.auth)))
+  .then(() => props.history.push("/trips"))
+
 }
 
 function handleLocation(e) {
@@ -75,25 +78,20 @@ function handleReturn(e) {
   trip.endDate = e.target.value;
 }
 
-function handleCloseModal(e) {
+function handleCloseModal() {
   props.dispatch(setTripStatus(false));
 }
 
   return (
       <div id="form-container" className="form__container">
-      
           <form className="tripform" name="tripform" action="/trips" onSubmit={e => onSubmit(e)}>
-                    
             <fieldset className="form__fieldset">
-            
             <legend className="tripform__legend">Create A New Trip</legend>
-            
               <div className="form__element">
-                <label htmlFor="location" className="tripform__label">Destination?</label>
+                <label htmlFor="location" className="tripform__label">Location</label>
                 <input id="location" 
                         name="location" 
                         type="text" 
-                        
                         onChange={e => handleLocation(e)} 
                         required />
               </div>
@@ -115,7 +113,6 @@ function handleCloseModal(e) {
                         onChange={e => handleReturn(e)} 
                         required />
               </div>
-
               <button className="btn--confirm" type="submit">Submit</button>
               <span id="closeModal" className="form__closemodal" onClick={e => handleCloseModal(e)}>&times;</span>
             </fieldset>

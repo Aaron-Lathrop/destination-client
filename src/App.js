@@ -13,8 +13,6 @@ import Signup from './components/signup';
 import TripSection from './components/trip-section';
 import DailyPlanCard from './components/daily-plan-card';
 
-import { setEditing, fail } from './actions/index';
-
 import { loadAuthToken } from './localStorage';
 
 class App extends Component {

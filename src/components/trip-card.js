@@ -1,13 +1,18 @@
 import React from 'react';
 import './trip-card.css';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import CreateTripForm from './create-trip-form';
 import UpdateTripForm from './update-trip-form';
 import { setTripStatus } from '../actions';
 
 function TripCard(props) {
+
+    //if the user isn't logged in and goes to the /trips route, then they should be redirected to the home page
+    if(typeof props.trips == 'undefined') {
+        return <Redirect from='/trips' to="/" />
+    }
 
     let showTripForm = false;
 
@@ -19,7 +24,7 @@ function TripCard(props) {
         props.dispatch(setTripStatus('add'));
     }
 
-    function handleUpdate(editingStatus, tripId) {
+    function handleUpdate(tripId) {
         props.dispatch(setTripStatus('update', tripId));
     }
 
@@ -27,7 +32,7 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div className="btn__container">
-                    <button id={trip.tripId} className="btn--confirm btn--small btn--smallshadow" onClick={e => handleUpdate('update', trip.tripId)}>Update</button>
+                    <button id={trip.tripId} className="btn--confirm btn--small btn--smallshadow" onClick={e => handleUpdate(trip.tripId)}>Update</button>
                 </div>
             );
         }
@@ -53,7 +58,6 @@ function TripCard(props) {
                         <li key={trip.tripId} className="tripcard__trip">
                             <div className="tripcard__details">
                                 <p onClick={e => handleView(trip.tripId)}><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
-                                
                             </div>
                             <div>
                                 {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
