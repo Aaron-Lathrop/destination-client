@@ -4,42 +4,10 @@ import { withRouter } from 'react-router-dom';
 import './trip-form.css';
 
 import { updateTripToDatabase, setEditing, setTripStatus } from '../actions';
+import { getDates } from '../utils/dates';
 
 function TripFormUpdate(props) {
     const trip = {};
-
-    function parseDate(date) {
-        const dateValues = {
-          month: new Date(date).getMonth() + 1,
-          day: new Date(date).getDate() + 1,
-          year: new Date(date).getFullYear(),
-          string: `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`
-        };
-        return dateValues;
-      }
-    
-    //Credit to John Hartsock on StackOverflow https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates for and function getDates()
-    
-    function addDays(currentDate, days) {
-        var date = new Date(currentDate.valueOf());
-        date.setDate(date.getDate() + days);
-        return date;
-    }
-    
-    function getDates(startDate, stopDate) {
-        
-        //using addDays() here corrects an issue while getting the date from the html input, namely that the date is 1 day behind what the user input
-        startDate = addDays(startDate, 1);
-        stopDate = addDays(stopDate, 1);
-
-        var dateArray = [];
-        var currentDate = startDate;
-        while (currentDate <= stopDate) {
-            dateArray.push(parseDate(new Date (currentDate)).string );
-            currentDate = addDays(currentDate, 1);
-        }
-        return dateArray;
-    }
 
     function onSubmit(e) {
         e.preventDefault();

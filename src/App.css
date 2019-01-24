@@ -40,7 +40,7 @@ button {
   margin: 10px;
   border: none;
   border-radius: 100px;
-  box-shadow: 1px 1px 6px 1px #0a0a0a;
+  /* box-shadow: 1px 1px 6px 1px #0a0a0a; */
   font-size: 1em;
   background-color: dodgerblue;
   color: white;
@@ -67,7 +67,7 @@ button:hover {
 }
 
 .btn--confirm {
-  background-color: #8fe3d9a3;
+  background-color: rgba(143, 227, 217, 0.639);
   color: black;
 }
 
@@ -92,9 +92,9 @@ button:hover {
   color: black;
 }
 
-.btn--smallshadow {
+/* .btn--smallshadow {
   box-shadow: .1px .1px 1px .1px #0a0a0a;
-}
+} */
 
 .btn--smallshadow:hover {
   box-shadow: 1px 1px 5px 1px #0a0a0a;
