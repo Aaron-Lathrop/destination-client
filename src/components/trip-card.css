@@ -59,6 +59,8 @@
     margin: 0;
 }
 
+.tripcard__header--add::-moz-focus-inner { border: 0; padding: 0; margin:0; }
+
 .tripcard__container {
     box-shadow: 0.1px 0.1px 10px 0.1px #c8c8c8;
 }
