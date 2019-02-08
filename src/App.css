@@ -13,10 +13,9 @@ body {
   
   font-family: "Open Sans", sans-serif; 
   font-size: 16px;
-  color: #444;
+  color: #0f0f0f;
   text-align: center;
   line-height: 1.5;
-  /* background-image: linear-gradient(to bottom, #ffffff, #efe6e9); */
   background-color: white;
 }
 
@@ -38,10 +37,9 @@ button {
   margin: 10px;
   border: none;
   border-radius: 100px;
-  /* box-shadow: 1px 1px 6px 1px #0a0a0a; */
   font-size: 1em;
   background-color: dodgerblue;
-  color: white;
+  color: #0f0f0f;
 }
 
 button::-moz-focus-inner { border: 0; padding: 0; margin:0; }
@@ -91,10 +89,6 @@ button:hover {
   font-size: .8em;
   color: black;
 }
-
-/* .btn--smallshadow {
-  box-shadow: .1px .1px 1px .1px #0a0a0a;
-} */
 
 .btn--smallshadow:hover {
   box-shadow: 1px 1px 5px 1px #0a0a0a;

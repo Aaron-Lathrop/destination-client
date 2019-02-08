@@ -32,7 +32,7 @@ function TripCard(props) {
         if(!props.editing) {
             return(
                 <div className="btn__container">
-                    <button id={trip.tripId} className="btn--confirm btn--small btn--smallshadow" onClick={e => handleUpdate(trip.tripId)}>Update</button>
+                    <button className="btn--confirm btn--small btn--smallshadow" onClick={e => handleUpdate(trip.tripId)}>Update</button>
                 </div>
             );
         }
@@ -54,17 +54,18 @@ function TripCard(props) {
         if(props.trips.length > 0) {
             return (
                 props.trips.map((trip, index) => (
-                    <div key={index} id={trip.tripId} className="tripcard" >
-                        <li key={trip.tripId} className="tripcard__trip">
-                            <div className="tripcard__details">
-                                <p onClick={e => handleView(trip.tripId)}><span id="start">{trip.dateList[0]}</span> to <span id="end">{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
+                        <li key={index} id={trip.tripId} className="tripcard">
+                            <div key={trip.tripId} className="tripcard__trip">
+                                <div className="tripcard__details">
+                                    <p onClick={e => handleView(trip.tripId)}><span>{trip.dateList[0]}</span> to <span>{trip.dateList[trip.dateList.length-1]}</span> - {trip.destination}</p>
+                                </div>
+                                <div>
+                                    {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
+                                </div>
+                                {userInteractions(trip)}
                             </div>
-                            <div>
-                                {trip.icon ? <img src={trip.icon} alt={trip.destination} className="trip-img" /> : ""}
-                            </div>
-                            {userInteractions(trip)}
                         </li> 
-                    </div>
+                    
                 ))
             );
         }

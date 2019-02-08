@@ -135,7 +135,9 @@ function DailyPlanCard(props) {
                 props.plans.map((plan, index) => 
                     (
                         <li key={index}>
-                            <input type="text" name={`plan-${index}`} onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
+                            <label htmlFor={`plan-${index}`}>
+                                <input type="text" name={`plan-${index}`} onChange={e => handleEditChange(e, index)} defaultValue={props.plans[index]} className="tripcard__input" />
+                            </label>
                             <input id={plan} type="reset" onClick={e => handleDelete(e, date, index)} value="Delete" className="btn--small btn--smallshadow btn--delete" />
                         </li>
                     )
@@ -162,8 +164,9 @@ function DailyPlanCard(props) {
                                     !props.editing ? 
                                     
                                     (<div>
-
-                                        <input id={index} type="text" onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} placeholder="Add a plan" required className="tripcard__input" />
+                                        <label htmlFor='add_plan'>
+                                            <input id={index} type="text" name='add_plan' onChange={e => handleAddChange(e, date, props.planCards[index].weather, index)} placeholder="Add a plan" required className="tripcard__input" aria-label='add_plan' />
+                                        </label>
 
                                         <button type="submit" className="btn--confirm btn--small btn--smallshadow">Add</button>
 

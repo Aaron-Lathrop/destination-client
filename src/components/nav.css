@@ -1,11 +1,12 @@
 nav {
   padding: 3% 0;
   background-color: #8fe3d9;
-  color: white;
+  color: #0f0f0f;
   overflow: hidden;
   font-size: 1.15em;
   max-width: 1100px;
   margin: 0 auto;
+  z-index: 100;
 }
 
 nav a:first-child {
@@ -17,7 +18,7 @@ nav a:first-child {
 nav a {
   float: right;
   padding-right: 15px;
-  color: white;
+  color: #0f0f0f;
 }
 
 .sticky {

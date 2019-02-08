@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import Header from './header';
 import Trips from '../assets/Trip-card.png';
-import Plans from '../assets/Plan-card.png';
+import Plans from '../assets/Trip_plans_page.png';
 
 import './landing-page.css';
 
