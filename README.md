@@ -1,12 +1,10 @@
 # Destino - Simple Planning
 
-[![Build Status](https://travis-ci.org/Aaron-Lathrop/destination-client.svg?branch=master)](https://travis-ci.org/Aaron-Lathrop/destination-client)
-
 A fullstack JavaScript & React application that helps travelers plan trips. Users create trips, add & edit plans, and can keep themselves organized with day to day planning.
 
 ## Demo
 
-- [Live Demo](https://destino-simple-planning.herokuapp.com/)
+- [Live Demo](https://destino-planning.herokuapp.com/)
 
 ## Motivation
 
@@ -26,10 +24,6 @@ As a traveler, I wanted to build a simple app that travelers could use to keep t
 * Have a landing page that explains what the app does and how to get started, and the pages required to deliver functionality.
 * Deploy a live, publicly-accessible version of the app.
 * A demo user account and indicate on the landing page how to use it.
-
-## Built With
-Client and API were deployed separately and stored in separate GitHub repos. 
-- [Referred API Repo](https://github.com/Aaron-Lathrop/destination-node)
 
 ### Front End
 * JavaScript [ES6 & JSX]
