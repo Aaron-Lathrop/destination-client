@@ -29,6 +29,10 @@ if(!dev) {
     app.get('/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
+
+    app.get('*', (req, res) => {
+      return res.redirect('/');
+    })
 }
 
 if(dev) {
