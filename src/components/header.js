@@ -14,7 +14,6 @@ function Header(props) {
                 <h1>Destino</h1>
                 <h2>Simple Planning for Travelers</h2>
                 <Link to={`${auth ? "/trips" : "/signup"}`} className="btn btn__header" >{auth ? "Trips" : "Sign Up"}</Link>
-                {/* <button onClick={() => window.location = `${auth ? "/trips" : "/signup"}`} className="btn__header">{auth ? "Trips" : "Sign Up"}</button> */}
             </div>
         </header>
     );

@@ -22,7 +22,25 @@ const dev = app.get('env') !== 'production';
 if(!dev) {
     app.disable('x-powered-by');
     app.use(compression());
-    app.use(morgan('common'));
+    app.use(morgan('dev'));
+    app.use(express.json());
+
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+      res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+      if(req.method === 'OPTIONS'){
+          return res.sendStatus(204);
+      }
+      next();
+    });
+  
+    passport.use(localStrategy);
+    passport.use(jwtStrategy);
+    
+    app.use('/users', usersRouter);
+    app.use('/trips', tripsRouter);
+    app.use('/auth', authRouter);
 
     app.use(express.static(path.resolve(__dirname, 'build')));
 
@@ -30,37 +48,16 @@ if(!dev) {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
 
-    app.get('*', (req, res) => {
-      return res.redirect('/');
-    })
 }
 
 if(dev) {
     app.use(morgan('dev'));
 }
 
-app.use(express.json());
-app.use(morgan('common'));
-app.use(express.static('public'));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-    if(req.method === 'OPTIONS'){
-        return res.sendStatus(204);
-    }
-    next();
-  });
-
-passport.use(localStrategy);
-passport.use(jwtStrategy);
-
-app.use('/users', usersRouter);
-app.use('/trips', tripsRouter);
-app.use('/auth', authRouter);
-
-const jwtAuth = passport.authenticate('jwt', {session: false});
+app.get('*', (req, res) => {
+  return res.redirect('/');
+})
 
 let server;
 
